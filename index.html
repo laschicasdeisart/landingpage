@@ -158,11 +158,38 @@ nav.scrolled { padding: 12px 40px; }
    HERO
    ============================================================ */
 .hero {
+   
   min-height: 100vh;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center; text-align: center;
   padding: 130px 24px 100px;
   position: relative; overflow: hidden;
+   }
+   
+   .hero-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 28px auto 22px;
+  border: 1px solid rgba(92,225,212,0.28);
+  box-shadow: 0 0 40px rgba(92,225,212,0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hero-photo {
+    width: 280px;
+    height: 280px;
+    margin: 34px auto 26px;
 }
 .hero-glow {
   position: absolute; top: -10%; left: 50%; transform: translateX(-50%);
@@ -192,6 +219,9 @@ nav.scrolled { padding: 12px 40px; }
   background: rgba(92,225,212,0.05);
   animation: fadeUp 0.9s var(--ease) both;
   transition: border-color 0.3s, background 0.3s;
+   <div class="hero-photo" data-reveal="scale">
+  <img src="irene-maria.jpg" alt="Irene y María">
+</div>
 }
 .hero-badge:hover { border-color: rgba(92,225,212,0.5); background: rgba(92,225,212,0.1); }
 .hero-badge-dot {
