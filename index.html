@@ -1028,16 +1028,28 @@ footer {
     <span class="section-label" style="display:block;margin-bottom:16px;">Únete</span>
     <h2 class="optispire-bold">Apúntate.<br><span class="gradient-text">Te avisamos primero.</span></h2>
     <p class="sub">Sin spam. Solo acceso prioritario cuando abramos plazas.</p>
+<form action="https://formsubmit.co/laschicasdeisart@gmail.com" method="POST" id="form-container">
+  
+  <div class="form-fields">
+    <input type="text" name="nombre" class="form-input" placeholder="Tu nombre" required>
+    
+    <input type="email" name="email" class="form-input" placeholder="Tu email" required>
+    
+    <input type="text" name="web" class="form-input" placeholder="Tu perfil o web (opcional)">
+  </div>
 
-    <div id="form-container">
-      <div class="form-fields">
-        <input type="text" class="form-input" id="f-name" placeholder="Tu nombre">
-        <input type="email" class="form-input" id="f-email" placeholder="Tu email">
-        <input type="text" class="form-input" id="f-web" placeholder="Tu perfil o web (opcional)">
-      </div>
-      <button class="form-btn" onclick="handleSubmit()">→ Apuntarme a la lista de espera</button>
-      <p class="form-note">Al apuntarte, aceptas recibir información sobre el servicio. Nada más.</p>
-    </div>
+  <input type="hidden" name="_subject" value="Nueva persona en la waitlist">
+  <input type="hidden" name="_captcha" value="false">
+
+  <button type="submit" class="form-btn">
+    Apuntarme a la lista de espera
+  </button>
+
+  <p class="form-note">
+    Al apuntarte, aceptas recibir información sobre el servicio. Nada más.
+  </p>
+
+</form>
 
     <div class="form-success" id="form-success">
       <h3>✓ ¡Estás dentro!</h3>
