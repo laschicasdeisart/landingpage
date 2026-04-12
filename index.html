@@ -1010,7 +1010,7 @@ footer {
     </div>
     <div class="equipo-visual" data-reveal="right">
       <div class="equipo-img-wrap">
-        <img src="/mnt/user-data/uploads/Perfil_instagram___2_.PNG" alt="Irene y María">
+        <img src="irene-maria.jpg" alt="Irene y María">
         <div class="equipo-caption">Irene y María · Las estrategas detrás del contenido</div>
       </div>
     </div>
@@ -1134,7 +1134,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Marca · Contenido · Resultado</span>
-  <span class="footer-copy">© 2025 · Todos los derechos reservados</span>
+  <span class="footer-copy">© 2026 · Todos los derechos reservados</span>
 </footer>
 
 <!-- ============================================================
@@ -1197,28 +1197,6 @@ function toggleFaq(el) {
 }
 
 /* ---- FORM SUBMIT ---- */
-function handleSubmit() {
-  const name  = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  if (!name || !email) {
-    [document.getElementById('f-name'), document.getElementById('f-email')].forEach(inp => {
-      if (!inp.value.trim()) {
-        inp.style.borderColor = 'rgba(255,100,100,0.5)';
-        setTimeout(() => inp.style.borderColor = '', 1800);
-      }
-    });
-    return;
-  }
-  document.getElementById('form-container').style.opacity = '0';
-  document.getElementById('form-container').style.transform = 'translateY(10px)';
-  document.getElementById('form-container').style.transition = 'opacity 0.3s, transform 0.3s';
-  setTimeout(() => {
-    document.getElementById('form-container').style.display = 'none';
-    document.getElementById('form-success').classList.add('show');
-  }, 300);
-}
-</script>
-   <script>
 function handleSubmit(e) {
   e.preventDefault();
 
@@ -1226,22 +1204,26 @@ function handleSubmit(e) {
   const data = new FormData(form);
 
   fetch(form.action, {
-    method: "POST",
+    method: 'POST',
     body: data,
-    headers: {
-      'Accept': 'application/json'
-    }
+    headers: { 'Accept': 'application/json' }
   })
   .then(response => {
     if (response.ok) {
-      document.getElementById("form-container").style.display = "none";
-      document.getElementById("form-success").style.display = "block";
+      document.getElementById('form-container').style.opacity = '0';
+      document.getElementById('form-container').style.transform = 'translateY(10px)';
+      document.getElementById('form-container').style.transition = 'opacity 0.3s, transform 0.3s';
+      setTimeout(() => {
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        document.getElementById('form-success').classList.add('show');
+      }, 300);
     } else {
-      alert("Error al enviar. Inténtalo de nuevo.");
+      alert('Error al enviar. Inténtalo de nuevo.');
     }
   })
   .catch(() => {
-    alert("Error de conexión.");
+    alert('Error de conexión.');
   });
 }
 </script>
