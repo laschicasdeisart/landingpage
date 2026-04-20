@@ -257,7 +257,7 @@ nav.scrolled { padding: 12px 40px; }
 .servicios-header { text-align: center; margin-bottom: 72px; }
 .servicios-header h2 { font-size: clamp(28px, 4.5vw, 58px); line-height: 1.1; }
 .servicios-header p { font-size: 16px; color: var(--muted); max-width: 500px; margin: 16px auto 0; line-height: 1.75; font-weight: 300; }
-.servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.servicios-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
 .service-card {
   background: var(--g1); border: 1px solid rgba(255,255,255,0.04);
   padding: 48px 40px; position: relative; overflow: hidden;
@@ -393,6 +393,9 @@ footer {
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 1100px) {
+  .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr; }
   .hero-text { padding: 100px 24px 48px; order: 2; }
@@ -619,6 +622,28 @@ footer {
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         </a>
       </div>
+
+      <!-- MENTORÍA 1:1 EDICIÓN DE VÍDEO -->
+      <div class="service-card" data-reveal data-delay="4">
+        <div class="service-tag">
+          <span class="service-tag-dot"></span>
+          Plazas disponibles
+        </div>
+        <h3>Mentoría 1:1<br>Edición de Vídeo</h3>
+        <p>Aprende a editar con tu propio estilo. Una mentoría 100% personalizada según tu tipo de contenido y objetivos.</p>
+        <ul class="service-features">
+          <li>Llamada de diagnóstico inicial</li>
+          <li>Propuesta personalizada a tu medida</li>
+          <li>Sesiones en directo (máx. 2h) grabadas</li>
+          <li>Recursos: SFX, VFX, Overlays, B-rolls</li>
+          <li>Fondos y materiales personalizados</li>
+        </ul>
+        <a href="https://wa.me/34610317683?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20la%20Mentor%C3%ADa%201%3A1%20de%20Edici%C3%B3n%20de%20V%C3%ADdeo" class="btn btn-primary" style="width:100%;justify-content:center;" target="_blank" rel="noopener">
+          Agendar llamada
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
