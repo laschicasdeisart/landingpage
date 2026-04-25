@@ -226,17 +226,26 @@ nav.scrolled { padding: 14px 48px; }
 }
 .problema-header h2 em { font-family: 'Satoshi', sans-serif; font-style: italic; font-weight: 300; color: var(--t); }
 .problema-header p { font-size: 16px; color: rgba(245,242,238,0.45); max-width: 480px; margin-top: 20px; line-height: 1.75; }
-.problema-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.problema-grid { padding: 64px 72px; display: flex; flex-direction: column; gap: 0; }
 .problema-item {
-  padding: 52px 56px;
-  border-right: 2px solid rgba(255,255,255,0.08);
-  border-bottom: 2px solid rgba(255,255,255,0.08);
-  transition: background .3s;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  padding: 52px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.problema-item:hover { background: rgba(92,225,212,0.06); }
-.problema-num { font-size: 10px; letter-spacing: .3em; color: var(--t); margin-bottom: 20px; display: block; font-weight: 700; }
-.problema-item h3 { font-family: 'Satoshi', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 12px; line-height: 1.2; color: var(--bg); letter-spacing: -0.01em; }
-.problema-item p { font-size: 14px; color: rgba(245,242,238,0.45); line-height: 1.8; }
+.problema-item:last-child { border-bottom: none; }
+.problema-item:nth-child(even) .problema-item-text { order: -1; }
+.problema-item-num {
+  font-size: 120px; font-weight: 900; line-height: 1;
+  color: var(--t); opacity: 0.15; text-align: center;
+  transition: opacity .4s;
+  font-style: italic;
+}
+.problema-item:hover .problema-item-num { opacity: 0.4; }
+.problema-item-text {}
+.problema-num { font-size: 10px; letter-spacing: .3em; color: var(--t); margin-bottom: 16px; display: block; font-weight: 700; }
+.problema-item h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; color: var(--bg); letter-spacing: -0.01em; }
+.problema-item p { font-size: 15px; color: rgba(245,242,238,0.5); line-height: 1.8; }
 
 /* ============================================================
    SERVICIOS
@@ -428,7 +437,10 @@ footer {
   .nosotras-photos { flex-direction: row; gap: 24px; padding: 40px 24px; }
   .nosotras-photos > div { width: 150px; height: 150px; }
   .problema-header { padding: 48px 24px 40px; }
-  .problema-grid { grid-template-columns: 1fr; }
+  .problema-grid { padding: 32px 24px; }
+  .problema-item { grid-template-columns: 1fr; gap: 16px; }
+  .problema-item:nth-child(even) .problema-item-text { order: 0; }
+  .problema-item-num { font-size: 72px; text-align: left; }
   .servicios-header { padding: 48px 24px 40px; }
   .servicios-grid { grid-template-columns: 1fr; }
   .proceso-header { padding: 48px 24px 40px; }
@@ -549,25 +561,37 @@ footer {
       <p>Lo conocemos de primera mano. Y tiene solución.</p>
     </div>
     <div class="problema-grid">
-      <div class="problema-item" data-reveal data-delay="1">
-        <span class="problema-num">01</span>
-        <h3>No tienes tiempo para editar</h3>
-        <p>Tu negocio crece, pero las horas no. Cada hora que editas es una hora que no dedicas a lo que mueve la aguja.</p>
+      <div class="problema-item" data-reveal>
+        <div class="problema-item-num">01</div>
+        <div class="problema-item-text">
+          <span class="problema-num">01</span>
+          <h3>No tienes tiempo para editar</h3>
+          <p>Tu negocio crece, pero las horas no. Cada hora que editas es una hora que no dedicas a lo que mueve la aguja.</p>
+        </div>
       </div>
-      <div class="problema-item" data-reveal data-delay="2">
-        <span class="problema-num">02</span>
-        <h3>Publicas pero no conectas</h3>
-        <p>Vistas, likes, comentarios... pero clientes, pocos. Algo no cuadra entre lo que publicas y lo que quieres transmitir.</p>
+      <div class="problema-item" data-reveal>
+        <div class="problema-item-num">02</div>
+        <div class="problema-item-text">
+          <span class="problema-num">02</span>
+          <h3>Publicas pero no conectas</h3>
+          <p>Vistas, likes, comentarios... pero clientes, pocos. Algo no cuadra entre lo que publicas y lo que quieres transmitir.</p>
+        </div>
       </div>
-      <div class="problema-item" data-reveal data-delay="3">
-        <span class="problema-num">03</span>
-        <h3>Creas sin parar sin resultados</h3>
-        <p>La rueda gira pero la sensación de estar vendiendo nunca llega. Más volumen no es la respuesta.</p>
+      <div class="problema-item" data-reveal>
+        <div class="problema-item-num">03</div>
+        <div class="problema-item-text">
+          <span class="problema-num">03</span>
+          <h3>Creas sin parar sin resultados</h3>
+          <p>La rueda gira pero la sensación de estar vendiendo nunca llega. Más volumen no es la respuesta.</p>
+        </div>
       </div>
-      <div class="problema-item" data-reveal data-delay="4">
-        <span class="problema-num">04</span>
-        <h3>Tu marca no refleja quién eres</h3>
-        <p>Hay una brecha entre el profesional que eres y cómo te perciben online. Y esa brecha te cuesta dinero real.</p>
+      <div class="problema-item" data-reveal>
+        <div class="problema-item-num">04</div>
+        <div class="problema-item-text">
+          <span class="problema-num">04</span>
+          <h3>Tu marca no refleja quién eres</h3>
+          <p>Hay una brecha entre el profesional que eres y cómo te perciben online. Y esa brecha te cuesta dinero real.</p>
+        </div>
       </div>
     </div>
   </div>
