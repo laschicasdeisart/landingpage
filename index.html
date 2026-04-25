@@ -192,16 +192,20 @@ nav.scrolled { padding: 14px 48px; }
 .nosotras-text p strong { color: var(--ink); font-weight: 700; }
 .nosotras-text p em { color: var(--td); font-style: normal; font-weight: 600; }
 .nosotras-photos {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: flex; gap: 32px; justify-content: center; align-items: center;
+  padding: 60px 40px;
 }
-.nosotras-photos > div { overflow: hidden; border-left: 2px solid var(--ink); }
-.nosotras-photos > div:first-child { border-left: none; border-bottom: 2px solid var(--ink); grid-column: 1 / -1; }
+.nosotras-photos > div {
+  width: 200px; height: 200px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink), 0 20px 60px rgba(13,13,13,0.15);
+}
 .nosotras-photos img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center;
-  display: block; filter: saturate(0.8);
-  transition: filter .5s, transform .6s var(--ease);
+  display: block; filter: saturate(0.85);
+  transition: filter .4s, transform .5s var(--ease);
 }
-.nosotras-photos img:hover { filter: saturate(1); transform: scale(1.04); }
+.nosotras-photos img:hover { filter: saturate(1); transform: scale(1.06); }
 .nosotras-tag {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 40px;
   font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
@@ -302,21 +306,27 @@ nav.scrolled { padding: 14px 48px; }
 }
 .proceso-header h2 em { font-family: 'Satoshi', sans-serif; font-style: italic; font-weight: 300; }
 .proceso-header p { font-size: 16px; color: rgba(13,13,13,0.6); margin-top: 16px; line-height: 1.75; }
-.proceso-steps { display: grid; grid-template-columns: repeat(4, 1fr); }
+.proceso-steps { display: grid; grid-template-columns: 1fr 1fr; }
 .paso {
-  padding: 52px 44px;
+  padding: 64px 60px;
   border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
 }
-.paso:last-child { border-right: none; }
+.paso:nth-child(even) { border-right: none; }
+.paso:nth-child(3), .paso:nth-child(4) { border-bottom: none; }
+.paso:nth-child(1) { background: var(--bg); }
+.paso:nth-child(2) { background: var(--t); }
+.paso:nth-child(3) { background: var(--ink); }
+.paso:nth-child(4) { background: var(--bg); }
 .paso-num {
-  font-family: 'Satoshi', sans-serif;
-  font-size: 48px; font-weight: 700; color: var(--ink);
-  opacity: 0.2; line-height: 1; margin-bottom: 24px;
-  transition: opacity .3s;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+  opacity: 0.35; margin-bottom: 20px; display: block;
 }
-.paso:hover .paso-num { opacity: 1; }
-.paso-content h3 { font-family: 'Satoshi', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 10px; color: var(--ink); letter-spacing: -0.01em; }
-.paso-content p { font-size: 14px; color: rgba(13,13,13,0.6); line-height: 1.75; }
+.paso:nth-child(3) .paso-num { color: var(--bg); opacity: 0.4; }
+.paso-content h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; line-height: 1.1; letter-spacing: -0.02em; }
+.paso:nth-child(3) .paso-content h3 { color: var(--bg); }
+.paso-content p { font-size: 15px; line-height: 1.75; color: rgba(13,13,13,0.65); }
+.paso:nth-child(3) .paso-content p { color: rgba(245,242,238,0.55); }
 
 /* ============================================================
    TESTIMONIOS
@@ -415,7 +425,8 @@ footer {
   .hero-photo { height: 70vw; }
   .nosotras-inner { grid-template-columns: 1fr; }
   .nosotras-text { border-right: none; border-bottom: 2px solid var(--ink); padding: 60px 24px; }
-  .nosotras-photos { grid-template-columns: 1fr 1fr; }
+  .nosotras-photos { flex-direction: row; gap: 24px; padding: 40px 24px; }
+  .nosotras-photos > div { width: 150px; height: 150px; }
   .problema-header { padding: 48px 24px 40px; }
   .problema-grid { grid-template-columns: 1fr; }
   .servicios-header { padding: 48px 24px 40px; }
