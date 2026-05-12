@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuera de Cámaras · La newsletter de Las Chicas de Isart</title>
+<meta name="description" content="Lo que no contamos en Instagram. Lo que callamos en stories. Cada 10 días, sin filtro.">
+<link href="https://fonts.googleapis.com/css2?family=Satoshi:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'OPTISpire';
+    src: url('OPTISpire_Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+</style>
+<style>
+:root {
+  --t:  #5CE1D4;
+  --tl: #A8EDE7;
+  --td: #2BBFB0;
+  --w:  #F5F2EE;
+  --k:  #0D0D0D;
+  --bg: #0D0D0D;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Satoshi', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HERO ──────────────────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-photo { order: -1; min-height: 60vw; }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 8vw, 100px);
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--t);
+  display: inline-block;
+  border: 1px solid var(--t);
+  padding: 6px 14px;
+  margin-bottom: 36px;
+  font-weight: 600;
+}
+
+h1 {
+  font-family: 'OPTISpire', sans-serif;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  color: var(--t);
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 19px);
+  color: rgba(255,255,255,0.7);
+  max-width: 480px;
+  margin-bottom: 12px;
+  line-height: 1.65;
+}
+
+.hero-freq {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+  letter-spacing: 0.05em;
+}
+
+.hero-photo {
+  position: relative;
+  overflow: hidden;
+}
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── FORM ──────────────────────────────────────────────────────────────── */
+.form-wrap { display: flex; flex-direction: column; gap: 12px; max-width: 440px; }
+
+.form-wrap input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-family: 'Satoshi', sans-serif;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.2s;
+}
+.form-wrap input:focus { border-color: var(--t); }
+.form-wrap input::placeholder { color: rgba(255,255,255,0.35); }
+
+.btn-primary {
+  background: var(--t);
+  color: var(--k);
+  border: none;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Satoshi', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.2s, opacity 0.2s;
+}
+.btn-primary:hover { background: var(--tl); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-legal {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  margin-top: 4px;
+}
+
+.msg-error { font-size: 13px; color: #fca5a5; }
+.msg-success {
+  border: 1px solid var(--t);
+  color: var(--t);
+  padding: 24px;
+  text-align: center;
+  max-width: 440px;
+}
+.msg-success strong { display: block; font-size: 18px; margin-bottom: 8px; }
+.msg-success span { font-size: 14px; opacity: 0.8; }
+
+/* ── BLOQUES ───────────────────────────────────────────────────────────── */
+.block-teal {
+  background: var(--t);
+  color: var(--k);
+  padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 100px);
+}
+.block-dark {
+  background: #111;
+  color: #fff;
+  padding: clamp(60px, 8vw, 100px) clamp(32px, 8vw, 100px);
+}
+
+.block-teal .section-label {
+  border-color: var(--k);
+  color: var(--k);
+}
+
+.block-inner { max-width: 900px; margin: 0 auto; }
+
+h2 {
+  font-family: 'OPTISpire', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 56px;
+}
+.block-teal h2 { color: var(--k); }
+.block-dark h2 { color: var(--t); }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+@media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; gap: 32px; } }
+
+.item-label {
+  display: inline-block;
+  border: 1px solid currentColor;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+
+.item-text { font-size: 15px; line-height: 1.7; }
+.block-teal .item-text { color: rgba(13,13,13,0.8); }
+.block-dark .item-text { color: rgba(255,255,255,0.7); }
+
+/* ── ABOUT ─────────────────────────────────────────────────────────────── */
+.about-text {
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.75;
+  color: rgba(255,255,255,0.8);
+  max-width: 700px;
+}
+.about-text + .about-text { margin-top: 20px; }
+
+/* ── FORM FINAL BLOCK ──────────────────────────────────────────────────── */
+.form-center { max-width: 520px; margin: 0 auto; text-align: center; }
+.form-center h2 { text-align: center; }
+.form-center .form-wrap { max-width: 100%; }
+.form-center .msg-success { margin: 0 auto; }
+
+.block-teal .form-wrap input {
+  border-color: rgba(13,13,13,0.2);
+  background: rgba(13,13,13,0.06);
+  color: var(--k);
+}
+.block-teal .form-wrap input::placeholder { color: rgba(13,13,13,0.35); }
+.block-teal .form-wrap input:focus { border-color: var(--k); }
+
+.block-teal .btn-primary {
+  background: var(--k);
+  color: var(--t);
+}
+.block-teal .btn-primary:hover { background: #222; }
+.block-teal .form-legal { color: rgba(13,13,13,0.35); }
+.block-teal .msg-error { color: #7f1d1d; }
+.block-teal .msg-success { border-color: var(--k); color: var(--k); }
+
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
+footer {
+  background: #0a0a0a;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+footer a { color: rgba(255,255,255,0.25); text-decoration: underline; }
+footer a:hover { color: var(--t); }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="section-label">La newsletter de Las Chicas de Isart</span>
+    <h1>Fuera<br>de<br>Cámaras</h1>
+    <p class="hero-sub">Lo que no contamos en Instagram. Lo que callamos en stories. Lo que guardamos para las personas que de verdad quieren saber.</p>
+    <p class="hero-freq">Cada 10 días · Sin algoritmos · Sin filtros</p>
+    <div id="form-hero"></div>
+    <p class="form-legal" style="margin-top:12px">Sin spam. Puedes darte de baja cuando quieras.</p>
+  </div>
+  <div class="hero-photo">
+    <img src="irene-maria.jpg" alt="Irene y María — Las Chicas de Isart" loading="eager">
+  </div>
+</section>
+
+<!-- ── QUÉ VAS A RECIBIR ────────────────────────────────────────────────── -->
+<section class="block-teal">
+  <div class="block-inner">
+    <span class="section-label">Qué vas a recibir</span>
+    <h2>Sin relleno.<br>Solo lo que importa.</h2>
+    <div class="grid-3">
+      <div>
+        <span class="item-label">01 — Lo de verdad</span>
+        <p class="item-text">Lo que está pasando en nuestra agencia. Los clientes, los aciertos, los errores. Sin maquillarlo.</p>
+      </div>
+      <div>
+        <span class="item-label">02 — Lo que aprendemos</span>
+        <p class="item-text">Herramientas, estrategias, reflexiones. Cosas que probamos nosotras primero y te contamos si funcionan.</p>
+      </div>
+      <div>
+        <span class="item-label">03 — Lo que no se graba</span>
+        <p class="item-text">Las conversaciones que tenemos entre nosotras. Las dudas, las risas, los momentos que no llegan a Instagram.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE NOSOTRAS ────────────────────────────────────────────────────── -->
+<section class="block-dark">
+  <div class="block-inner">
+    <span class="section-label" style="border-color:var(--t);color:var(--t)">Somos Irene y María</span>
+    <p class="about-text">No somos una agencia de esas que te manda un PDF con estrategia y desaparece. Somos dos tías que llevan años en las trincheras del emprendimiento y saben lo que es tirar del carro sin ganas, grabarse con vergüenza y publicar sin saber muy bien si funcionará.</p>
+    <p class="about-text">Esta newsletter es el sitio donde contamos todo eso. Sin filtros. Sin algoritmos que decidan quién lo ve. Solo tú y nosotras.</p>
+  </div>
+</section>
+
+<!-- ── FORM FINAL ────────────────────────────────────────────────────────── -->
+<section class="block-teal">
+  <div class="form-center">
+    <h2>¿Te apuntas?</h2>
+    <p style="margin-bottom:36px;font-size:16px;opacity:0.75">Cada 10 días en tu bandeja. Gratis.</p>
+    <div id="form-final"></div>
+    <p class="form-legal" style="margin-top:12px">Sin spam. Puedes darte de baja cuando quieras.</p>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer>
+  © 2026 Las Chicas de Isart ·
+  <a href="https://laschicasdeisart.com">laschicasdeisart.com</a> ·
+  <a href="https://app.laschicasdeisart.com/login">Área de clientes</a>
+</footer>
+
+<script>
+const API = 'https://app.laschicasdeisart.com/api/newsletter/subscribe'
+
+function buildForm(containerId, dark) {
+  const wrap = document.getElementById(containerId)
+  if (!wrap) return
+
+  const isSuccess = { value: false }
+
+  wrap.innerHTML = `
+    <div class="form-wrap">
+      <input type="text"  name="name"  placeholder="Tu nombre" autocomplete="given-name">
+      <input type="email" name="email" placeholder="Tu email"  autocomplete="email" required>
+      <p class="msg-error" style="display:none"></p>
+      <button class="btn-primary" type="button">Quiero apuntarme →</button>
+    </div>
+  `
+
+  const nameInput  = wrap.querySelector('input[name=name]')
+  const emailInput = wrap.querySelector('input[name=email]')
+  const errEl      = wrap.querySelector('.msg-error')
+  const btn        = wrap.querySelector('button')
+
+  btn.addEventListener('click', async () => {
+    const email = emailInput.value.trim()
+    const name  = nameInput.value.trim()
+    if (!email) { errEl.textContent = 'Introduce tu email'; errEl.style.display = 'block'; return }
+
+    btn.disabled = true
+    btn.textContent = 'Enviando...'
+    errEl.style.display = 'none'
+
+    try {
+      const res  = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name }),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        wrap.innerHTML = `
+          <div class="msg-success">
+            <strong>¡Ya estás dentro! 🎉</strong>
+            <span>Revisa tu bandeja — te mandamos confirmación.</span>
+          </div>`
+      } else {
+        errEl.textContent = data.error || 'Error al suscribirse, inténtalo de nuevo'
+        errEl.style.display = 'block'
+        btn.disabled = false
+        btn.textContent = 'Quiero apuntarme →'
+      }
+    } catch {
+      errEl.textContent = 'Error de conexión, inténtalo más tarde'
+      errEl.style.display = 'block'
+      btn.disabled = false
+      btn.textContent = 'Quiero apuntarme →'
+    }
+  })
+}
+
+buildForm('form-hero')
+buildForm('form-final')
+</script>
+</body>
+</html>
