@@ -25,7 +25,7 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--bg);
+    background: #080808;
     color: var(--w);
     font-family: 'Satoshi', sans-serif;
     min-height: 100vh;
@@ -34,7 +34,38 @@
     align-items: center;
     justify-content: center;
     padding: 48px 24px;
+    position: relative;
+    overflow-x: hidden;
   }
+
+  /* ── LUCES DE COLOR ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 40%, rgba(255, 110, 40, 0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(92, 225, 212, 0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(255, 80, 20, 0.1) 0%, transparent 45%),
+      radial-gradient(ellipse at 30% 85%, rgba(92, 225, 212, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── GRAIN ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.055;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; }
 
   .wrap {
     width: 100%;
@@ -63,7 +94,7 @@
   /* ── BRAND ── */
   .brand {
     font-family: 'OPTISpire', sans-serif;
-    font-size: clamp(2rem, 8vw, 2.8rem);
+    font-size: clamp(1.6rem, 7vw, 2.6rem);
     color: var(--t);
     text-transform: uppercase;
     font-weight: 400;
@@ -71,6 +102,7 @@
     text-align: center;
     margin-bottom: 40px;
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
 
   /* ── CARDS ── */
@@ -173,7 +205,7 @@
     <img src="/irene-maria.jpg" alt="Las Chicas de Isart">
   </div>
 
-  <h1 class="brand">Las Chicas<br>de Isart</h1>
+  <h1 class="brand">Las Chicas de Isart</h1>
 
   <div class="cards">
 
