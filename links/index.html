@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Chicas de Isart</title>
+<meta name="description" content="Agencia de contenido. Comunidad, newsletter y servicios.">
+<link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'OPTISpire';
+    src: url('/OPTISpire_Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root {
+    --t:  #5CE1D4;
+    --tl: #A8EDE7;
+    --k:  #0D0D0D;
+    --bg: #0D0D0D;
+    --w:  #F5F2EE;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--w);
+    font-family: 'Satoshi', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ── FOTO ── */
+  .profile-photo {
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
+    border: 2px solid var(--t);
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* ── HEADER ── */
+  .brand {
+    font-family: 'OPTISpire', sans-serif;
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    color: var(--t);
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  /* ── CARDS ── */
+  .cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:last-child { border-bottom: none; }
+
+  .card-1 { background: transparent; }
+  .card-2 { background: var(--t); }
+  .card-3 { background: transparent; }
+
+  .card-1:hover { background: rgba(92,225,212,0.07); }
+  .card-2:hover { background: var(--tl); }
+  .card-3:hover { background: rgba(92,225,212,0.07); }
+
+  .card-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.55;
+  }
+  .card-2 .card-label { color: var(--k); }
+  .card-1 .card-label,
+  .card-3 .card-label { color: var(--t); }
+
+  .card-title {
+    font-family: 'OPTISpire', sans-serif;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .card-2 .card-title { color: var(--k); }
+  .card-1 .card-title,
+  .card-3 .card-title { color: var(--w); }
+
+  .card-arrow {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-left: 16px;
+    transition: transform 0.2s;
+  }
+  .card:hover .card-arrow { transform: translateX(4px); }
+  .card-2 .card-arrow { color: var(--k); }
+  .card-1 .card-arrow,
+  .card-3 .card-arrow { color: var(--t); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 40px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .footer a {
+    color: rgba(255,255,255,0.18);
+    text-decoration: none;
+  }
+  .footer a:hover { color: var(--t); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="profile-photo">
+    <img src="/irene-maria.jpg" alt="Las Chicas de Isart">
+  </div>
+
+  <h1 class="brand">Las Chicas<br>de Isart</h1>
+  <p class="tagline">Agencia de contenido · Irene & María</p>
+
+  <div class="cards">
+
+    <a class="card card-1"
+       href="https://www.skool.com/la-capsula-creativa-4067/about"
+       target="_blank" rel="noopener">
+      <div>
+        <p class="card-label">Comunidad</p>
+        <p class="card-title">La Cápsula<br>Creativa</p>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+    <a class="card card-2"
+       href="https://laschicasdeisart.com/newsletter"
+       target="_blank" rel="noopener">
+      <div>
+        <p class="card-label">Newsletter</p>
+        <p class="card-title">Fuera de<br>Cámaras</p>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+    <a class="card card-3"
+       href="https://laschicasdeisart.com"
+       target="_blank" rel="noopener">
+      <div>
+        <p class="card-label">Web</p>
+        <p class="card-title">Servicios y<br>portafolio</p>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
+
+  </div>
+
+  <p class="footer">
+    © 2026 <a href="https://laschicasdeisart.com">laschicasdeisart.com</a>
+  </p>
+
+</div>
+
+</body>
+</html>
