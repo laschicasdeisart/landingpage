@@ -161,17 +161,18 @@ body::after {
   box-shadow: 0 8px 24px rgba(92,225,212,0.15);
 }
 
-/* ── REVEAL ── */
-[data-reveal] {
+/* ── REVEAL — progressive enhancement ── */
+/* opacity:0 solo se aplica cuando JS añade la clase .js-reveal */
+.js-reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .85s var(--ease), transform .85s var(--ease);
 }
-[data-reveal].visible { opacity:1; transform:translateY(0); }
-[data-reveal][data-delay="1"] { transition-delay: .1s; }
-[data-reveal][data-delay="2"] { transition-delay: .2s; }
-[data-reveal][data-delay="3"] { transition-delay: .3s; }
-[data-reveal][data-delay="4"] { transition-delay: .45s; }
+.js-reveal.visible { opacity:1; transform:translateY(0); }
+.js-reveal[data-delay="1"] { transition-delay: .1s; }
+.js-reveal[data-delay="2"] { transition-delay: .2s; }
+.js-reveal[data-delay="3"] { transition-delay: .3s; }
+.js-reveal[data-delay="4"] { transition-delay: .45s; }
 
 /* ── NAV ── */
 nav {
@@ -1051,7 +1052,11 @@ for (let i = 0; i < 140; i++) {
   starsEl.appendChild(s);
 }
 
-// ── Scroll reveal ──
+// ── Scroll reveal — progressive enhancement ──
+// Primero añadimos la clase que pone opacity:0, luego observamos
+const revealEls = document.querySelectorAll('[data-reveal]');
+revealEls.forEach(el => el.classList.add('js-reveal'));
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -1059,9 +1064,9 @@ const io = new IntersectionObserver((entries) => {
       io.unobserve(e.target);
     }
   });
-}, { threshold: 0.08 });
+}, { threshold: 0.06 });
 
-document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+revealEls.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
