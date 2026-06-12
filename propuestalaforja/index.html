@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Oficial — La Forja de Realidades™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4A843;
+            --gold-light: #F0C878;
+            --gold-dark: #A07830;
+            --purple: #8F47B3;
+            --purple-light: #B56FD4;
+            --purple-dark: #5C1F8A;
+            --purple-deep: #2D0D4A;
+            --bg: #080510;
+            --bg-card: #0F0A1E;
+            --text: #E8E0F0;
+            --text-muted: #9B8FB0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ─── ESTRELLAS FIJAS ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 12% 18%, rgba(212,168,67,.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 12%, rgba(212,168,67,.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 63% 74%, rgba(181,111,212,.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 37% 82%, rgba(212,168,67,.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 91% 55%, rgba(181,111,212,.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 8%  60%, rgba(212,168,67,.6) 0%, transparent 100%),
+                radial-gradient(1px 1px at 54% 8%,  rgba(181,111,212,.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 72% 38%, rgba(212,168,67,.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 27% 47%, rgba(181,111,212,.7) 0%, transparent 100%),
+                radial-gradient(1px 1px at 48% 91%, rgba(212,168,67,.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 19% 35%, rgba(181,111,212,.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 76% 65%, rgba(212,168,67,.5) 0%, transparent 100%);
+            animation: twinkle 5s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0%   { opacity: .4; }
+            100% { opacity: 1;  }
+        }
+
+        /* ─── GLOW LINE ─── */
+        .glow-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(143,71,179,.6), rgba(212,168,67,.9), rgba(143,71,179,.6), transparent);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 40px;
+            position: relative;
+            z-index: 1;
+            background:
+                radial-gradient(ellipse at 50% 0%,   rgba(143,71,179,.35) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 90%,  rgba(93,31,138,.2)   0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%,  rgba(212,168,67,.08) 0%, transparent 50%);
+        }
+
+        .hero-label {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            opacity: .8;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(52px, 9vw, 100px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-dark) 70%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(212,168,67,.45));
+        }
+
+        .hero-title-sub {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(30px, 5.5vw, 62px);
+            font-weight: 700;
+            color: var(--purple-light);
+            margin-bottom: 48px;
+            filter: drop-shadow(0 0 25px rgba(143,71,179,.7));
+        }
+
+        .hero-divider {
+            width: 320px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--purple-light), var(--gold), transparent);
+            margin: 0 auto 44px;
+        }
+
+        .hero-tagline {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(14px, 1.8vw, 19px);
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 640px;
+            margin: 0 auto 68px;
+            line-height: 1.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 64px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat { text-align: center; }
+
+        .hero-stat-num {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 40px;
+            color: var(--gold);
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(212,168,67,.55));
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .hero-stat-label {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-family: 'Cinzel', serif;
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 100px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .s-label {
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 6px;
+            color: var(--purple-light);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 18px;
+            opacity: .8;
+        }
+
+        .s-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(26px, 4vw, 50px);
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 0 16px rgba(212,168,67,.3));
+        }
+
+        .s-sub {
+            font-size: 16px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 64px;
+            font-style: italic;
+        }
+
+        /* ─── FULL BG SECTIONS ─── */
+        .bg-section {
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(15,10,30,1) 50%, var(--bg) 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── VISION ─── */
+        .vision-wrap {
+            text-align: center;
+            padding: 120px 40px;
+            background: linear-gradient(180deg, var(--bg) 0%, rgba(143,71,179,.07) 50%, var(--bg) 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .vision-quote {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(22px, 3vw, 34px);
+            max-width: 820px;
+            margin: 0 auto 44px;
+            line-height: 1.65;
+            color: var(--text);
+        }
+
+        .vision-quote strong { color: var(--gold); }
+
+        .vision-body {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 2;
+        }
+
+        /* ─── CHAMBERS ─── */
+        .chambers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .chamber-card {
+            background: linear-gradient(135deg, rgba(143,71,179,.08), rgba(212,168,67,.03));
+            border: 1px solid rgba(212,168,67,.18);
+            border-radius: 14px;
+            padding: 38px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chamber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: .5;
+        }
+
+        .ch-num  { font-family:'Cinzel',serif; font-size:10px; letter-spacing:4px; color:var(--purple-light); text-transform:uppercase; margin-bottom:7px; opacity:.7; }
+        .ch-icon { font-size:30px; display:block; margin-bottom:14px; }
+        .ch-name { font-family:'Cinzel',serif; font-size:22px; color:var(--gold); margin-bottom:12px; }
+        .ch-desc { font-size:14px; color:var(--text-muted); line-height:1.75; }
+        .ch-win  {
+            margin-top: 18px;
+            padding: 9px 14px;
+            background: rgba(212,168,67,.06);
+            border-left: 2px solid var(--gold);
+            font-size: 12px;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        /* ─── FEATURES ─── */
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .feat-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 22px 24px;
+            background: rgba(143,71,179,.06);
+            border: 1px solid rgba(143,71,179,.14);
+            border-radius: 10px;
+        }
+
+        .feat-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+        .feat-title { font-family:'Cinzel',serif; font-size:13px; color:var(--gold); margin-bottom:6px; letter-spacing:1px; }
+        .feat-desc  { font-size:13px; color:var(--text-muted); line-height:1.65; }
+
+        /* ─── PHASES ─── */
+        .phase-block {
+            border-radius: 18px;
+            padding: 60px 52px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 36px;
+        }
+
+        .phase-1 {
+            background: linear-gradient(135deg, rgba(8,5,16,.97), rgba(20,14,32,.97));
+            border: 1px solid rgba(212,168,67,.3);
+        }
+
+        .phase-1::after {
+            content: '';
+            position: absolute;
+            top: -60%; right: -15%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212,168,67,.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .phase-2 {
+            background: linear-gradient(135deg, rgba(8,5,16,.97), rgba(18,10,30,.97));
+            border: 1px solid rgba(143,71,179,.4);
+        }
+
+        .phase-2::after {
+            content: '';
+            position: absolute;
+            top: -60%; right: -15%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(143,71,179,.09) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .phase-tag {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            padding: 7px 18px;
+            border-radius: 24px;
+            margin-bottom: 22px;
+        }
+
+        .phase-1 .phase-tag { background: rgba(212,168,67,.09); color:var(--gold);         border:1px solid rgba(212,168,67,.3); }
+        .phase-2 .phase-tag { background: rgba(143,71,179,.1);  color:var(--purple-light); border:1px solid rgba(143,71,179,.3); }
+
+        .phase-title { font-family:'Cinzel Decorative',serif; font-size:clamp(22px,3vw,38px); margin-bottom:8px; }
+        .phase-1 .phase-title { color: var(--gold); }
+        .phase-2 .phase-title { color: var(--purple-light); }
+
+        .phase-dates { font-family:'Cinzel',serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:28px; }
+
+        .phase-tagline {
+            font-size: 16px;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 38px;
+            padding-left: 22px;
+            border-left: 2px solid;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+        .phase-1 .phase-tagline { border-color: var(--gold); }
+        .phase-2 .phase-tagline { border-color: var(--purple-light); }
+
+        .phase-feats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            list-style: none;
+        }
+
+        .phase-feats li {
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 10px 14px;
+            background: rgba(255,255,255,.02);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phase-feats li::before { content:'◆'; font-size:8px; flex-shrink:0; }
+        .phase-1 .phase-feats li::before { color: var(--gold); }
+        .phase-2 .phase-feats li::before { color: var(--purple-light); }
+
+        /* ─── TIMELINE ─── */
+        .timeline { position: relative; padding: 50px 0; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, var(--gold), var(--purple-light), var(--gold), transparent);
+            transform: translateX(-50%);
+        }
+
+        .tl-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 44px);
+            margin-bottom: 44px;
+            position: relative;
+        }
+
+        .tl-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 44px);
+        }
+
+        .tl-item::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 22px;
+            width: 13px; height: 13px;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tl-item.gold::after   { background: var(--gold);         box-shadow: 0 0 12px var(--gold); }
+        .tl-item.purple::after { background: var(--purple-light); box-shadow: 0 0 12px var(--purple-light); }
+
+        .tl-date  { font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:5px; }
+        .tl-title { font-family:'Cinzel',serif; font-size:16px; margin-bottom:5px; }
+        .tl-item.gold   .tl-title { color: var(--gold); }
+        .tl-item.purple .tl-title { color: var(--purple-light); }
+        .tl-body  { font-size:13px; color:var(--text-muted); max-width:320px; line-height:1.6; }
+
+        /* ─── INVESTMENT ─── */
+        .invest-wrap { text-align:center; }
+
+        .invest-total {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(56px, 9vw, 100px);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 35px rgba(212,168,67,.45));
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .invest-label { font-family:'Cinzel',serif; font-size:12px; letter-spacing:4px; color:var(--text-muted); text-transform:uppercase; margin-bottom:64px; }
+
+        .pay-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 64px;
+        }
+
+        .pay-card {
+            background: rgba(212,168,67,.04);
+            border: 1px solid rgba(212,168,67,.15);
+            border-radius: 14px;
+            padding: 32px 18px;
+            position: relative;
+        }
+
+        .pay-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            border-radius: 14px 14px 0 0;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .pay-num    { font-family:'Cinzel',serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:12px; }
+        .pay-amount { font-family:'Cinzel Decorative',serif; font-size:30px; color:var(--gold); filter:drop-shadow(0 0 8px rgba(212,168,67,.35)); margin-bottom:10px; }
+        .pay-when   { font-size:12px; color:var(--text-muted); line-height:1.6; }
+
+        .roi-box {
+            background: linear-gradient(135deg, rgba(143,71,179,.08), rgba(212,168,67,.04));
+            border: 1px solid rgba(143,71,179,.22);
+            border-radius: 14px;
+            padding: 44px 52px;
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        .roi-title { font-family:'Cinzel',serif; font-size:13px; letter-spacing:4px; color:var(--purple-light); text-transform:uppercase; margin-bottom:16px; }
+        .roi-text  { font-size:16px; color:var(--text-muted); line-height:1.9; }
+        .roi-text strong { color:var(--gold); }
+
+        /* ─── SUPPORT ─── */
+        .supp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .supp-card {
+            text-align: center;
+            padding: 36px 24px;
+            background: rgba(143,71,179,.05);
+            border: 1px solid rgba(143,71,179,.13);
+            border-radius: 14px;
+        }
+
+        .supp-price  { font-family:'Cinzel Decorative',serif; font-size:32px; color:var(--gold); margin-bottom:5px; }
+        .supp-period { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:16px; }
+        .supp-name   { font-family:'Cinzel',serif; font-size:14px; color:var(--text); margin-bottom:10px; }
+        .supp-desc   { font-size:12px; color:var(--text-muted); line-height:1.7; }
+
+        /* ─── PENDING ─── */
+        .pend-box {
+            background: rgba(212,168,67,.04);
+            border: 1px solid rgba(212,168,67,.2);
+            border-radius: 14px;
+            padding: 44px 52px;
+        }
+
+        .pend-title { font-family:'Cinzel',serif; font-size:13px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:24px; }
+
+        .pend-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .pend-list li { font-size:13px; color:var(--text-muted); display:flex; align-items:center; gap:12px; }
+        .pend-list li::before { content:'○'; color:var(--gold); opacity:.5; }
+
+        /* ─── CTA ─── */
+        .cta-wrap {
+            text-align: center;
+            padding: 120px 40px;
+            background:
+                radial-gradient(ellipse at 50% 50%, rgba(143,71,179,.18) 0%, transparent 65%),
+                var(--bg);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: clamp(28px, 5vw, 58px);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 22px;
+        }
+
+        .cta-text { font-size:17px; color:var(--text-muted); max-width:620px; margin:0 auto 54px; line-height:1.9; }
+
+        .cta-steps { display:flex; justify-content:center; gap:44px; flex-wrap:wrap; margin-bottom:64px; }
+
+        .cta-step { text-align:center; max-width:185px; }
+        .cta-step-n { font-family:'Cinzel Decorative',serif; font-size:38px; color:var(--gold); opacity:.35; line-height:1; margin-bottom:12px; }
+        .cta-step-t { font-family:'Cinzel',serif; font-size:12px; letter-spacing:1px; color:var(--text-muted); }
+
+        .footer-sig { font-family:'Cinzel',serif; font-size:12px; color:var(--text-muted); letter-spacing:2px; }
+        .footer-sig strong { color:var(--gold); }
+
+        /* ─── BADGE ─── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'Cinzel', serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 8px 22px;
+            border-radius: 30px;
+            background: rgba(212,168,67,.07);
+            border: 1px solid rgba(212,168,67,.25);
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .badge-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%,100% { opacity:1; transform:scale(1); }
+            50%      { opacity:.4; transform:scale(.7); }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .chambers-grid, .feat-grid, .phase-feats, .pay-grid, .supp-grid, .pend-list {
+                grid-template-columns: 1fr;
+            }
+            .timeline::before { display:none; }
+            .tl-item, .tl-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-right: 0;
+                padding-left: 28px;
+            }
+            .tl-item::after { left:0; }
+            section { padding: 60px 22px; }
+            .phase-block { padding: 40px 28px; }
+            .roi-box, .pend-box { padding: 32px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="hero">
+    <p class="hero-label">✦ Propuesta Oficial de Desarrollo · Junio 2026 ✦</p>
+    <h1 class="hero-title">La Forja</h1>
+    <h2 class="hero-title-sub">de Realidades™</h2>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">
+        "Forjaremos el primer mundo de transformación gamificada<br>del universo hispanohablante en exclusiva para Sandra Suárez."
+    </p>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <span class="hero-stat-num">2</span>
+            <span class="hero-stat-label">Fases</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-num">7</span>
+            <span class="hero-stat-label">Meses</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-num">150</span>
+            <span class="hero-stat-label">Alumnas</span>
+        </div>
+        <div class="hero-stat">
+            <span class="hero-stat-num">∞</span>
+            <span class="hero-stat-label">Impacto</span>
+        </div>
+    </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ VISION ══════════════ -->
+<div class="vision-wrap">
+    <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:6px; color:var(--purple-light); text-transform:uppercase; text-align:center; margin-bottom:22px; opacity:.8;">✦ La Visión ✦</p>
+    <p class="vision-quote" style="text-align:center; font-style:italic;">
+        Imagina que tus alumnas <strong>no llegan a tu programa.</strong><br>
+        Que <strong>entran en él.</strong>
+    </p>
+    <p class="vision-body" style="text-align:center;">
+        Un portal que se abre ante ellas. Una cámara sagrada que las recibe con una hipnosis de bienvenida.
+        Un personaje que crece y se viste de poder junto a su identidad.
+        Una hermandad que compite, celebra y manifiesta junta.<br><br>
+        Se trata de una <em>experiencia de transformación</em> envuelta
+        en la magia y la épica de un videojuego legendario.<br><br>
+        Cuando la Fase I abra sus puertas, La Forja de Realidades no tendrá competencia en ningún mercado hispanohablante.
+        Cuando llegue la Fase II, será una leyenda.
+    </p>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ 4 CÁMARAS ══════════════ -->
+<div class="bg-section">
+<section>
+    <p class="s-label">✦ El Mundo ✦</p>
+    <h2 class="s-title">Las 4 Cámaras Sagradas</h2>
+    <p class="s-sub">Cada mes, un portal. Cada portal, una transformación.</p>
+
+    <div class="chambers-grid">
+        <div class="chamber-card">
+            <span class="ch-num">Mes 1 — Liberación</span>
+            <span class="ch-icon">🔥</span>
+            <h3 class="ch-name">La Llama del Despertar</h3>
+            <p class="ch-desc">Un portal de fuego rojo-anaranjado con llamas vivas. La alumna lo atraviesa al ritmo de un audio de hipnosis. Dentro, el Fénix en su jaula la aguarda. Cuando complete la cámara, el Fénix se liberará ante sus ojos.</p>
+            <div class="ch-win">Victoria del Mes → Renacer como el Fénix</div>
+        </div>
+
+        <div class="chamber-card">
+            <span class="ch-num">Mes 2 — Reprogramación</span>
+            <span class="ch-icon">🪞</span>
+            <h3 class="ch-name">La Cámara de los Espejos</h3>
+            <p class="ch-desc">Un portal de espejos infinitos en tonos azul y violeta. Cada reflejo muestra quien está por convertirse. El rito de paso: reprogramar mente y subconsciente para reconocerse como creadora de su realidad.</p>
+            <div class="ch-win">Victoria del Mes → Activar tu campo creador consciente</div>
+        </div>
+
+        <div class="chamber-card">
+            <span class="ch-num">Mes 3 — Manifestación</span>
+            <span class="ch-icon">🌱</span>
+            <h3 class="ch-name">El Jardín de lo Posible</h3>
+            <p class="ch-desc">Un portal vegetal de tonos verdes y dorados donde la naturaleza y la magia se funden. Un jardín sagrado donde plantar semillas de dinero, amor, salud y propósito. Cada semilla es una nueva realidad.</p>
+            <div class="ch-win">Victoria del Mes → Ver resultados tangibles y sincrónicos</div>
+        </div>
+
+        <div class="chamber-card">
+            <span class="ch-num">Mes 4 — Integración</span>
+            <span class="ch-icon">👑</span>
+            <h3 class="ch-name">La Corona del Infinito</h3>
+            <p class="ch-desc">Un portal de luz blanca y dorada. Al fondo, un trono. Sobre el altar, la corona. La alumna asciende al lugar que le pertenece y recibe su corona como Alquimista Cuántica certificada y Reina Manifestadora.</p>
+            <div class="ch-win">Victoria del Mes → Convertirte en Reina Manifestadora</div>
+        </div>
+    </div>
+</section>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ GAMIFICACIÓN ══════════════ -->
+<section>
+    <p class="s-label">✦ La Gamificación ✦</p>
+    <h2 class="s-title">El Motor del Juego</h2>
+    <p class="s-sub">Todo diseñado para que quieran volver cada día. Para que el programa viva en ellas.</p>
+
+    <div class="feat-grid">
+        <div class="feat-item">
+            <span class="feat-icon">🪙</span>
+            <div>
+                <p class="feat-title">Oros — La Moneda del Poder</p>
+                <p class="feat-desc">Se ganan al completar lecciones, escribir en el Diario de Abundancia, publicar en el Salón de la Fama y abrir cofres. La constancia tiene su recompensa.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">⚔️</span>
+            <div>
+                <p class="feat-title">Personaje & Equipamiento</p>
+                <p class="feat-desc">Cada alumna tiene un personaje que evoluciona visualmente con cada compra. Armadura, corona, armas, manto. Su identidad interior se viste de poder exterior.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">🏪</span>
+            <div>
+                <p class="feat-title">La Tienda Sagrada</p>
+                <p class="feat-desc">Ítems exclusivos con lore y nombre propio, inspirados en el universo de La Forja. Comprar en la tienda es un acto de manifestación consciente.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">📦</span>
+            <div>
+                <p class="feat-title">Cofres Temporizados</p>
+                <p class="feat-desc">Se abren en momentos específicos de la semana. Antes llega una notificación que las llama. Dentro hay contenido exclusivo que no existe en ningún otro lugar del programa.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">🏆</span>
+            <div>
+                <p class="feat-title">Ranking Semanal</p>
+                <p class="feat-desc">Las 10 alumnas con más oros cada semana reciben una recompensa especial. La competencia sana es el motor de la constancia y el compromiso diario.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">🛡️</span>
+            <div>
+                <p class="feat-title">Hermandades & Chat</p>
+                <p class="feat-desc">150 alumnas divididas en hermandades de 20-30, cada una con nombre propio, chat privado y chat general. Comunidad real con estructura y límites de tiempo.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">📖</span>
+            <div>
+                <p class="feat-title">Diario de Abundancia</p>
+                <p class="feat-desc">Un ritual diario dentro de la app. Cada entrada genera oros extra. La constancia del diario alimenta tanto la transformación interior como el progreso en el juego.</p>
+            </div>
+        </div>
+        <div class="feat-item">
+            <span class="feat-icon">✨</span>
+            <div>
+                <p class="feat-title">Salón de la Fama</p>
+                <p class="feat-desc">El muro donde las alumnas publican sus manifestaciones reales. Cada publicación aprobada genera oros. Un testimonio vivo de que el programa funciona.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ FASES ══════════════ -->
+<div class="bg-section">
+<section>
+    <p class="s-label">✦ El Camino ✦</p>
+    <h2 class="s-title">Dos Fases. Una Sola Leyenda.</h2>
+    <p class="s-sub">Construido para durar. Diseñado para crecer edición tras edición.</p>
+
+    <!-- FASE 1 -->
+    <div class="phase-block phase-1">
+        <span class="phase-tag">✦ Fase I ✦</span>
+        <h3 class="phase-title">La Forja se Enciende</h3>
+        <p class="phase-dates">✦ Julio 2026 — Octubre 2026 ✦</p>
+        <p class="phase-tagline">
+            "El mundo existe, es hermoso, funciona y engancha desde el primer segundo.
+            Tus primeras 150 alumnas vivirán una experiencia completa, única e irrepetible
+            que ninguna formación del mercado hispanohablante puede ofrecer."
+        </p>
+
+        <ul class="phase-feats">
+            <li>Portales animados — partículas, profundidad y magia visual</li>
+            <li>Audio de hipnosis sincronizado al atravesar el portal</li>
+            <li>Fénix en jaula → animación de liberación al completar Cámara I</li>
+            <li>Sistema de Oros completo y calibrado</li>
+            <li>Personaje con capas de equipamiento visual</li>
+            <li>Tienda con catálogo de ítems visuales</li>
+            <li>Inventario personal de ítems</li>
+            <li>Cofres temporizados con notificación previa</li>
+            <li>Ranking semanal Top 10 con recompensa</li>
+            <li>Diario de Abundancia diario</li>
+            <li>Salón de la Fama moderado</li>
+            <li>Chat por Hermandades + Chat General</li>
+            <li>Workbooks rellenables dentro de la app</li>
+            <li>6–8 lecciones por cámara (vídeo + audio)</li>
+            <li>Panel Admin — gestión de alumnas, oros y accesos</li>
+            <li>Panel Admin — envío de notificaciones y avisos</li>
+            <li>Panel Admin — estadísticas básicas del programa</li>
+            <li>Panel Admin — acceso para clienta y 3 tutoras</li>
+            <li>Biblioteca de Contenido Extra (fuera de cámaras)</li>
+            <li>Integración Shopify → auto-registro + email bienvenida</li>
+            <li>Acceso limitado 4 meses + redirección al expirar</li>
+            <li>PWA instalable en Android e iOS con guía de instalación</li>
+            <li>Mobile-first — diseñado para vivir en el móvil</li>
+            <li>Pantalla de coronación — entrega de la corona al completar el programa</li>
+        </ul>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="phase-block phase-2">
+        <span class="phase-tag">✦ Fase II ✦</span>
+        <h3 class="phase-title">La Forja en su Máximo Poder</h3>
+        <p class="phase-dates">✦ Marzo 2027 — Mayo 2027 ✦</p>
+        <p class="phase-tagline">
+            "El motor se activa. Los ítems cobran vida y significado estratégico.
+            El juego se vuelve adictivo. La siguiente cohorte llega a algo que
+            ninguna de ellas imaginó que podía existir."
+        </p>
+
+        <ul class="phase-feats">
+            <li>Sistema de Nivel & XP — el motor central del juego</li>
+            <li>Ítems con stats reales (+XP, +Mana, multiplicadores de oros)</li>
+            <li>Tienda expandida — nueva colección con decisión estratégica</li>
+            <li>Mana activo con efecto real en mecánicas del juego</li>
+            <li>Ranking final del programa — premio a la alumna de mayor nivel</li>
+            <li>Sistema de Logros & Badges desbloqueables</li>
+            <li>Cofres expandidos con XP bonus y recompensas exclusivas</li>
+            <li>Workbooks con bonus de XP al completarlos</li>
+            <li>Personaje animado con Rive — idle, nivel up, equipar ítem</li>
+            <li>Coronación épica animada — secuencia Rive con partículas y efectos de luz</li>
+            <li>Analytics — comportamiento de alumnas y retención del programa</li>
+            <li>Micro-animaciones e interacciones de alto nivel</li>
+            <li>Refinamientos UX basados en feedback real de la Fase I</li>
+        </ul>
+    </div>
+</section>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ TIMELINE ══════════════ -->
+<section>
+    <p class="s-label">✦ El Calendario ✦</p>
+    <h2 class="s-title">De Aquí a la Leyenda</h2>
+    <p class="s-sub">Cada hito, un portal hacia la siguiente versión del programa.</p>
+
+    <div class="timeline">
+        <div class="tl-item gold">
+            <div>
+                <p class="tl-date">Julio 2026</p>
+                <h4 class="tl-title">🔨 La Forja se Enciende</h4>
+                <p class="tl-body">Firma de contrato. Primer pago. La construcción del mundo comienza.</p>
+            </div>
+        </div>
+
+        <div class="tl-item gold">
+            <div>
+                <p class="tl-date">Octubre 2026</p>
+                <h4 class="tl-title">🔥 Fase I Entregada</h4>
+                <p class="tl-body">La plataforma lista, testada y operativa para recibir a las primeras 150 alumnas.</p>
+            </div>
+        </div>
+
+        <div class="tl-item purple">
+            <div>
+                <p class="tl-date">Noviembre 2026 — Febrero 2027</p>
+                <h4 class="tl-title">⚔️ El Programa en Vivo</h4>
+                <p class="tl-body">150 alumnas viviendo la experiencia. Datos reales. Feedback de oro para calibrar la Fase II.</p>
+            </div>
+        </div>
+
+        <div class="tl-item purple">
+            <div>
+                <p class="tl-date">Marzo 2027</p>
+                <h4 class="tl-title">✨ Arranca la Fase II</h4>
+                <p class="tl-body">Tercer pago. Se activa el motor de XP, el sistema de nivel y la tienda expandida.</p>
+            </div>
+        </div>
+
+        <div class="tl-item gold">
+            <div>
+                <p class="tl-date">Mayo 2027</p>
+                <h4 class="tl-title">👑 La Leyenda Completa</h4>
+                <p class="tl-body">Entrega final. La Forja de Realidades™ en su versión definitiva e imparable.</p>
+            </div>
+        </div>
+
+        <div class="tl-item purple">
+            <div>
+                <p class="tl-date">Noviembre 2027</p>
+                <h4 class="tl-title">🚀 Nueva Cohorte — Nuevo Precio</h4>
+                <p class="tl-body">El programa que prometiste. Con sistema de nivel activo, XP, ítems vivos y experiencia extraordinaria. Precio premium totalmente justificado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ INVERSIÓN ══════════════ -->
+<div class="bg-section">
+<section class="invest-wrap">
+    <p class="s-label">✦ La Inversión ✦</p>
+    <h2 class="s-title">Tu Inversión Total</h2>
+
+    <p class="invest-total">15.000€</p>
+    <p class="invest-label">Proyecto Completo — Fase I + Fase II · +IVA</p>
+
+    <div class="pay-grid">
+        <div class="pay-card">
+            <p class="pay-num">Pago 01</p>
+            <p class="pay-amount">3.750€</p>
+            <p class="pay-when">Julio 2026<br><em style="font-size:11px; opacity:.55;">Inicio Fase I · +IVA</em></p>
+        </div>
+        <div class="pay-card">
+            <p class="pay-num">Pago 02</p>
+            <p class="pay-amount">3.750€</p>
+            <p class="pay-when">Octubre 2026<br><em style="font-size:11px; opacity:.55;">Entrega Fase I · +IVA</em></p>
+        </div>
+        <div class="pay-card">
+            <p class="pay-num">Pago 03</p>
+            <p class="pay-amount">3.750€</p>
+            <p class="pay-when">Marzo 2027<br><em style="font-size:11px; opacity:.55;">Inicio Fase II · +IVA</em></p>
+        </div>
+        <div class="pay-card">
+            <p class="pay-num">Pago 04</p>
+            <p class="pay-amount">3.750€</p>
+            <p class="pay-when">Mayo 2027<br><em style="font-size:11px; opacity:.55;">Entrega Fase II · +IVA</em></p>
+        </div>
+    </div>
+
+    <div class="roi-box">
+        <p class="roi-title">✦ El Retorno ✦</p>
+        <p class="roi-text">
+            Con <strong>150 alumnas a 350€</strong>, la Fase I se recupera completamente
+            en el <strong>primer mes del programa</strong>.<br><br>
+            La Fase II permite subir el precio a <strong>420–450€ por alumna</strong> con plena justificación de valor.
+            Eso supone <strong>10.500€ más de ingresos</strong> por cohorte — la Fase II se paga sola
+            en la primera edición que la disfrute.<br><br>
+            <strong>Inversión total sobre ingresos anuales: menos del 29%.</strong>
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ══════════════ SOPORTE ══════════════ -->
+<section>
+    <p class="s-label">✦ Post-Entrega ✦</p>
+    <h2 class="s-title">Soporte & Continuidad</h2>
+    <p class="s-sub">Una vez entregado, el mundo sigue funcionando. Y si algo falla, lo resolvemos.</p>
+
+    <div class="supp-grid">
+        <div class="supp-card">
+            <p class="supp-price">30€</p>
+            <p class="supp-period">/mes</p>
+            <p class="supp-name">Soporte Técnico</p>
+            <p class="supp-desc">Si algo deja de funcionar, lo resolvemos. Tranquilidad total durante el programa. Sin límite de incidencias.</p>
+        </div>
+        <div class="supp-card">
+            <p class="supp-price">~13€</p>
+            <p class="supp-period">/mes</p>
+            <p class="supp-name">VPS Hostinger</p>
+            <p class="supp-desc">Servidor dedicado a tu cuenta y tu tarjeta. Tú tienes el control directo. Velocidad y seguridad garantizadas.</p>
+        </div>
+        <div class="supp-card">
+            <p class="supp-price">A consulta</p>
+            <p class="supp-period">&nbsp;</p>
+            <p class="supp-name">Nuevas Funcionalidades</p>
+            <p class="supp-desc">Cualquier mejora o ampliación fuera del alcance de las dos fases se presupuesta por separado.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════ CTA ══════════════ -->
+<div class="cta-wrap">
+    <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:6px; color:var(--purple-light); text-transform:uppercase; margin-bottom:22px; opacity:.8;">✦ El Próximo Paso ✦</p>
+    <h2 class="cta-title">¿Lista para convertir La Forja en una leyenda?</h2>
+    <p class="cta-text">
+        Esta propuesta tiene validez de 30 días.<br>
+        Que empiece la transformación de La Forja de Realidades™
+    </p>
+
+    <div class="cta-steps">
+        <div class="cta-step">
+            <p class="cta-step-n">01</p>
+            <p class="cta-step-t">Revisión y aprobación de esta propuesta</p>
+        </div>
+        <div class="cta-step">
+            <p class="cta-step-n">02</p>
+            <p class="cta-step-t">Firma del contrato digital</p>
+        </div>
+        <div class="cta-step">
+            <p class="cta-step-n">03</p>
+            <p class="cta-step-t">Primer pago — 3.750€</p>
+        </div>
+        <div class="cta-step">
+            <p class="cta-step-n">04</p>
+            <p class="cta-step-t">Julio 2026 — La Forja se enciende</p>
+        </div>
+    </div>
+
+    <div class="hero-divider" style="margin-bottom:44px;"></div>
+    <p class="footer-sig">
+        Propuesta preparada por <strong>laschicasdeisart</strong><br>
+        exclusiva para <strong>Sandra Suárez</strong>, la guía de la travesía<br>
+        <span style="opacity:.5; font-size:11px;">Junio 2026 · Propuesta válida 30 días</span>
+    </p>
+</div>
+
+</body>
+</html>
