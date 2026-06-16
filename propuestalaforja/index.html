@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propuesta Oficial — La Forja de Realidades™</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
     <style>
         :root {
             --gold: #D4A843;
@@ -22,8 +29,10 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { background: var(--bg); }
+
         body {
-            background-color: var(--bg);
+            background: transparent;
             color: var(--text);
             font-family: 'Raleway', sans-serif;
             font-weight: 400;
@@ -31,32 +40,15 @@
             overflow-x: hidden;
         }
 
-        /* ─── ESTRELLAS FIJAS ─── */
-        body::before {
-            content: '';
+        /* ─── CANVAS TUNNEL ─── */
+        #bg-canvas {
             position: fixed;
             inset: 0;
-            background-image:
-                radial-gradient(1px 1px at 12% 18%, rgba(212,168,67,.7) 0%, transparent 100%),
-                radial-gradient(1px 1px at 85% 12%, rgba(212,168,67,.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 63% 74%, rgba(181,111,212,.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 37% 82%, rgba(212,168,67,.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 91% 55%, rgba(181,111,212,.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 8%  60%, rgba(212,168,67,.6) 0%, transparent 100%),
-                radial-gradient(1px 1px at 54% 8%,  rgba(181,111,212,.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 72% 38%, rgba(212,168,67,.5) 0%, transparent 100%),
-                radial-gradient(1px 1px at 27% 47%, rgba(181,111,212,.7) 0%, transparent 100%),
-                radial-gradient(1px 1px at 48% 91%, rgba(212,168,67,.4) 0%, transparent 100%),
-                radial-gradient(1px 1px at 19% 35%, rgba(181,111,212,.3) 0%, transparent 100%),
-                radial-gradient(1px 1px at 76% 65%, rgba(212,168,67,.5) 0%, transparent 100%);
-            animation: twinkle 5s ease-in-out infinite alternate;
+            width: 100%;
+            height: 100%;
+            display: block;
             pointer-events: none;
             z-index: 0;
-        }
-
-        @keyframes twinkle {
-            0%   { opacity: .4; }
-            100% { opacity: 1;  }
         }
 
         /* ─── GLOW LINE ─── */
@@ -612,6 +604,7 @@
     </style>
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 
 <!-- ══════════════ HERO ══════════════ -->
 <div class="hero">
@@ -1026,5 +1019,220 @@
     </p>
 </div>
 
+<script>
+(function() {
+    var canvas = document.getElementById('bg-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.toneMappingExposure = 1.2;
+
+    var scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x080510);
+    scene.fog = new THREE.FogExp2(0x080510, 0.018);
+
+    var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 150);
+    camera.position.set(0, 0, 0);
+
+    /* ── Glow texture ── */
+    var glowCanvas = document.createElement('canvas');
+    glowCanvas.width = glowCanvas.height = 64;
+    var ctx = glowCanvas.getContext('2d');
+    var grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0,   'rgba(255,255,255,1)');
+    grad.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+    grad.addColorStop(1,   'rgba(255,255,255,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 64, 64);
+    var glowTex = new THREE.CanvasTexture(glowCanvas);
+
+    /* ── Colores ── */
+    var GOLD   = new THREE.Color(0xD4A843);
+    var PURPLE = new THREE.Color(0x8F47B3);
+    var WHITE  = new THREE.Color(0xffffff);
+
+    /* ── Partículas de túnel (pared cilíndrica) ── */
+    var TUNNEL_COUNT = 3500;
+    var TUNNEL_LENGTH = 120;
+    var TUNNEL_RADIUS = 14;
+
+    var tPos = new Float32Array(TUNNEL_COUNT * 3);
+    var tCol = new Float32Array(TUNNEL_COUNT * 3);
+    var tSiz = new Float32Array(TUNNEL_COUNT);
+
+    for (var i = 0; i < TUNNEL_COUNT; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var r = TUNNEL_RADIUS + (Math.random() - 0.5) * 3;
+        tPos[i*3]     = Math.cos(angle) * r;
+        tPos[i*3+1]   = Math.sin(angle) * r;
+        tPos[i*3+2]   = (Math.random() - 0.5) * TUNNEL_LENGTH;
+
+        var c = Math.random() < 0.65 ? GOLD : (Math.random() < 0.5 ? PURPLE : WHITE);
+        tCol[i*3]   = c.r; tCol[i*3+1] = c.g; tCol[i*3+2] = c.b;
+        tSiz[i] = Math.random() * 18 + 5;
+    }
+
+    var tunnelGeo = new THREE.BufferGeometry();
+    tunnelGeo.setAttribute('position', new THREE.BufferAttribute(tPos, 3));
+    tunnelGeo.setAttribute('color',    new THREE.BufferAttribute(tCol, 3));
+    tunnelGeo.setAttribute('size',     new THREE.BufferAttribute(tSiz, 1));
+
+    var tunnelMat = new THREE.PointsMaterial({
+        size: 0.4,
+        map: glowTex,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        depthWrite: false,
+        sizeAttenuation: true
+    });
+
+    var tunnel = new THREE.Points(tunnelGeo, tunnelMat);
+    scene.add(tunnel);
+
+    /* ── Partículas interiores flotantes ── */
+    var INNER_COUNT = 600;
+    var iPos = new Float32Array(INNER_COUNT * 3);
+    var iCol = new Float32Array(INNER_COUNT * 3);
+
+    for (var j = 0; j < INNER_COUNT; j++) {
+        var ir = Math.random() * (TUNNEL_RADIUS - 2);
+        var ia = Math.random() * Math.PI * 2;
+        iPos[j*3]   = Math.cos(ia) * ir;
+        iPos[j*3+1] = Math.sin(ia) * ir;
+        iPos[j*3+2] = (Math.random() - 0.5) * TUNNEL_LENGTH;
+
+        var ic = Math.random() < 0.5 ? GOLD : PURPLE;
+        iCol[j*3]   = ic.r; iCol[j*3+1] = ic.g; iCol[j*3+2] = ic.b;
+    }
+
+    var innerGeo = new THREE.BufferGeometry();
+    innerGeo.setAttribute('position', new THREE.BufferAttribute(iPos, 3));
+    innerGeo.setAttribute('color',    new THREE.BufferAttribute(iCol, 3));
+
+    var innerMat = new THREE.PointsMaterial({
+        size: 0.15,
+        map: glowTex,
+        vertexColors: true,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        depthWrite: false,
+        sizeAttenuation: true
+    });
+
+    var inner = new THREE.Points(innerGeo, innerMat);
+    scene.add(inner);
+
+    /* ── Streaks hiperspeed ── */
+    var STREAK_COUNT = 800;
+    var sPos = new Float32Array(STREAK_COUNT * 6); // 2 vertices por línea
+
+    for (var k = 0; k < STREAK_COUNT; k++) {
+        var sa = Math.random() * Math.PI * 2;
+        var sr = (Math.random() * 0.7 + 0.3) * TUNNEL_RADIUS;
+        var sx = Math.cos(sa) * sr;
+        var sy = Math.sin(sa) * sr;
+        var sz = (Math.random() - 0.5) * TUNNEL_LENGTH;
+        var len = Math.random() * 2 + 0.5;
+        sPos[k*6]   = sx; sPos[k*6+1] = sy; sPos[k*6+2] = sz;
+        sPos[k*6+3] = sx; sPos[k*6+4] = sy; sPos[k*6+5] = sz + len;
+    }
+
+    var streakGeo = new THREE.BufferGeometry();
+    streakGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+
+    var streakMat = new THREE.LineBasicMaterial({
+        color: 0xD4A843,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        opacity: 0.35,
+        depthWrite: false
+    });
+
+    var streaks = new THREE.LineSegments(streakGeo, streakMat);
+    scene.add(streaks);
+
+    /* ── Post-processing bloom ── */
+    var composer = new THREE.EffectComposer(renderer);
+    composer.addPass(new THREE.RenderPass(scene, camera));
+
+    var bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        1.6,   // strength
+        0.5,   // radius
+        0.05   // threshold
+    );
+    composer.addPass(bloomPass);
+
+    /* ── Resize ── */
+    window.addEventListener('resize', function() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    /* ── Scroll parallax suave ── */
+    var scrollY = 0;
+    window.addEventListener('scroll', function() { scrollY = window.scrollY; });
+
+    /* ── Animación ── */
+    var clock = new THREE.Clock();
+    var SPEED = 8;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        var delta = clock.getDelta();
+        var elapsed = clock.getElapsedTime();
+
+        /* Mover partículas hacia la cámara (eje -z) */
+        var tArr = tunnelGeo.attributes.position.array;
+        for (var ti = 0; ti < TUNNEL_COUNT; ti++) {
+            tArr[ti*3+2] += SPEED * delta;
+            if (tArr[ti*3+2] > 10) tArr[ti*3+2] -= TUNNEL_LENGTH;
+        }
+        tunnelGeo.attributes.position.needsUpdate = true;
+
+        var iArr = innerGeo.attributes.position.array;
+        for (var ii = 0; ii < INNER_COUNT; ii++) {
+            iArr[ii*3+2] += SPEED * delta * 0.7;
+            if (iArr[ii*3+2] > 10) iArr[ii*3+2] -= TUNNEL_LENGTH;
+        }
+        innerGeo.attributes.position.needsUpdate = true;
+
+        var stArr = streakGeo.attributes.position.array;
+        for (var si = 0; si < STREAK_COUNT; si++) {
+            stArr[si*6+2]   += SPEED * delta * 1.2;
+            stArr[si*6+5]   += SPEED * delta * 1.2;
+            if (stArr[si*6+2] > 10) {
+                var sa2 = Math.random() * Math.PI * 2;
+                var sr2 = (Math.random() * 0.7 + 0.3) * TUNNEL_RADIUS;
+                var sx2 = Math.cos(sa2) * sr2, sy2 = Math.sin(sa2) * sr2;
+                var sz2 = -TUNNEL_LENGTH * 0.5;
+                var len2 = Math.random() * 2 + 0.5;
+                stArr[si*6]   = sx2; stArr[si*6+1] = sy2; stArr[si*6+2] = sz2;
+                stArr[si*6+3] = sx2; stArr[si*6+4] = sy2; stArr[si*6+5] = sz2 + len2;
+            }
+        }
+        streakGeo.attributes.position.needsUpdate = true;
+
+        /* Drift suave de cámara */
+        camera.position.x = Math.sin(elapsed * 0.12) * 0.6;
+        camera.position.y = Math.cos(elapsed * 0.09) * 0.4;
+        camera.lookAt(
+            camera.position.x * 0.5,
+            camera.position.y * 0.5,
+            -20
+        );
+
+        composer.render();
+    }
+
+    animate();
+})();
+</script>
 </body>
 </html>
