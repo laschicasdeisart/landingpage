@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitud — laschicasdeisart</title>
+  <style>
+    @font-face {
+      font-family: 'OPTISpire';
+      src: url('../OPTISpire_Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #0D2B25;
+      --teal:  #2BA898;
+      --teal2: #3dd9c9;
+      --card:  rgba(255,255,255,0.04);
+      --bdr:   rgba(255,255,255,0.08);
+      --inp:   rgba(255,255,255,0.06);
+      --txt:   rgba(255,255,255,0.8);
+      --muted: rgba(255,255,255,0.45);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Gradient blobs ── */
+    .blobs {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px);
+    }
+    .blob-1 {
+      width: 700px; height: 700px; top: -200px; left: -200px;
+      background: radial-gradient(circle, rgba(43,168,152,.28) 0%, transparent 70%);
+      animation: blob1 18s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 600px; height: 600px; bottom: -150px; right: -150px;
+      background: radial-gradient(circle, rgba(43,168,152,.2) 0%, transparent 70%);
+      animation: blob2 22s ease-in-out infinite;
+    }
+    .blob-3 {
+      width: 450px; height: 450px; top: 35%; right: 5%;
+      background: radial-gradient(circle, rgba(61,217,201,.14) 0%, transparent 70%);
+      animation: blob3 15s ease-in-out infinite;
+    }
+    .blob-4 {
+      width: 500px; height: 500px; bottom: 10%; left: 10%;
+      background: radial-gradient(circle, rgba(13,100,85,.35) 0%, transparent 70%);
+      animation: blob4 20s ease-in-out infinite;
+    }
+
+    @keyframes blob1 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(60px,-80px) scale(1.15); }
+      66%      { transform: translate(-40px,40px) scale(.9); }
+    }
+    @keyframes blob2 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(-70px,60px) scale(1.2); }
+      66%      { transform: translate(50px,-30px) scale(.85); }
+    }
+    @keyframes blob3 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(40px,70px) scale(1.1); }
+    }
+    @keyframes blob4 {
+      0%,100% { transform: translate(0,0) scale(1); }
+      40%      { transform: translate(-50px,-60px) scale(1.05); }
+      80%      { transform: translate(30px,50px) scale(.95); }
+    }
+
+    /* ── Layout ── */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      padding: 64px 20px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .header-title {
+      font-family: 'OPTISpire', Georgia, serif;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: normal;
+      color: white;
+    }
+
+    /* ── Progress ── */
+    .progress {
+      display: flex; gap: 6px;
+      width: 100%; max-width: 640px;
+      margin-bottom: 28px;
+    }
+    .progress-bar {
+      height: 3px; flex: 1; border-radius: 99px;
+      background: rgba(255,255,255,.1);
+      transition: background .4s;
+    }
+    .progress-bar.active { background: var(--teal); }
+
+    /* ── Card ── */
+    .card {
+      width: 100%; max-width: 640px;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 20px;
+      padding: clamp(28px, 5vw, 44px);
+    }
+
+    .step-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .step-title {
+      font-family: 'OPTISpire', Georgia, serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: normal;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .step-subtitle {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.65; margin-bottom: 40px;
+    }
+
+    /* ── Fields ── */
+    .fields { display: flex; flex-direction: column; gap: 32px; }
+
+    .field-label {
+      display: block;
+      font-size: 13px; font-weight: 500;
+      color: var(--txt); line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    textarea, input[type="email"] {
+      width: 100%;
+      background: var(--inp);
+      border: 1px solid var(--bdr);
+      border-radius: 12px;
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color .2s;
+      resize: vertical;
+    }
+    textarea { min-height: 100px; }
+    textarea::placeholder, input::placeholder { color: rgba(255,255,255,.25); }
+    textarea:focus, input:focus { border-color: var(--teal); }
+
+    /* Radio options */
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-btn {
+      width: 100%;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--bdr);
+      border-radius: 12px;
+      color: rgba(255,255,255,.65);
+      font-family: inherit;
+      font-size: 13px;
+      padding: 12px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .radio-btn:hover {
+      background: rgba(43,168,152,.08);
+      border-color: rgba(43,168,152,.4);
+      color: white;
+    }
+    .radio-btn.selected {
+      background: rgba(43,168,152,.12);
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    /* ── Nav buttons ── */
+    .nav { display: flex; gap: 10px; margin-top: 40px; }
+    .btn-back {
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--bdr);
+      border-radius: 12px;
+      color: rgba(255,255,255,.5);
+      font-family: inherit;
+      font-size: 14px; font-weight: 500;
+      padding: 13px 22px;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .btn-back:hover { background: rgba(255,255,255,.09); color: white; }
+    .btn-next {
+      flex: 1;
+      background: var(--teal);
+      border: none;
+      border-radius: 12px;
+      color: var(--bg);
+      font-family: inherit;
+      font-size: 14px; font-weight: 700;
+      padding: 13px 22px;
+      cursor: pointer;
+      transition: opacity .2s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-next:disabled { opacity: .6; cursor: default; }
+
+    /* ── Error ── */
+    .error-msg {
+      margin-top: 20px;
+      font-size: 13px; color: #f87171;
+    }
+
+    /* ── Success ── */
+    .success-screen {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+    .success-inner { max-width: 420px; width: 100%; text-align: center; }
+    .success-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(43,168,152,.1);
+      border: 1px solid var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 36px;
+    }
+    .success-title {
+      font-family: 'OPTISpire', Georgia, serif;
+      font-size: 28px; font-weight: normal;
+      color: white; margin-bottom: 16px;
+    }
+    .success-text { font-size: 15px; color: var(--muted); line-height: 1.65; }
+
+    @media (max-width: 500px) {
+      .card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Animated blobs background -->
+<div class="blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<!-- Success screen (hidden by default) -->
+<div class="success-screen" id="success" style="display:none">
+  <div class="blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="success-inner">
+    <div class="success-icon">✓</div>
+    <h1 class="success-title">¡Lo hemos recibido todo!</h1>
+    <p class="success-text">Nos ponemos en contacto contigo en breve para empezar a trabajar en tu marca. ¡Va a ser una pasada!</p>
+  </div>
+</div>
+
+<!-- Form page -->
+<div class="page" id="formPage">
+  <div class="header">
+    <p class="header-label">Onboarding</p>
+    <h1 class="header-title">laschicasdeisart</h1>
+  </div>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="card">
+    <p class="step-label" id="stepLabel"></p>
+    <h2 class="step-title" id="stepTitle"></h2>
+    <p class="step-subtitle" id="stepSubtitle"></p>
+    <div class="fields" id="fields"></div>
+    <p class="error-msg" id="errorMsg" style="display:none"></p>
+    <div class="nav">
+      <button class="btn-back" id="btnBack" style="display:none" onclick="prevStep()">
+        ← Anterior
+      </button>
+      <button class="btn-next" id="btnNext" onclick="nextStep()">
+        Siguiente →
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STEPS = [
+  {
+    title: 'Tu universo de marca',
+    subtitle: 'Vamos a indagar en los entresijos de tu marca para conocernos mejor, entender desde dónde quieres transmitir tu valor y cómo dar foco y coherencia a tu futura estrategia de contenido.',
+    fields: [
+      { id: 'historia',     type: 'textarea', label: '¿Si tu historia fuese un chisme que se cuenta en una cena, cómo la contarías?' },
+      { id: 'antes',        type: 'textarea', label: '¿Cómo era tu vida antes de este proyecto? ¿Qué hacías, cómo te sentías?' },
+      { id: 'eleccion',     type: 'textarea', label: '¿Fue una elección o una necesidad la que te llevó a emprender/cambiar de rumbo?' },
+      { id: 'inflexion',    type: 'textarea', label: '¿Qué momento fue un punto de inflexión en tu vida, ese que marcó un "a partir de aquí todo cambió"?' },
+      { id: 'experiencias', type: 'textarea', label: '¿Qué experiencias personales han dejado más huella en lo que hoy ofreces al mundo?' },
+      { id: 'costado',      type: 'textarea', label: '¿Qué es lo que más te ha costado y nadie ve desde fuera?' },
+      { id: 'suenas',       type: 'textarea', label: '¿Qué sueñas que la gente diga de ti cuando piense en tu marca?' },
+    ]
+  },
+  {
+    title: 'Tu identidad',
+    subtitle: 'Cuéntanos cómo es tu marca, qué quieres proyectar al mundo y a quién quieres atraer.',
+    fields: [
+      { id: 'marcaPersona',  type: 'textarea', label: 'Si tu marca fuera una persona, ¿cómo sería? (puedes poner adjetivos o contarme una mini historia)' },
+      { id: 'noMarca',       type: 'textarea', label: '¿Qué NO quieres que sea tu marca nunca?' },
+      { id: 'temas',         type: 'textarea', label: '¿Qué temas te gustaría hablar en tus redes o te gustaría empezar a hablar?' },
+      { id: 'adjetivos',     type: 'textarea', label: 'Si pudieras elegir 3 adjetivos que quieres que todo el mundo relacione contigo, ¿cuáles serían?' },
+      { id: 'sinParar',      type: 'textarea', label: '¿Sobre qué cosas sientes que puedes hablar sin parar?' },
+      { id: 'tipoContenido', type: 'textarea', label: '¿Qué tipo de contenido disfrutas más crear? (historias, consejos, experiencias, opiniones, etc...)' },
+      { id: 'avatar',        type: 'textarea', label: 'Describe cómo sería una persona que te compraría. (tu avatar) ¿qué le pasa? ¿Qué quiere? ¿En qué momento de su vida está?' },
+    ]
+  },
+  {
+    title: 'Tu cliente y comunidad',
+    subtitle: 'Profundizamos en quién te sigue, quién te compra y cómo conectar con ellos a través del contenido.',
+    fields: [
+      { id: 'duele',            type: 'textarea', label: 'Esa persona que crees que te compraría; ¿qué le duele? Si te contara su mayor problema, ¿cuál sería?' },
+      { id: 'merece',           type: 'textarea', label: '¿Qué cosas cree que merece, aunque a veces no se lo diga ni a él/ella mism@? (tu cliente)' },
+      { id: 'seguidor',         type: 'textarea', label: 'Describe cómo es alguien que te encantaría que te siguiera, aunque nunca te comprara.' },
+      { id: 'contenidoSeguidor',type: 'textarea', label: '¿Qué tipo de contenido crees que conectará más con esa persona que solo te sigue?' },
+      { id: 'colores',          type: 'textarea', label: 'Si tu marca tuviera colores, ¿cuáles serían? (puedes decirme nombres, sensaciones o mandarme alguna imagen que represente)' },
+      { id: 'estiloVisual',     type: 'textarea', label: '¿Tienes alguna letra o estilo visual que te encante o alguna referencia? Aquí puedes compartirnos algún perfil que te guste especialmente.' },
+      { id: 'contenidoTuyo',    type: 'textarea', label: '¿Cómo te gustaría que se viera tu contenido para que digan: "esto es muy tu"?' },
+      { id: 'personajes',       type: 'textarea', label: 'Si tuvieras que crear 2 o 3 personajes que representen tu comunidad, ¿cómo serían?' },
+    ]
+  },
+  {
+    title: 'Tus productos y objetivo',
+    subtitle: 'Cuéntanos qué vendes, qué ofreces a tu cliente y hacia dónde quieres llevar tu marca.',
+    fields: [
+      { id: 'productos',        type: 'textarea', label: '¿Qué cosas estás vendiendo o planeas vender? (no hace falta que esté perfecto, suéltalo todo)' },
+      { id: 'masPotencial',     type: 'textarea', label: '¿Cuál de esos "productos" crees que tiene más potencial? ¿Por qué?' },
+      { id: 'cambioPromete',    type: 'textarea', label: '¿Qué cambio prometen esos productos o servicios?' },
+      { id: 'frasesClientes',   type: 'textarea', label: '¿Qué frases suelen decirte las personas que terminan de trabajar contigo?' },
+      { id: 'dormirTransquilo', type: 'textarea', label: 'En cuanto a tu potencial cliente: ¿Qué cosas no le dejan dormir tranquilo?' },
+      { id: 'conseguir',        type: 'textarea', label: '¿Qué quiere conseguir tu cliente con todas sus ganas, pero todavía no sabe cómo?' },
+      { id: 'frenan',           type: 'textarea', label: '¿Qué pensamientos son los que frenan a tu cliente para tomar acción?' },
+      { id: 'falta',            type: 'textarea', label: '¿Qué siente tu cliente que le falta?' },
+      {
+        id: 'objetivo', type: 'radio',
+        label: '¿Qué es lo que más te interesa ahora mismo? (objetivo de los próximos 3-6 meses)',
+        options: [
+          'Que más gente me descubra',
+          'Que me vean como alguien que sabe de lo que hace',
+          'Que conecten conmigo y con mi historia',
+          'Que te compren YA'
+        ]
+      },
+      { id: 'generalEspecifico', type: 'textarea', label: '¿Te gustaría que tu contenido fuera más general y entretenido, o más específico y profundo?' },
+      {
+        id: 'facturasMarca', type: 'radio',
+        label: '¿Facturas actualmente con tu marca?',
+        options: ['Sí', 'No']
+      },
+      {
+        id: 'facturacionMensual', type: 'radio',
+        label: 'Facturación mensual aproximada',
+        options: ['300 – 1.000 €/mes', '1.000 – 1.700 €/mes', '+1.700 €/mes']
+      },
+    ]
+  },
+  {
+    title: 'Ahora vamos a lo "aburrido"',
+    subtitle: 'Te pediremos una serie de datos para ponernos más fácil a ambas los procesos burocráticos y de comunicación.',
+    fields: [
+      { id: 'emailDrive', type: 'email', label: 'Déjanos un correo electrónico para crear una carpeta compartida en Drive donde iremos subiendo todo el material.' },
+      {
+        id: 'pack', type: 'radio',
+        label: 'Indícanos qué Pack de servicios has decidido contratar',
+        options: [
+          'Asesoría 1/1 – 130€ + IVA',
+          'Pack 1: Activa tu presencia (5 Reels o 4 Reels + 2 Carrusels) – 497€ + IVA',
+          'Pack 2: Aumenta tu visibilidad (7 Reels o 6 Reels + 2 Carrusels) – 597€ + IVA',
+          'Pack 3: Diferénciate de la competencia (9 Reels o 8 Reels + 4 Carrusels) – 997€ + IVA',
+          'Solo edición de vídeo (consultar Packs por cantidad)',
+          'Otro (cualquier pack anterior adaptado a tus necesidades)',
+        ]
+      },
+      { id: 'datosFact', type: 'textarea', label: 'Déjanos aquí tus datos de facturación para que los tengamos a mano.' },
+    ]
+  }
+]
+
+let currentStep = 0
+const formData = {}
+
+function renderStep() {
+  const step = STEPS[currentStep]
+  const total = STEPS.length
+
+  // Progress bars
+  const prog = document.getElementById('progress')
+  prog.innerHTML = ''
+  for (let i = 0; i < total; i++) {
+    const bar = document.createElement('div')
+    bar.className = 'progress-bar' + (i <= currentStep ? ' active' : '')
+    prog.appendChild(bar)
+  }
+
+  document.getElementById('stepLabel').textContent = `Paso ${currentStep + 1} de ${total}`
+  document.getElementById('stepTitle').textContent = step.title
+  document.getElementById('stepSubtitle').textContent = step.subtitle
+
+  const fieldsEl = document.getElementById('fields')
+  fieldsEl.innerHTML = ''
+
+  step.fields.forEach(field => {
+    const wrap = document.createElement('div')
+
+    const lbl = document.createElement('label')
+    lbl.className = 'field-label'
+    lbl.textContent = field.label
+    wrap.appendChild(lbl)
+
+    if (field.type === 'textarea') {
+      const ta = document.createElement('textarea')
+      ta.placeholder = 'Escribe aquí...'
+      ta.rows = 4
+      ta.value = formData[field.id] || ''
+      ta.addEventListener('input', () => { formData[field.id] = ta.value })
+      wrap.appendChild(ta)
+    } else if (field.type === 'email') {
+      const inp = document.createElement('input')
+      inp.type = 'email'
+      inp.placeholder = 'tucorreo@ejemplo.com'
+      inp.value = formData[field.id] || ''
+      inp.addEventListener('input', () => { formData[field.id] = inp.value })
+      wrap.appendChild(inp)
+    } else if (field.type === 'radio') {
+      const group = document.createElement('div')
+      group.className = 'radio-group'
+      field.options.forEach(opt => {
+        const btn = document.createElement('button')
+        btn.type = 'button'
+        btn.className = 'radio-btn' + (formData[field.id] === opt ? ' selected' : '')
+        btn.textContent = opt
+        btn.addEventListener('click', () => {
+          formData[field.id] = opt
+          group.querySelectorAll('.radio-btn').forEach(b => b.classList.remove('selected'))
+          btn.classList.add('selected')
+        })
+        group.appendChild(btn)
+      })
+      wrap.appendChild(group)
+    }
+
+    fieldsEl.appendChild(wrap)
+  })
+
+  document.getElementById('btnBack').style.display = currentStep > 0 ? 'flex' : 'none'
+  const btnNext = document.getElementById('btnNext')
+  btnNext.textContent = currentStep === total - 1 ? 'Enviar formulario' : 'Siguiente →'
+  hideError()
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorMsg')
+  el.textContent = msg
+  el.style.display = 'block'
+}
+function hideError() {
+  document.getElementById('errorMsg').style.display = 'none'
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--
+    renderStep()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+async function nextStep() {
+  const step = STEPS[currentStep]
+
+  // Validate radio fields
+  const missingRadio = step.fields.find(f => f.type === 'radio' && !formData[f.id])
+  if (missingRadio) {
+    showError('Por favor, selecciona una opción en todas las preguntas de selección.')
+    return
+  }
+
+  if (currentStep < STEPS.length - 1) {
+    currentStep++
+    renderStep()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
+  }
+
+  // Submit
+  const btn = document.getElementById('btnNext')
+  btn.disabled = true
+  btn.textContent = 'Enviando...'
+  hideError()
+
+  try {
+    const res = await fetch('https://app.laschicasdeisart.com/api/solicitud', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+    if (!res.ok) throw new Error()
+    document.getElementById('formPage').style.display = 'none'
+    document.getElementById('success').style.display = 'flex'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  } catch {
+    showError('Algo salió mal. Por favor, inténtalo de nuevo o escríbenos directamente.')
+    btn.disabled = false
+    btn.textContent = 'Enviar formulario'
+  }
+}
+
+// Init
+renderStep()
+</script>
+</body>
+</html>
