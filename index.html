@@ -114,9 +114,9 @@ html, body {
     </div>
   </a>
 
-  <!-- 4 · Pequeña esfera → Flowly (label debajo) -->
+  <!-- 4 · Satélite con paneles solares → Flowly (label debajo) -->
   <a class="spot" href="https://flowlysystem.io" target="_blank" rel="noopener"
-     style="left:42%; top:50%; width:26%; height:10%;">
+     style="left:44%; top:65%; width:46%; height:14%;">
     <div class="spot-label label-below">
       <span>Flowly</span>
     </div>
@@ -132,33 +132,37 @@ html, body {
 </div>
 
 <script>
-/* ── Ping-pong: reproduce hacia adelante y hacia atrás sin corte ── */
+/* ── Ping-pong: adelante y atrás sin corte ── */
 const video = document.getElementById('mapVideo');
 video.muted = true;
 
 let reversing = false;
 let rafId = null;
-const STEP = 1 / 30; // ~30fps backward
+const STEP = 1 / 30;
 
 function reverseStep() {
-  video.currentTime = Math.max(0, video.currentTime - STEP);
-  if (video.currentTime <= 0.04) {
+  const next = video.currentTime - STEP;
+  if (next <= 0) {
+    video.currentTime = 0.01;
     reversing = false;
     video.play();
     return;
   }
+  video.currentTime = next;
   rafId = requestAnimationFrame(reverseStep);
 }
 
-video.addEventListener('ended', () => {
-  if (reversing) return;
-  reversing = true;
-  cancelAnimationFrame(rafId);
-  rafId = requestAnimationFrame(reverseStep);
+// Activar reversa justo antes del final (sin esperar al evento ended)
+video.addEventListener('timeupdate', () => {
+  if (!reversing && video.duration && video.currentTime >= video.duration - 0.12) {
+    reversing = true;
+    video.pause();
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(reverseStep);
+  }
 });
 
 video.play().catch(() => {
-  // Autoplay bloqueado: esperar interacción
   document.addEventListener('click', () => video.play(), { once: true });
   document.addEventListener('touchstart', () => video.play(), { once: true });
 });
