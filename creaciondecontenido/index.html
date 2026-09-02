@@ -259,11 +259,19 @@ nav.scrolled { padding: 14px 48px; }
 }
 .hero .btn-ghost:hover { background: rgba(255,255,255,0.18); box-shadow: none; }
 
+/* Acciones hero (desktop: z-index sobre vídeo, mobile: bloque debajo del vídeo) */
+.hero-actions {
+  position: relative; z-index: 2;
+  padding: 0 72px 80px;
+  opacity: 0;
+  animation: heroFadeUp .7s 1.05s var(--ease) forwards;
+}
+/* En desktop las animaciones de ctas vienen del bloque padre */
+.hero-actions .hero-ctas { opacity: 1; animation: none; }
+
 .hero-note {
   margin-top: 20px;
   font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: .07em;
-  opacity: 0;
-  animation: heroFadeUp .7s 1.2s var(--ease) forwards;
 }
 
 /* Indicador de scroll animado */
@@ -512,7 +520,7 @@ nav.scrolled { padding: 14px 48px; }
   animation-direction: reverse;
   animation-duration: 38s;
 }
-.testimonios-marquee-section:hover .marquee-track { animation-play-state: paused; }
+/* marquee siempre activo, sin pausa */
 
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
@@ -587,14 +595,53 @@ footer {
   .cta-final { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 768px) {
-  .hero { background: #000; min-height: 100svh; }
-  .hero-video { object-fit: cover; object-position: center 20%; }
-  .hero-overlay {
-    background:
-      linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.10) 100%);
+  /* ── MOBILE HERO: layout apilado ── */
+  /* El hero deja de ser fullscreen y se convierte en columna */
+  .hero {
+    min-height: auto;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #0D0D0D;
+    overflow: visible;
   }
-  .hero-text { padding: 20px 24px 52px; width: 100%; }
-  .hero-sub-wrap { margin-bottom: 28px; }
+  /* Texto arriba: fondo sólido, sin vídeo detrás */
+  .hero-text {
+    order: 1;
+    position: relative;
+    padding: 76px 22px 24px;
+    background: #0D0D0D;
+    max-width: 100%;
+    will-change: unset;
+    /* Desactiva el parallax en mobile */
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  /* Vídeo en el medio, fluye normalmente, sin zoom */
+  .hero-video {
+    order: 2;
+    position: relative !important;
+    inset: auto !important;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    background: #000;
+    display: block;
+    transform: none !important;
+  }
+  /* Overlay y barra dorada ocultos en mobile (texto ya es legible) */
+  .hero-overlay { display: none; }
+  .hero-accent-bar { order: 4; position: relative; }
+  /* Botones debajo del vídeo */
+  .hero-actions {
+    order: 3;
+    position: relative;
+    padding: 24px 22px 52px;
+    background: #0D0D0D;
+    animation: none;
+    opacity: 1;
+  }
+  .hero-sub-wrap { margin-bottom: 24px; }
   .hero-scroll-hint { display: none; }
   .nosotras-inner { grid-template-columns: 1fr; }
   .nosotras-text { border-right: none; border-bottom: 2px solid var(--ink); padding: 60px 24px; }
@@ -674,7 +721,10 @@ footer {
         <strong>Tú eres tú mism@ y nosotras nos encargamos del resto.</strong>
       </p>
     </div>
+  </div><!-- /hero-text -->
 
+  <!-- Acciones separadas para poder reordenar en mobile -->
+  <div class="hero-actions" id="heroActions">
     <div class="hero-ctas">
       <a href="https://wa.me/34610317683?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20vuestro%20servicio%20de%20creaci%C3%B3n%20de%20contenido" class="btn btn-primary" target="_blank" rel="noopener">
         Agendar llamada gratuita
