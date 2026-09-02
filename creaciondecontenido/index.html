@@ -29,6 +29,8 @@
   --muted: rgba(13,13,13,0.45);
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --gold: #F5A623;
+  --gold-dim: rgba(245,166,35,0.18);
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -128,98 +130,172 @@ nav.scrolled { padding: 14px 48px; }
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 /* Vídeo de fondo */
 .hero-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
+  object-fit: cover; object-position: center 20%;
   z-index: 0;
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform .05s linear;
 }
-/* Botones hero sobre vídeo */
-.hero .btn-primary {
-  background: rgba(62,207,181,0.75);
-  border-color: rgba(255,255,255,0.25);
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.25);
-  color: #0D0D0D;
-}
-.hero .btn-ghost {
-  background: rgba(255,255,255,0.12);
-  border: 1.5px solid rgba(255,255,255,0.45);
-  color: #fff;
-  box-shadow: none;
-}
-.hero .btn-ghost:hover { background: rgba(255,255,255,0.22); }
-/* Overlay con gradiente para profundidad y legibilidad */
+/* Overlay cinematográfico: oscuro fuerte abajo-izquierda, abierto arriba-derecha */
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(to right,  rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.30) 65%, rgba(0,0,0,0.10) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,0.40) 0%, transparent 40%, rgba(0,0,0,0.55) 100%);
+    linear-gradient(125deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.10) 100%),
+    linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.0) 65%);
 }
+/* Línea dorada decorativa en el borde inferior del hero */
+.hero-accent-bar {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px; z-index: 3;
+  background: linear-gradient(to right, var(--gold) 0%, var(--t) 40%, transparent 100%);
+  opacity: 0.55;
+}
+
+/* Área de texto */
 .hero-text {
   position: relative; z-index: 2;
-  padding: 120px 72px 80px;
-  display: flex; flex-direction: column; justify-content: center;
-  max-width: 820px;
-  animation: fadeUp .9s var(--ease) both;
+  padding: 0 72px 80px;
+  max-width: 860px;
+  width: 100%;
+  will-change: transform, opacity;
 }
+
+/* Badge */
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: 'Satoshi', sans-serif;
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: #fff; border: 1.5px solid rgba(255,255,255,0.35);
-  padding: 8px 16px; margin-bottom: 40px;
-  background: rgba(62,207,181,0.2);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(245,166,35,0.45);
+  padding: 7px 15px; margin-bottom: 36px;
+  background: rgba(245,166,35,0.07);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   width: fit-content;
+  opacity: 0;
+  animation: heroFadeUp .6s .15s var(--ease) forwards;
 }
-.hero-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--t); animation: pulse 2s infinite; }
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: pulseGold 2.2s infinite;
+}
+@keyframes pulseGold {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(245,166,35,0.7); }
+  50%      { opacity:.8; box-shadow: 0 0 0 5px rgba(245,166,35,0); }
+}
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
-/* Fondo desenfocado para h1 + subtext */
-.hero-text-glass {
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  background: rgba(0,0,0,0.45);
-  padding: 16px 22px;
-  margin-top: 18px;
-  margin-bottom: 40px;
-  border-left: 3px solid rgba(255,255,255,0.15);
-  display: inline-block;
-  max-width: 520px;
-}
+
+/* H1: line-reveal staggered */
 .hero-text h1 {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(34px, 5.5vw, 78px); line-height: 0.95;
-  font-weight: 700; letter-spacing: -0.01em;
+  font-size: clamp(36px, 5.8vw, 84px);
+  line-height: 1.0;
+  font-weight: 700; letter-spacing: -0.02em;
   color: #fff;
-  margin-bottom: 0;
+  margin-bottom: 28px;
 }
-.hero-text h1 em { font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.78); }
-.hero-text .hero-sub {
-  font-size: clamp(15px, 1.5vw, 17px); color: rgba(255,255,255,0.85);
-  max-width: 480px; margin-bottom: 0; line-height: 1.8; font-weight: 400;
-}
-.hero-text .hero-sub strong { color: #fff; font-weight: 700; }
-.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
-.hero-note { margin-top: 20px; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: .06em; }
-
-.hero-photo { position: relative; overflow: hidden; }
-.hero-photo img {
-  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+/* Cada línea tiene un contenedor que hace de "clip" */
+.hero-line {
   display: block;
-  animation: fadeIn 1.2s .3s var(--ease) both;
+  overflow: hidden;
+  line-height: 1.1;
 }
-.hero-photo-caption {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: var(--t); border-top: 2px solid var(--ink);
-  padding: 12px 24px;
-  font-family: 'Satoshi', sans-serif;
-  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); font-weight: 600;
+.hero-line-inner {
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.hero-line:nth-child(1) .hero-line-inner { animation: heroLineIn .8s .22s var(--ease) forwards; }
+.hero-line:nth-child(2) .hero-line-inner { animation: heroLineIn .8s .40s var(--ease) forwards; }
+.hero-line:nth-child(3) .hero-line-inner { animation: heroLineIn .8s .56s var(--ease) forwards; }
+@keyframes heroLineIn {
+  to { transform: translateY(0); opacity: 1; }
+}
+/* La última línea en dorado-naranja */
+.hero-gold { color: var(--gold); }
+
+/* Subtítulo sin caja glass — solo borde izquierdo dorado */
+.hero-sub-wrap {
+  border-left: 3px solid var(--gold);
+  padding-left: 20px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: heroFadeUp .7s .85s var(--ease) forwards;
+}
+.hero-sub {
+  font-size: clamp(15px, 1.5vw, 17px);
+  color: rgba(255,255,255,0.72);
+  line-height: 1.85;
+  max-width: 480px;
+}
+.hero-sub strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+/* CTAs */
+.hero-ctas {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  opacity: 0;
+  animation: heroFadeUp .7s 1.05s var(--ease) forwards;
+}
+.hero .btn-primary {
+  background: var(--t);
+  border-color: rgba(255,255,255,0.2);
+  color: #0D0D0D;
+  box-shadow: 0 0 0 1.5px rgba(245,166,35,0.35), 4px 4px 0 rgba(0,0,0,0.3);
+}
+.hero .btn-primary:hover {
+  box-shadow: 0 0 0 2px rgba(245,166,35,0.6), 6px 6px 0 rgba(0,0,0,0.3);
+}
+.hero .btn-ghost {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.38);
+  color: #fff; box-shadow: none;
+}
+.hero .btn-ghost:hover { background: rgba(255,255,255,0.18); box-shadow: none; }
+
+.hero-note {
+  margin-top: 20px;
+  font-size: 11px; color: rgba(255,255,255,0.28); letter-spacing: .07em;
+  opacity: 0;
+  animation: heroFadeUp .7s 1.2s var(--ease) forwards;
+}
+
+/* Indicador de scroll animado */
+.hero-scroll-hint {
+  position: absolute; bottom: 44px; right: 72px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 3;
+  opacity: 0;
+  animation: heroFadeUp .6s 1.5s var(--ease) forwards;
+}
+.hero-scroll-line {
+  width: 1px; height: 56px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  transform-origin: top;
+  animation: scrollDrop 2s 1.6s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  49%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0.2; }
+}
+.hero-scroll-label {
+  font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(245,166,35,0.55);
+  writing-mode: vertical-lr;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ============================================================
    QUIÉNES SOMOS
@@ -393,51 +469,80 @@ nav.scrolled { padding: 14px 48px; }
 .paso:nth-child(3) .paso-content p { color: rgba(245,242,238,0.55); }
 
 /* ============================================================
-   TESTIMONIOS
+   TESTIMONIOS — Marquee infinito
    ============================================================ */
-.testimonios { border-bottom: 2px solid var(--ink); }
-.testimonios-header { padding: 80px 72px 60px; border-bottom: 2px solid var(--ink); }
-.testimonios-header h2 { font-family: 'Poppins', sans-serif;
-  font-size: clamp(28px, 4.5vw, 64px); line-height: 1.0;
+.testimonios { border-bottom: 2px solid var(--ink); overflow: hidden; }
+
+/* Header con quote destacada */
+.testimonios-header { padding: 80px 72px 64px; border-bottom: 2px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.testimonios-header-left h2 { font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 4vw, 58px); line-height: 1.0;
   font-weight: 700; letter-spacing: -0.01em;
 }
-.testimonios-header h2 em { font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 300; }
-.testimonios-header p { font-size: 16px; color: var(--muted); max-width: 500px; margin-top: 16px; line-height: 1.75; }
-.testimonios-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-.testimonio-card {
-  background: var(--bg);
-  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
-  padding: 44px 40px;
-  transition: background .25s;
-  display: flex; flex-direction: column;
+.testimonios-header-left h2 em { font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 300; color: var(--t); }
+.testimonios-featured-quote {
+  position: relative; padding-left: 28px;
+  border-left: 3px solid var(--gold);
 }
-.testimonio-card:nth-child(3n) { border-right: none; }
-.testimonio-card:hover { background: var(--g1); }
-.testimonio-stars { color: var(--t); font-size: 16px; margin-bottom: 20px; letter-spacing: 2px; }
-.testimonio-text {
+.testimonios-featured-quote p {
   font-family: 'Satoshi', sans-serif; font-style: italic; font-weight: 300;
-  font-size: 16px; color: var(--ink); line-height: 1.8;
-  flex: 1; margin-bottom: 28px;
+  font-size: clamp(15px, 1.5vw, 18px); line-height: 1.85; color: var(--ink);
+  margin-bottom: 20px;
 }
-.testimonio-text::before { content: '"'; font-size: 56px; color: var(--t); line-height: 0; vertical-align: -22px; margin-right: 2px; }
-.testimonio-author { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 2px solid var(--ink); }
-.testimonio-author-info strong { display: block; font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Satoshi', sans-serif; }
-.testimonio-author-info span { font-size: 11px; color: var(--muted); }
+.testimonios-featured-quote p::before { content: '"'; font-size: 48px; color: var(--gold); line-height: 0; vertical-align: -18px; margin-right: 2px; }
+.testimonios-featured-meta { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.testimonios-featured-meta span { color: var(--t); }
 
-/* testimonio destacado */
-.testimonios-featured {
-  background: var(--ink);
-  border-right: none; border-bottom: 2px solid var(--ink);
-  padding: 60px 72px;
-  grid-column: 1 / -1;
+/* Marquee wrapper */
+.testimonios-marquee-section { padding: 56px 0; background: var(--bg); position: relative; }
+/* Fade edges */
+.testimonios-marquee-section::before,
+.testimonios-marquee-section::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 160px; z-index: 2; pointer-events: none;
 }
-.testimonios-featured:hover { background: var(--ink); }
-.testimonios-featured .testimonio-stars { color: var(--t); }
-.testimonios-featured .testimonio-text { font-size: 22px; max-width: 800px; color: var(--bg); }
-.testimonios-featured .testimonio-text::before { color: var(--t); }
-.testimonios-featured .testimonio-author { border-top-color: rgba(245,242,238,0.15); }
-.testimonios-featured .testimonio-author-info strong { color: var(--bg); }
-.testimonios-featured .testimonio-author-info span { color: rgba(245,242,238,0.4); }
+.testimonios-marquee-section::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+.testimonios-marquee-section::after  { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+
+.marquee-track {
+  display: flex; gap: 20px;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+}
+.marquee-track-r {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+.testimonios-marquee-section:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Tarjeta individual del marquee */
+.tm-card {
+  flex-shrink: 0; width: 320px;
+  border: 2px solid var(--ink);
+  background: var(--bg);
+  padding: 28px 28px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: background .25s, transform .3s var(--ease);
+  cursor: default;
+}
+.tm-card:hover { background: var(--g1); transform: translateY(-4px); }
+.tm-card.dark { background: var(--ink); }
+.tm-card.dark:hover { background: #1a1a1a; }
+.tm-card.gold-accent { border-color: var(--gold); }
+.tm-stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; }
+.tm-text {
+  font-family: 'Satoshi', sans-serif; font-style: italic; font-weight: 300;
+  font-size: 14px; line-height: 1.75; color: var(--ink);
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tm-card.dark .tm-text { color: rgba(245,242,238,0.75); }
+.tm-meta { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-top: 1px solid rgba(13,13,13,0.12); padding-top: 14px; margin-top: auto; }
+.tm-card.dark .tm-meta { color: rgba(245,242,238,0.35); border-color: rgba(245,242,238,0.1); }
+.tm-meta span { color: var(--t); display: block; margin-bottom: 2px; }
 
 /* ============================================================
    CTA FINAL
@@ -482,13 +587,15 @@ footer {
   .cta-final { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero { background: #000; min-height: 100svh; justify-content: flex-end; flex-direction: column; align-items: flex-start; }
-  .hero-video { object-fit: contain; object-position: center center; }
-  .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.70) 80%, rgba(0,0,0,0.85) 100%); }
-  .hero-text { padding: 20px 24px 56px; border-right: none; width: 100%; }
-  .hero-text-glass { padding: 18px 20px; }
-  .hero-photo { height: 70vw; }
+  .hero { background: #000; min-height: 100svh; }
+  .hero-video { object-fit: cover; object-position: center 20%; }
+  .hero-overlay {
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.10) 100%);
+  }
+  .hero-text { padding: 20px 24px 52px; width: 100%; }
+  .hero-sub-wrap { margin-bottom: 28px; }
+  .hero-scroll-hint { display: none; }
   .nosotras-inner { grid-template-columns: 1fr; }
   .nosotras-text { border-right: none; border-bottom: 2px solid var(--ink); padding: 60px 24px; }
   .nosotras-photos { flex-direction: row; gap: 20px; padding: 40px 24px; }
@@ -506,9 +613,10 @@ footer {
   .proceso-header { padding: 48px 24px 40px; }
   .proceso-steps { grid-template-columns: 1fr; }
   .paso { border-right: none; border-bottom: 2px solid var(--ink); }
-  .testimonios-header { padding: 48px 24px 40px; }
-  .testimonios-grid { grid-template-columns: 1fr; }
-  .testimonios-featured { padding: 40px 24px; }
+  .testimonios-header { padding: 48px 24px 40px; grid-template-columns: 1fr; gap: 36px; }
+  .testimonios-marquee-section { padding: 36px 0; }
+  .testimonios-marquee-section::before,
+  .testimonios-marquee-section::after { width: 60px; }
   .cta-final { padding: 60px 24px; }
   nav { padding: 16px 20px; }
   nav.scrolled { padding: 12px 20px; }
@@ -536,25 +644,31 @@ footer {
 <!-- ============================================================
      HERO
      ============================================================ -->
-<section class="hero">
+<section class="hero" id="hero-section">
   <!-- Vídeo de fondo -->
-  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
     <source src="/video-hero.mp4" type="video/mp4">
   </video>
-  <!-- Overlay de profundidad -->
+  <!-- Overlay cinematográfico -->
   <div class="hero-overlay"></div>
+  <!-- Línea dorada en la base del hero -->
+  <div class="hero-accent-bar"></div>
 
-  <div class="hero-text">
+  <div class="hero-text" id="heroText">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Plazas disponibles · Agenda tu llamada
     </div>
 
-    <!-- Título directo sobre el vídeo, subtítulo con fondo desenfocado -->
+    <!-- Título con line-reveal: cada línea "asoma" desde abajo -->
     <h1>
-      ¿Tu contenido habla lo suficientemente bien de ti?
+      <span class="hero-line"><span class="hero-line-inner">¿Tu contenido</span></span>
+      <span class="hero-line"><span class="hero-line-inner">habla lo suficientemente</span></span>
+      <span class="hero-line"><span class="hero-line-inner hero-gold">bien de ti?</span></span>
     </h1>
-    <div class="hero-text-glass">
+
+    <!-- Subtítulo con borde dorado, sin caja glass -->
+    <div class="hero-sub-wrap">
       <p class="hero-sub">
         Estrategia, guiones y edición de vídeo para marcas personales.<br>
         <strong>Tú eres tú mism@ y nosotras nos encargamos del resto.</strong>
@@ -570,6 +684,12 @@ footer {
       <a href="https://portafolio.laschicasdeisart.com" class="btn btn-ghost" target="_blank" rel="noopener">Ver portafolio</a>
     </div>
     <p class="hero-note">Sin compromiso · Llamada de 30 min · Solo si encajamos</p>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <div class="hero-scroll-hint">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-label">Scroll</span>
   </div>
 
 </section>
@@ -624,97 +744,168 @@ footer {
 </section>
 
 <!-- ============================================================
-     TESTIMONIOS
+     TESTIMONIOS — Marquee infinito
      ============================================================ -->
 <section class="testimonios">
-  <div class="testimonios-inner">
-    <div class="testimonios-header" data-reveal>
+
+  <!-- Header con quote destacada a la derecha -->
+  <div class="testimonios-header" data-reveal>
+    <div class="testimonios-header-left">
       <span class="section-label">Lo que dicen de nosotras</span>
       <h2>
-        No nos creas a nosotras.<br>
+        No nos creas<br>
+        a nosotras.<br>
         <em>Créeles a ellos.</em>
       </h2>
     </div>
+    <div class="testimonios-featured-quote">
+      <p>Sinceramente chicas, bravo por vuestro trabajo. Son los guiones con los que más alineada me he sentido... y eso ha sido gracias a vuestra escucha y esmero. He dado con otros anteriormente y ya os digo que nada que ver.</p>
+      <div class="testimonios-featured-meta">
+        <span>Pack Completo · Creadora de contenido</span>
+        ★★★★★
+      </div>
+    </div>
+  </div>
 
-    <!-- Testimonio destacado -->
-    <div class="testimonio-card testimonios-featured" data-reveal>
-      <div class="testimonio-stars">★★★★★</div>
-      <p class="testimonio-text">Sinceramente chicas, bravo por vuestro trabajo. Son los guiones con los que más alineada me he sentido... y eso ha sido gracias a vuestra escucha y esmero a la hora de recoger información. He dado con otros anteriormente y ya os digo que nada que ver. Así que enhorabuena y a seguir palante.</p>
-      <div class="testimonio-author">
-        <div class="testimonio-author-info">
-          <strong>Cliente de Pack Completo</strong>
-          <span>Creadora de contenido</span>
+  <!-- Marquee doble fila -->
+  <div class="testimonios-marquee-section">
+
+    <!-- Fila 1: izquierda -->
+    <div style="overflow:hidden; margin-bottom:20px;">
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Flipo, acabo de decirle a mi pareja: "no quiero editar un puto vídeo más" 😂 Me siento una top. Os necesito en mi vida 24/7.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Marca personal</div>
+        </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Esto es lo que os diferencia de cualquiera. No a cualquiera le sale hacer lo que vosotras hacéis con vuestros clientes. Esa implicación.</p>
+          <div class="tm-meta"><span>Mentoría 1:1</span>Emprendedora</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Madre mía. No nos puede gustar más. Estamos emocionados de verdad. No va a ser la última vez que trabajemos juntos.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
+        </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">No entiendo cómo eres tan crack. Cómo consigues que sea fan de mis propios vídeos jajajaja 😱🔥</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Creadora de contenido</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Mi objetivo en la vida es que me vaya tan bien que os pueda tener 24/7 ❤️ Amo las ediciones.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
+        </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Sandra nunca había delegado la edición y tenía muchísimo miedo. Me ha dicho que te felicite de corazón por el trabajazo.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Marca personal</div>
+        </div>
+        <!-- Set 2 (copia exacta para el loop infinito) -->
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Flipo, acabo de decirle a mi pareja: "no quiero editar un puto vídeo más" 😂 Me siento una top. Os necesito en mi vida 24/7.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Marca personal</div>
+        </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Esto es lo que os diferencia de cualquiera. No a cualquiera le sale hacer lo que vosotras hacéis con vuestros clientes. Esa implicación.</p>
+          <div class="tm-meta"><span>Mentoría 1:1</span>Emprendedora</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Madre mía. No nos puede gustar más. Estamos emocionados de verdad. No va a ser la última vez que trabajemos juntos.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
+        </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">No entiendo cómo eres tan crack. Cómo consigues que sea fan de mis propios vídeos jajajaja 😱🔥</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Creadora de contenido</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Mi objetivo en la vida es que me vaya tan bien que os pueda tener 24/7 ❤️ Amo las ediciones.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
+        </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Sandra nunca había delegado la edición y tenía muchísimo miedo. Me ha dicho que te felicite de corazón por el trabajazo.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Marca personal</div>
         </div>
       </div>
     </div>
 
-    <div class="testimonios-grid">
-      <div class="testimonio-card" data-reveal data-delay="1">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">Flipo, acabo de decirle a mi pareja: "no quiero editar un puto vídeo más" 😂 Me siento una top. Ósea os necesito en mi vida 24/7.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Clienta de edición de vídeo</strong>
-            <span>Marca personal</span>
-          </div>
+    <!-- Fila 2: derecha (dirección contraria) -->
+    <div style="overflow:hidden;">
+      <div class="marquee-track marquee-track-r">
+        <!-- Set 1 -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">El contenido que hacéis transmite exactamente lo que quiero. Por fin siento que mi marca me representa de verdad.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Coach de bienestar</div>
         </div>
-      </div>
-
-      <div class="testimonio-card" data-reveal data-delay="2">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">Esto es lo que os diferencia de cualquiera. Ya os digo que no a cualquiera les sale hacer lo que ustedes hacéis con vuestros clientes. Esa implicación.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Clienta de mentoría</strong>
-            <span>Emprendedora</span>
-          </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Nunca pensé que delegar podía darme tanta libertad. Ahora publico más y mejor, y tengo tiempo para lo que importa.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
         </div>
-      </div>
-
-      <div class="testimonio-card" data-reveal data-delay="3">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">Madre mía. No nos puede gustar más. Estamos emocionados de verdad. Millones de gracias por el trato a nuestra historia. No va a ser la última vez que trabajemos juntos.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Cliente de Pack Completo</strong>
-            <span>Marca personal</span>
-          </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">El guion era perfecto. Cuando grabé con él ni lo noté, era totalmente yo. Eso es lo difícil de conseguir.</p>
+          <div class="tm-meta"><span>Guiones</span>Emprendedora digital</div>
         </div>
-      </div>
-
-      <div class="testimonio-card" data-reveal data-delay="1">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">No entiendo cómo eres tan crack. Esto nuevo de los iconos y la pantalla en el morado así esquemática es 😱🔥 Y cómo consigues que sea fan de mis propios vídeos jajajaja.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Clienta de edición</strong>
-            <span>Creadora de contenido</span>
-          </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Llevaba meses bloqueada con el contenido. En una sesión 1:1 con vosotras lo vi todo clarísimo. Increíble.</p>
+          <div class="tm-meta"><span>Sesión claridad</span>Fotógrafa</div>
         </div>
-      </div>
-
-      <div class="testimonio-card" data-reveal data-delay="2">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">Mi objetivo en la vida es que me vaya tan bien que os pueda tener 24/7 con personas que os abaniquen ❤️ Amo las ediciones.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Clienta Pack Completo</strong>
-            <span>Marca personal</span>
-          </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">La edición tiene una energía que encaja perfectamente con mi audiencia. Cada vídeo es mejor que el anterior.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Creadora de contenido</div>
         </div>
-      </div>
-
-      <div class="testimonio-card" data-reveal data-delay="3">
-        <div class="testimonio-stars">★★★★★</div>
-        <p class="testimonio-text">Sandra nunca había delegado la edición de vídeo y tenía muchísimo miedo porque es muy suya y tiene un estilo muy marcado. Me ha dicho que te felicite de corazón por el trabajazo.</p>
-        <div class="testimonio-author">
-          <div class="testimonio-author-info">
-            <strong>Referencia de clienta</strong>
-            <span>Edición de vídeo</span>
-          </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Trabajo con muchos freelances y estas chicas están en otro nivel. Profesionalidad, calidad y buen rollo. 10/10.</p>
+          <div class="tm-meta"><span>Pack Completo</span>CEO marca personal</div>
+        </div>
+        <!-- Set 2 (copia) -->
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">El contenido que hacéis transmite exactamente lo que quiero. Por fin siento que mi marca me representa de verdad.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Coach de bienestar</div>
+        </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Nunca pensé que delegar podía darme tanta libertad. Ahora publico más y mejor, y tengo tiempo para lo que importa.</p>
+          <div class="tm-meta"><span>Pack Completo</span>Marca personal</div>
+        </div>
+        <div class="tm-card gold-accent">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">El guion era perfecto. Cuando grabé con él ni lo noté, era totalmente yo. Eso es lo difícil de conseguir.</p>
+          <div class="tm-meta"><span>Guiones</span>Emprendedora digital</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Llevaba meses bloqueada con el contenido. En una sesión 1:1 con vosotras lo vi todo clarísimo. Increíble.</p>
+          <div class="tm-meta"><span>Sesión claridad</span>Fotógrafa</div>
+        </div>
+        <div class="tm-card dark">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">La edición tiene una energía que encaja perfectamente con mi audiencia. Cada vídeo es mejor que el anterior.</p>
+          <div class="tm-meta"><span>Edición de vídeo</span>Creadora de contenido</div>
+        </div>
+        <div class="tm-card">
+          <div class="tm-stars">★★★★★</div>
+          <p class="tm-text">Trabajo con muchos freelances y estas chicas están en otro nivel. Profesionalidad, calidad y buen rollo. 10/10.</p>
+          <div class="tm-meta"><span>Pack Completo</span>CEO marca personal</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1018,6 +1209,39 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+/* HERO PARALLAX — scroll-driven */
+(function() {
+  const heroSection = document.getElementById('hero-section');
+  const heroVideo   = document.getElementById('heroVideo');
+  const heroText    = document.getElementById('heroText');
+  if (!heroSection || !heroVideo || !heroText) return;
+
+  let ticking = false;
+
+  function updateHeroParallax() {
+    const scrollY = window.scrollY;
+    const heroH   = heroSection.offsetHeight;
+
+    if (scrollY > heroH) { ticking = false; return; }
+
+    // Vídeo: zoom sutil al hacer scroll (efecto de profundidad)
+    const scale = 1 + scrollY * 0.00018;
+    heroVideo.style.transform = 'scale(' + Math.min(scale, 1.10) + ')';
+
+    // Texto: sube más rápido que el scroll + se desvanece
+    const shift   = scrollY * 0.30;
+    const fadeOut = Math.max(0, 1 - scrollY / (heroH * 0.60));
+    heroText.style.transform = 'translateY(-' + shift + 'px)';
+    heroText.style.opacity   = fadeOut;
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateHeroParallax); ticking = true; }
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
