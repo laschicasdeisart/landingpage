@@ -5,9 +5,7 @@
   // así que el alta en MailerLite se hace vía una función serverless alojada aparte, en Netlify
   // (repo laschicasdeisart/regalos), que guarda la API key del lado del servidor.
   //
-  // Sustituye esta URL por la real en cuanto el sitio de Netlify esté conectado
-  // (Site settings → mostrará algo como https://tu-sitio.netlify.app).
-  var SUBSCRIBE_ENDPOINT = "https://PENDIENTE-CONECTAR.netlify.app/.netlify/functions/subscribe";
+  var SUBSCRIBE_ENDPOINT = "https://audiciones.netlify.app/.netlify/functions/subscribe";
 
   var form = document.getElementById("casting-form");
   var confirmation = document.getElementById("form-confirmation");
