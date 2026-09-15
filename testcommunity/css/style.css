@@ -285,6 +285,14 @@ main {
   font-size: clamp(1.75rem, 4.5vw, 2.5rem);
 }
 
+.headline-note {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-faint);
+  margin: -12px 0 32px;
+}
+
 .lede {
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   line-height: 1.55;
@@ -538,5 +546,9 @@ main {
   .option {
     padding: 18px 20px;
     border-radius: var(--radius-sm);
+  }
+
+  #screen-intro .headline {
+    font-size: 1.85rem;
   }
 }
