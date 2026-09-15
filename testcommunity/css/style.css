@@ -1,7 +1,8 @@
 /* ==========================================================
    Las Chicas de IsArt — Test: qué Community Manager necesitas
-   Apple-onboarding-style: espacioso, tipografía grande y segura,
-   un paso a la vez, un único acento de color por pantalla.
+   Espacioso, tipografía grande y segura, tarjetas de cristal
+   con esquinas redondeadas, movimiento interactivo, y un fondo
+   de gradientes distinto por pregunta.
    ========================================================== */
 
 :root {
@@ -14,19 +15,18 @@
   --burnt: #d4622a;
   --accent: var(--teal);
   --border: rgba(243, 239, 231, 0.16);
-  --border-strong: rgba(243, 239, 231, 0.3);
+  --border-strong: rgba(243, 239, 231, 0.34);
 
   --font-body: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --shell-w: 640px;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --radius-pill: 999px;
 }
 
 * {
   box-sizing: border-box;
-}
-
-*, button, input {
-  border-radius: 0 !important;
 }
 
 html {
@@ -46,6 +46,137 @@ body {
 
 button, input {
   font-family: inherit;
+}
+
+/* ---------- Fondo animado por pregunta ---------- */
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg);
+  filter: blur(22px);
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  transform: translateZ(0);
+}
+
+.bg-layer.is-visible {
+  opacity: 1;
+}
+
+.bg-layer::after {
+  content: "";
+  position: absolute;
+  inset: -10%;
+}
+
+.mood-intro {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(27, 153, 134, 0.55), transparent 42%),
+    radial-gradient(circle at 82% 70%, rgba(200, 146, 42, 0.45), transparent 46%),
+    var(--bg);
+}
+
+.mood-q0 {
+  background:
+    radial-gradient(circle at 24% 30%, rgba(27, 153, 134, 0.5), transparent 44%),
+    radial-gradient(circle at 76% 64%, rgba(200, 146, 42, 0.4), transparent 44%),
+    var(--bg);
+}
+
+.mood-q1 {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(27, 153, 134, 0.65), transparent 26%),
+    radial-gradient(circle at 50% 46%, rgba(27, 153, 134, 0.4), transparent 40%),
+    radial-gradient(circle at 50% 46%, rgba(27, 153, 134, 0.22), transparent 58%),
+    var(--bg);
+}
+
+.mood-q2 {
+  background:
+    radial-gradient(circle at 20% 24%, rgba(27, 153, 134, 0.55), transparent 40%),
+    radial-gradient(circle at 80% 76%, rgba(200, 146, 42, 0.5), transparent 40%),
+    linear-gradient(135deg, rgba(27, 153, 134, 0.12), transparent 60%),
+    var(--bg);
+}
+
+.mood-q3 {
+  background:
+    repeating-linear-gradient(0deg, rgba(200, 146, 42, 0.16) 0, rgba(200, 146, 42, 0.16) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(90deg, rgba(200, 146, 42, 0.16) 0, rgba(200, 146, 42, 0.16) 1px, transparent 1px, transparent 64px),
+    radial-gradient(circle at 50% 40%, rgba(200, 146, 42, 0.3), transparent 60%),
+    var(--bg);
+}
+
+.mood-q4 {
+  background:
+    radial-gradient(circle at 68% 34%, rgba(212, 98, 42, 0.65), transparent 38%),
+    radial-gradient(circle at 68% 34%, rgba(212, 98, 42, 0.3), transparent 55%),
+    var(--bg);
+}
+
+.mood-q5 {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(27, 153, 134, 0.5), transparent 42%),
+    radial-gradient(circle at 55% 50%, rgba(212, 98, 42, 0.35), transparent 42%),
+    radial-gradient(circle at 75% 70%, rgba(200, 146, 42, 0.3), transparent 42%),
+    var(--bg);
+}
+
+.mood-q6 {
+  background:
+    radial-gradient(circle at 26% 42%, rgba(27, 153, 134, 0.55) 0, rgba(27, 153, 134, 0.55) 14%, transparent 15%),
+    radial-gradient(circle at 50% 58%, rgba(200, 146, 42, 0.55) 0, rgba(200, 146, 42, 0.55) 14%, transparent 15%),
+    radial-gradient(circle at 74% 42%, rgba(212, 98, 42, 0.55) 0, rgba(212, 98, 42, 0.55) 14%, transparent 15%),
+    var(--bg);
+}
+
+.mood-q7 {
+  background:
+    conic-gradient(from 200deg at 50% 50%, rgba(27, 153, 134, 0.45), transparent 30%, rgba(200, 146, 42, 0.35) 60%, transparent 80%),
+    var(--bg);
+}
+
+.mood-q8 {
+  background:
+    repeating-linear-gradient(-35deg, rgba(200, 146, 42, 0.28) 0, rgba(200, 146, 42, 0.28) 18px, transparent 18px, transparent 60px),
+    radial-gradient(circle at 30% 80%, rgba(200, 146, 42, 0.3), transparent 55%),
+    var(--bg);
+}
+
+.mood-q9 {
+  background:
+    repeating-radial-gradient(circle at 0 0, rgba(27, 153, 134, 0.4) 0, rgba(27, 153, 134, 0.4) 3px, transparent 3px, transparent 46px),
+    radial-gradient(circle at 60% 30%, rgba(27, 153, 134, 0.25), transparent 60%),
+    var(--bg);
+}
+
+.mood-email {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(27, 153, 134, 0.4), transparent 50%),
+    var(--bg);
+}
+
+.mood-r1 {
+  background:
+    radial-gradient(circle at 30% 26%, rgba(27, 153, 134, 0.6), transparent 46%),
+    radial-gradient(circle at 74% 74%, rgba(27, 153, 134, 0.3), transparent 46%),
+    var(--bg);
+}
+
+.mood-r2 {
+  background:
+    radial-gradient(circle at 30% 26%, rgba(200, 146, 42, 0.6), transparent 46%),
+    radial-gradient(circle at 74% 74%, rgba(200, 146, 42, 0.3), transparent 46%),
+    var(--bg);
+}
+
+.mood-r3 {
+  background:
+    radial-gradient(circle at 30% 26%, rgba(212, 98, 42, 0.6), transparent 46%),
+    radial-gradient(circle at 74% 74%, rgba(212, 98, 42, 0.3), transparent 46%),
+    var(--bg);
 }
 
 .shell {
@@ -71,16 +202,19 @@ button, input {
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 3px;
+  height: 5px;
   background: var(--border);
   margin-top: 24px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   width: 0%;
   background: var(--accent);
-  transition: width 0.35s ease;
+  border-radius: var(--radius-pill);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ---------- Layout ---------- */
@@ -97,17 +231,17 @@ main {
   display: none;
   width: 100%;
   max-width: var(--shell-w);
-  animation: screen-in 0.4s ease both;
 }
 
 .screen--active {
   display: block;
+  animation: screen-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes screen-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -116,8 +250,11 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .screen {
-    animation: none;
+  .screen--active,
+  .option,
+  .bg-layer {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
@@ -166,21 +303,24 @@ main {
   text-decoration: none;
   padding: 18px 44px;
   border: none;
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, opacity 0.15s ease, background-color 0.3s ease;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .btn:active {
-  transform: scale(0.98);
+  transform: translateY(-1px) scale(0.98);
 }
 
 .btn-primary {
   background: var(--accent);
   color: var(--bg);
-}
-
-.btn-primary:hover {
-  opacity: 0.88;
 }
 
 .btn-submit {
@@ -202,10 +342,12 @@ main {
   cursor: pointer;
   padding: 0;
   margin-bottom: 32px;
+  transition: color 0.15s ease, transform 0.15s ease;
 }
 
 .btn-back:hover {
   color: var(--text);
+  transform: translateX(-2px);
 }
 
 /* ---------- Preguntas ---------- */
@@ -235,23 +377,60 @@ main {
 
 .option {
   text-align: left;
-  background: transparent;
+  background: rgba(243, 239, 231, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   color: var(--text);
   font-size: 1.02rem;
   line-height: 1.45;
   padding: 20px 24px;
   cursor: pointer;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.option--enter {
+  animation: option-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.option:nth-child(1).option--enter { animation-delay: 0.05s; }
+.option:nth-child(2).option--enter { animation-delay: 0.12s; }
+.option:nth-child(3).option--enter { animation-delay: 0.19s; }
+
+@keyframes option-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .option:hover {
   border-color: var(--border-strong);
+  background: rgba(243, 239, 231, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.option:active {
+  transform: translateY(-1px) scale(0.99);
 }
 
 .option.is-selected {
   border-color: var(--accent);
-  background: rgba(27, 153, 134, 0.1);
+  background: rgba(27, 153, 134, 0.18);
+  box-shadow: 0 12px 28px rgba(27, 153, 134, 0.25);
+  animation: option-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes option-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.97); }
+  100% { transform: scale(1); }
 }
 
 /* ---------- Formulario email ---------- */
@@ -267,15 +446,17 @@ main {
 
 .field-input {
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
+  background: rgba(243, 239, 231, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   color: var(--text);
   font-size: 1.1rem;
   text-align: center;
-  padding: 12px 0;
+  padding: 18px 20px;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .field-input::placeholder {
@@ -283,11 +464,12 @@ main {
 }
 
 .field-input:focus {
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .field.has-error .field-input {
-  border-bottom-color: var(--burnt);
+  border-color: var(--burnt);
 }
 
 .field-error {
@@ -319,10 +501,15 @@ main {
   width: 100%;
   display: block;
   background: #000;
+  border-radius: var(--radius);
 }
 
 .video-pending {
   border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: rgba(243, 239, 231, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 56px 24px;
   color: var(--text-faint);
   font-size: 14px;
@@ -350,5 +537,6 @@ main {
 
   .option {
     padding: 18px 20px;
+    border-radius: var(--radius-sm);
   }
 }

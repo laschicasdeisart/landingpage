@@ -137,6 +137,7 @@
 
   var progressTrack = document.getElementById("progress-track");
   var progressFill = document.getElementById("progress-fill");
+  var bgLayer = document.getElementById("bg-layer");
 
   function showScreen(name) {
     Object.keys(screens).forEach(function (key) {
@@ -144,6 +145,19 @@
     });
     window.scrollTo(0, 0);
   }
+
+  // ============ Fondo animado ============
+
+  function setMood(moodClass) {
+    bgLayer.classList.remove("is-visible");
+    window.setTimeout(function () {
+      bgLayer.className = "bg-layer " + moodClass;
+      void bgLayer.offsetWidth;
+      bgLayer.classList.add("is-visible");
+    }, 260);
+  }
+
+  setMood("mood-intro");
 
   function updateProgress() {
     if (currentQuestion === 0) {
@@ -177,10 +191,15 @@
     optionButtons.forEach(function (btn, i) {
       btn.textContent = q.options[i].text;
       btn.classList.toggle("is-selected", answers[currentQuestion] === q.options[i].result);
+      // Reinicia la animación de entrada de cada tarjeta en cada pregunta.
+      btn.classList.remove("option--enter");
+      void btn.offsetWidth;
+      btn.classList.add("option--enter");
     });
 
     btnBack.hidden = currentQuestion === 0;
     updateProgress();
+    setMood("mood-q" + currentQuestion);
   }
 
   optionButtons.forEach(function (btn, i) {
@@ -194,6 +213,7 @@
       } else {
         currentQuestion = QUESTIONS.length;
         updateProgress();
+        setMood("mood-email");
         showScreen("email");
       }
     });
@@ -281,8 +301,13 @@
 
   // ============ Resultado ============
 
+  var RESULT_ACCENTS = { R1: "var(--teal)", R2: "var(--mustard)", R3: "var(--burnt)" };
+
   function renderResult(resultado) {
     var data = RESULTS[resultado];
+
+    setMood("mood-" + resultado.toLowerCase());
+    document.documentElement.style.setProperty("--accent", RESULT_ACCENTS[resultado]);
 
     document.getElementById("result-title").textContent = data.title;
     document.getElementById("result-message").textContent = data.message;
