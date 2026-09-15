@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descubre qué tipo de Community Manager necesitas — Las Chicas de IsArt</title>
+<meta name="description" content="Un test de dos minutos para descubrir qué tipo de Community Manager necesita tu marca ahora mismo.">
+
+<meta property="og:title" content="Descubre qué tipo de Community Manager necesitas — Las Chicas de IsArt">
+<meta property="og:description" content="Un test de dos minutos para descubrir qué tipo de Community Manager necesita tu marca ahora mismo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://laschicasdeisart.com/testcommunity/">
+<link rel="canonical" href="https://laschicasdeisart.com/testcommunity/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <span class="wordmark">LAS CHICAS DE ISART</span>
+    </div>
+  </header>
+
+  <div class="progress-track" id="progress-track" hidden>
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <main id="app">
+
+    <!-- ============ INTRO ============ -->
+    <section class="screen screen--active" id="screen-intro">
+      <div class="screen-inner">
+        <p class="eyebrow">Test de autodiagnóstico</p>
+        <h1 class="headline">Descubre qué tipo de<br>Community Manager necesitas</h1>
+        <p class="lede">10 preguntas rápidas. Dos minutos. Al final, te decimos exactamente qué necesita tu marca ahora mismo — y qué no.</p>
+        <button type="button" class="btn btn-primary" id="btn-start">Empezar el test</button>
+      </div>
+    </section>
+
+    <!-- ============ PREGUNTA ============ -->
+    <section class="screen" id="screen-question">
+      <div class="screen-inner">
+        <button type="button" class="btn-back" id="btn-back" hidden>Atrás</button>
+        <p class="question-count" id="question-count"></p>
+        <h2 class="question-text" id="question-text"></h2>
+        <div class="options" id="options">
+          <button type="button" class="option" data-index="0"></button>
+          <button type="button" class="option" data-index="1"></button>
+          <button type="button" class="option" data-index="2"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMAIL ============ -->
+    <section class="screen" id="screen-email">
+      <div class="screen-inner">
+        <h2 class="headline headline-small">Déjanos tu email<br>para ver tu resultado</h2>
+        <p class="lede">Te lo mandamos también a la bandeja de entrada, junto con contenido para dar el siguiente paso.</p>
+
+        <form id="email-form" novalidate>
+          <div class="honeypot-field">
+            <label>No rellenes esto si eres humana/o: <input name="bot-field"></label>
+          </div>
+
+          <div class="field">
+            <input type="email" id="email" name="email" class="field-input" placeholder="tu@email.com" autocomplete="email" required>
+            <p class="field-error" id="error-email" role="alert"></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit" id="btn-submit-email">Ver mi resultado</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ RESULTADO ============ -->
+    <section class="screen" id="screen-result">
+      <div class="screen-inner">
+        <p class="eyebrow" id="result-eyebrow">Tu resultado</p>
+        <h2 class="headline headline-small" id="result-title"></h2>
+        <p class="lede" id="result-message"></p>
+
+        <div class="result-video" id="result-video"></div>
+
+        <div class="result-cta" id="result-cta"></div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+/* ==========================================================
+   Las Chicas de IsArt — Test: qué Community Manager necesitas
+   Apple-onboarding-style: espacioso, tipografía grande y segura,
+   un paso a la vez, un único acento de color por pantalla.
+   ========================================================== */
+
+:root {
+  --bg: #080c0b;
+  --text: #f3efe7;
+  --text-muted: rgba(243, 239, 231, 0.62);
+  --text-faint: rgba(243, 239, 231, 0.32);
+  --teal: #1b9986;
+  --mustard: #c8922a;
+  --burnt: #d4622a;
+  --accent: var(--teal);
+  --border: rgba(243, 239, 231, 0.16);
+  --border-strong: rgba(243, 239, 231, 0.3);
+
+  --font-body: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --shell-w: 640px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*, button, input {
+  border-radius: 0 !important;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Topbar / progress ---------- */
+
+.topbar {
+  padding: 28px 24px 0;
+}
+
+.wordmark {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--text);
+}
+
+.progress-track {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 3px;
+  background: var(--border);
+  margin-top: 24px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+
+/* ---------- Layout ---------- */
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 80px;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: var(--shell-w);
+  animation: screen-in 0.4s ease both;
+}
+
+.screen--active {
+  display: block;
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation: none;
+  }
+}
+
+.screen-inner {
+  text-align: center;
+}
+
+/* ---------- Typography ---------- */
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 24px;
+}
+
+.headline {
+  font-weight: 800;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.headline-small {
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 46ch;
+  margin: 0 auto 40px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 18px 44px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  opacity: 0.88;
+}
+
+.btn-submit {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .btn-submit {
+    width: auto;
+  }
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+.btn-back:hover {
+  color: var(--text);
+}
+
+/* ---------- Preguntas ---------- */
+
+.question-count {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 20px;
+}
+
+.question-text {
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 40px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.option {
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.02rem;
+  line-height: 1.45;
+  padding: 20px 24px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.option:hover {
+  border-color: var(--border-strong);
+}
+
+.option.is-selected {
+  border-color: var(--accent);
+  background: rgba(27, 153, 134, 0.1);
+}
+
+/* ---------- Formulario email ---------- */
+
+#email-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.field {
+  margin-bottom: 24px;
+}
+
+.field-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: var(--text-faint);
+}
+
+.field-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.field.has-error .field-input {
+  border-bottom-color: var(--burnt);
+}
+
+.field-error {
+  display: none;
+  color: var(--burnt);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.field.has-error .field-error {
+  display: block;
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Resultado ---------- */
+
+.result-video {
+  margin: 0 0 40px;
+}
+
+.result-video video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
+
+.video-pending {
+  border: 1px dashed var(--border-strong);
+  padding: 56px 24px;
+  color: var(--text-faint);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.result-cta .btn {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .result-cta .btn {
+    width: auto;
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 480px) {
+  main {
+    padding: 32px 20px 56px;
+  }
+
+  .option {
+    padding: 18px 20px;
+  }
+}
