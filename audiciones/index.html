@@ -9,9 +9,6 @@
 <meta property="og:title" content="Audiciones de las Chicas — Las Chicas de IsArt">
 <meta property="og:description" content="Cada mes, elegimos una marca para regalarle su mejor reel. No es un sorteo. Es un casting.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://laschicasdeisart.com/audiciones/">
-<meta property="og:image" content="https://laschicasdeisart.com/audiciones/images/hero.jpg">
-<link rel="canonical" href="https://laschicasdeisart.com/audiciones/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +32,7 @@
       <div class="hero-text">
         <p class="eyebrow">Convocatoria mensual</p>
         <h1 class="headline">Audiciones<br>de las<br>Chicas</h1>
-        <p class="subheadline">Cada mes, elegimos una marca para regalarle su mejor reel.<br>No es un sorteo. Es un casting.</p>
+        <p class="subheadline">Cada mes, elegimos una marca para regalarle su mejor reel.<br>¡OJO! Esto no es un sorteo, ¡ES UN CASTING!</p>
         <a href="#ficha-de-casting" class="btn btn-primary">Quiero audicionar</a>
       </div>
 
@@ -53,8 +50,8 @@
     <div class="container container-narrow">
       <p class="intro-text">
         Buscamos una cuenta con algo potente que contarle al mundo, para editarle su próximo reel
-        <strong>GRATIS</strong> — con el nivel que nos caracteriza y que nos posiciona como expertas en
-        edición de vídeo <strong>PROFESIONAL</strong>. (No lo decimos nosotras, lo dicen nuestras clientas
+        <strong class="accent-display">GRATIS</strong> — con el nivel que nos caracteriza y que nos posiciona como expertas en
+        edición de vídeo <strong class="accent-display">PROFESIONAL</strong>. (No lo decimos nosotras, lo dicen nuestras clientas
         — puedes echarle un vistazo a nuestro
         <a href="https://portafolio.laschicasdeisart.com/" class="link-accent portfolio-placeholder-link" target="_blank" rel="noopener">Portfolio</a>).
         Se trata de un trabajo valorado entre 60 y 120€.
@@ -111,9 +108,17 @@
   <section class="section form-section" id="ficha-de-casting">
     <div class="container container-narrow">
       <h2 class="section-title">Tu ficha de casting</h2>
-      <p class="section-subtitle">Solo tienes que responder estas 3 preguntas para pasar al proceso de selección.</p>
+      <p class="section-subtitle">Rellena la ficha para inscribirte al proceso de selección.</p>
 
-      <form id="casting-form" novalidate>
+      <form
+        id="casting-form"
+        name="casting-form"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="casting-form">
         <div class="honeypot-field">
           <label>No rellenes esto si eres humana/o: <input name="bot-field"></label>
         </div>
@@ -154,7 +159,7 @@
         participación queda registrada — no necesitas volver a apuntarte para participar siempre.
       </p>
       <p class="closing-line">
-        <span class="closing-note">No prometemos que ganes. Prometemos que, si lo haces, se va a notar.</span>
+        <span class="closing-note">Pendiente de tu bandeja de Spam, si has sido elegid@ te contactaremos directamente por email. Y puede ser este mes, o dentro de 3 meses.</span>
       </p>
     </div>
   </section>

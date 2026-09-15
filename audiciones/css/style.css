@@ -251,6 +251,12 @@ img, input, textarea, button {
   font-weight: 700;
 }
 
+.intro-text .accent-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 .link-accent {
   color: var(--mustard);
   text-decoration: underline;
@@ -437,10 +443,10 @@ img, input, textarea, button {
   color: #17110a;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(1.05rem, 2.3vw, 1.4rem);
-  line-height: 1.5;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  line-height: 1.55;
   padding: 28px 36px;
-  max-width: 44ch;
+  max-width: 58ch;
   transform: rotate(-1.2deg);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
