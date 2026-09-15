@@ -13,8 +13,8 @@
     R3: "", // [URL_R2_RESULTADO_3]
   };
 
-  var SKOOL_URL = "[URL_SKOOL_LA_CAPSULA_CREATIVA]";
-  var WHATSAPP_NUMBER = "[NUMERO_WHATSAPP]"; // formato internacional sin +, ej: 34600000000
+  var SKOOL_URL = "https://www.skool.com/la-capsula-creativa-4067/about";
+  var WHATSAPP_NUMBER = "34610317683";
 
   // ============ Contenido ============
 
@@ -256,7 +256,6 @@
 
     var payload = {
       email: email,
-      resultado: resultado,
       "bot-field": emailForm.querySelector("[name=bot-field]").value,
     };
 
