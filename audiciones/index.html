@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audiciones de las Chicas — Las Chicas de IsArt</title>
+<meta name="description" content="Cada mes, Las Chicas de IsArt eligen una marca para regalarle su mejor reel. No es un sorteo. Es un casting.">
+
+<meta property="og:title" content="Audiciones de las Chicas — Las Chicas de IsArt">
+<meta property="og:description" content="Cada mes, elegimos una marca para regalarle su mejor reel. No es un sorteo. Es un casting.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://laschicasdeisart.com/audiciones/">
+<meta property="og:image" content="https://laschicasdeisart.com/audiciones/images/hero.jpg">
+<link rel="canonical" href="https://laschicasdeisart.com/audiciones/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <span class="wordmark">LAS CHICAS DE ISART</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Convocatoria mensual</p>
+        <h1 class="headline">Audiciones<br>de las<br>Chicas</h1>
+        <p class="subheadline">Cada mes, elegimos una marca para regalarle su mejor reel.<br>No es un sorteo. Es un casting.</p>
+        <a href="#ficha-de-casting" class="btn btn-primary">Quiero audicionar</a>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="images/hero.jpg" alt="Las Chicas de IsArt, estilo directoras de casting" class="hero-photo-img">
+        </div>
+        <span class="hero-tag">Casting abierto</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY / INTRO ============ -->
+  <section class="section intro">
+    <div class="container container-narrow">
+      <p class="intro-text">
+        Buscamos una cuenta con algo potente que contarle al mundo, para editarle su próximo reel
+        <strong>GRATIS</strong> — con el nivel que nos caracteriza y que nos posiciona como expertas en
+        edición de vídeo <strong>PROFESIONAL</strong>. (No lo decimos nosotras, lo dicen nuestras clientas
+        — puedes echarle un vistazo a nuestro
+        <a href="https://portafolio.laschicasdeisart.com/" class="link-accent portfolio-placeholder-link" target="_blank" rel="noopener">Portfolio</a>).
+        Se trata de un trabajo valorado entre 60 y 120€.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CRITERIOS ============ -->
+  <section class="section criteria" id="criterios">
+    <div class="container">
+      <h2 class="section-title">Qué valoraremos para seleccionar a la marca elegida</h2>
+
+      <ol class="criteria-list">
+        <li class="criteria-item">
+          <span class="criteria-index">01</span>
+          <div class="criteria-body">
+            <h3 class="criteria-heading">Presencia en cámara</h3>
+            <p class="criteria-text">Que se muestre en cámara, que tenga ganas de exponerse para trabajar su marca personal.</p>
+          </div>
+        </li>
+        <li class="criteria-item">
+          <span class="criteria-index">02</span>
+          <div class="criteria-body">
+            <h3 class="criteria-heading">Potencial de marca</h3>
+            <p class="criteria-text">No buscamos perfección, buscamos algo que merezca un impulso.</p>
+          </div>
+        </li>
+        <li class="criteria-item">
+          <span class="criteria-index">03</span>
+          <div class="criteria-body">
+            <h3 class="criteria-heading">Necesidad de mejorar el valor percibido de su marca</h3>
+            <p class="criteria-text">Que el antes y el después se note.</p>
+          </div>
+        </li>
+        <li class="criteria-item">
+          <span class="criteria-index">04</span>
+          <div class="criteria-body">
+            <h3 class="criteria-heading">El proyecto detrás</h3>
+            <p class="criteria-text">Que haya negocio real en el que nosotras confiemos, que no "venda humo".</p>
+          </div>
+        </li>
+        <li class="criteria-item">
+          <span class="criteria-index">05</span>
+          <div class="criteria-body">
+            <h3 class="criteria-heading">Afinidad con nuestros valores</h3>
+            <p class="criteria-text">Autenticidad antes que postureo, conexión antes que viralidad.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ FORMULARIO ============ -->
+  <section class="section form-section" id="ficha-de-casting">
+    <div class="container container-narrow">
+      <h2 class="section-title">Tu ficha de casting</h2>
+      <p class="section-subtitle">Solo tienes que responder estas 3 preguntas para pasar al proceso de selección.</p>
+
+      <form id="casting-form" novalidate>
+        <div class="honeypot-field">
+          <label>No rellenes esto si eres humana/o: <input name="bot-field"></label>
+        </div>
+
+        <div class="field">
+          <label for="email" class="field-label">Email</label>
+          <input type="email" id="email" name="email" class="field-input" autocomplete="email" required>
+          <p class="field-error" id="error-email" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="instagram" class="field-label">@ de Instagram</label>
+          <input type="text" id="instagram" name="instagram" class="field-input" placeholder="@tumarca" autocomplete="off" required>
+          <p class="field-error" id="error-instagram" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="pitch" class="field-label">¿A qué te dedicas y por qué crees que te lo mereces?</label>
+          <textarea id="pitch" name="pitch" class="field-input field-textarea" rows="6" required></textarea>
+          <p class="field-error" id="error-pitch" role="alert"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">Quiero audicionar</button>
+      </form>
+
+      <div class="form-confirmation" id="form-confirmation" hidden>
+        <h3>Ficha recibida.</h3>
+        <p>Anunciamos a la marca elegida la última semana de cada mes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CIERRE ============ -->
+  <section class="section closing">
+    <div class="container container-narrow">
+      <p class="closing-text">
+        Esto no es cosa de una sola vez. La última semana de cada mes abrimos convocatoria, y tu
+        participación queda registrada — no necesitas volver a apuntarte para participar siempre.
+      </p>
+      <p class="closing-line">
+        <span class="closing-note">No prometemos que ganes. Prometemos que, si lo haces, se va a notar.</span>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>Las Chicas de IsArt</span>
+    <span>@laschicasdeisart</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
