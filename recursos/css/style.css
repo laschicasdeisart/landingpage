@@ -1,0 +1,264 @@
+/* ==========================================================
+   Las Chicas de IsArt — Recursos (captación genérica de leads)
+   Pantalla única, fondo espacial, tarjeta de cristal.
+   ========================================================== */
+
+:root {
+  --bg: #080c0b;
+  --text: #f3efe7;
+  --text-muted: rgba(243, 239, 231, 0.68);
+  --text-faint: rgba(243, 239, 231, 0.34);
+  --teal: #1b9986;
+  --mustard: #c8922a;
+  --burnt: #d4622a;
+  --border: rgba(243, 239, 231, 0.18);
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius: 28px;
+  --radius-pill: 999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+/* ---------- Fondo espacial ---------- */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse at 50% 30%, #0d1614 0%, #080c0b 55%, #050706 100%);
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+}
+
+.nebula--teal {
+  width: 60vw;
+  height: 60vw;
+  top: -10%;
+  left: -15%;
+  background: radial-gradient(circle, rgba(27, 153, 134, 0.55), transparent 70%);
+}
+
+.nebula--mustard {
+  width: 46vw;
+  height: 46vw;
+  bottom: -12%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(200, 146, 42, 0.4), transparent 70%);
+}
+
+.nebula--burnt {
+  width: 38vw;
+  height: 38vw;
+  bottom: 8%;
+  left: 6%;
+  background: radial-gradient(circle, rgba(212, 98, 42, 0.3), transparent 70%);
+}
+
+.capsule {
+  position: absolute;
+  right: -8%;
+  top: 50%;
+  transform: translateY(-50%) rotate(8deg);
+  width: min(46vw, 420px);
+  height: auto;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 720px) {
+  .capsule {
+    right: -22%;
+    top: 8%;
+    transform: rotate(10deg);
+    width: 70vw;
+  }
+}
+
+/* ---------- Layout ---------- */
+
+.shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 620px;
+  background: rgba(8, 12, 11, 0.42);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(243, 239, 231, 0.14);
+  border-radius: var(--radius);
+  padding: 56px 48px;
+  text-align: center;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Typography ---------- */
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  line-height: 1.28;
+  letter-spacing: -0.005em;
+  margin: 0 0 20px;
+}
+
+.headline-aside {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.lede {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 36px;
+}
+
+.confirm-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin: 24px 0;
+}
+
+/* ---------- Formulario ---------- */
+
+#email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-input {
+  width: 100%;
+  background: rgba(243, 239, 231, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-size: 1.05rem;
+  text-align: center;
+  padding: 18px 28px;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.field-input::placeholder {
+  color: var(--text-faint);
+}
+
+.field-input:focus {
+  border-color: var(--teal);
+  background: rgba(243, 239, 231, 0.12);
+}
+
+.field.has-error .field-input {
+  border-color: var(--burnt);
+}
+
+.field-error {
+  display: none;
+  color: var(--burnt);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.field.has-error .field-error {
+  display: block;
+}
+
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---------- Botones ---------- */
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 18px 28px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--bg);
+  box-shadow: 0 10px 28px rgba(27, 153, 134, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(27, 153, 134, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: default;
+  transform: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .card {
+    padding: 40px 26px;
+  }
+}

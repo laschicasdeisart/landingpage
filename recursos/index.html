@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Chicas de IsArt — Recursos</title>
+<meta name="description" content="Déjanos tu email para llevarte el regalito.">
+<meta property="og:title" content="Las Chicas de IsArt — Recursos">
+<meta property="og:description" content="Déjanos tu email para llevarte el regalito.">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <div class="stars" id="stars"></div>
+  <div class="nebula nebula--teal"></div>
+  <div class="nebula nebula--mustard"></div>
+  <div class="nebula nebula--burnt"></div>
+
+  <svg class="capsule" viewBox="0 0 400 560" aria-hidden="true">
+    <defs>
+      <linearGradient id="capsuleBody" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f3efe7" stop-opacity="0.16"/>
+        <stop offset="55%" stop-color="#f3efe7" stop-opacity="0.05"/>
+        <stop offset="100%" stop-color="#1b9986" stop-opacity="0.12"/>
+      </linearGradient>
+      <linearGradient id="capsuleWindow" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1b9986" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#080c0b" stop-opacity="0.6"/>
+      </linearGradient>
+    </defs>
+    <path d="M200 8 C 300 8 340 90 340 210 L 340 430 C 340 500 280 552 200 552 C 120 552 60 500 60 430 L 60 210 C 60 90 100 8 200 8 Z"
+          fill="url(#capsuleBody)" stroke="#f3efe7" stroke-opacity="0.18" stroke-width="1.5"/>
+    <circle cx="200" cy="220" r="86" fill="url(#capsuleWindow)" stroke="#f3efe7" stroke-opacity="0.25" stroke-width="2"/>
+    <circle cx="200" cy="220" r="86" fill="none" stroke="#c8922a" stroke-opacity="0.3" stroke-width="10"/>
+    <line x1="60" y1="340" x2="340" y2="340" stroke="#f3efe7" stroke-opacity="0.12" stroke-width="1.5"/>
+    <line x1="60" y1="380" x2="340" y2="380" stroke="#f3efe7" stroke-opacity="0.1" stroke-width="1.5"/>
+    <path d="M60 260 L 10 300 L 10 360 L 60 380" fill="none" stroke="#d4622a" stroke-opacity="0.28" stroke-width="4"/>
+    <path d="M340 260 L 390 300 L 390 360 L 340 380" fill="none" stroke="#d4622a" stroke-opacity="0.28" stroke-width="4"/>
+  </svg>
+</div>
+
+<main class="shell">
+  <div class="card">
+
+    <section id="screen-form">
+      <h1 class="headline">Todos tenemos ese amigo gorrón que solo aparece cuando necesita algo<span class="headline-aside">... (y si no lo tienes, es que eres tú).</span></h1>
+      <p class="lede">Así que no seas ese amigo, y déjanos tu email pa' llevarte el regalito. No seas agarrao'.</p>
+
+      <form id="email-form" novalidate>
+        <div class="honeypot-field">
+          <label>No rellenes esto si eres humana/o: <input name="bot-field"></label>
+        </div>
+
+        <div class="field">
+          <input type="email" id="email" name="email" class="field-input" placeholder="tu@email.com" autocomplete="email" required>
+          <p class="field-error" id="error-email" role="alert"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-submit">Venga, toma mi email</button>
+      </form>
+    </section>
+
+    <section id="screen-confirm" hidden>
+      <p class="confirm-text">Ya está. Revisa tu correo.</p>
+    </section>
+
+  </div>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
