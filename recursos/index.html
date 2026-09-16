@@ -47,19 +47,18 @@
   </svg>
 </div>
 
+<!-- Portada a pantalla completa: imagen de Arto + botón. Es lo primero que se ve. -->
+<div class="intro-poster" id="intro-poster">
+  <button type="button" class="play-pill" id="play-btn">Cuéntame Arto</button>
+</div>
+
+<!-- Vídeo a pantalla completa, sin reproductor visible. Oculto hasta que se toca el botón. -->
+<video id="intro-video" class="intro-video-full" playsinline webkit-playsinline preload="metadata" hidden></video>
+
 <main class="shell">
-  <div class="card">
+  <div class="card" id="email-card" hidden>
 
-    <section id="screen-video">
-      <div class="video-frame">
-        <video id="intro-video" class="intro-video" playsinline webkit-playsinline preload="metadata"></video>
-        <button type="button" class="play-btn" id="play-btn" aria-label="Reproducir vídeo">
-          <span class="play-btn-label">Cuéntame Arto</span>
-        </button>
-      </div>
-    </section>
-
-    <section id="screen-form" hidden>
+    <section id="screen-form">
       <p class="lede">Así que no seas agarrao' y déjanos tu email para llevarte el regalito.</p>
 
       <form id="email-form" novalidate>

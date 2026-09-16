@@ -75,32 +75,28 @@
     });
   });
 
-  // ---------- Vídeo intro ----------
+  // ---------- Vídeo intro a pantalla completa ----------
 
-  var videoScreen = document.getElementById("screen-video");
+  var introPoster = document.getElementById("intro-poster");
   var video = document.getElementById("intro-video");
   var playBtn = document.getElementById("play-btn");
+  var emailCard = document.getElementById("email-card");
   var replayLink = document.getElementById("replay-link");
 
   video.src = window.matchMedia(MOBILE_BREAKPOINT).matches ? VIDEO_MOBILE : VIDEO_DESKTOP;
 
-  function showVideoScreen() {
-    videoScreen.hidden = false;
-    formScreen.hidden = true;
-  }
-
-  function showFormScreen() {
-    videoScreen.hidden = true;
-    formScreen.hidden = false;
-  }
-
   function playIntroVideo() {
-    playBtn.hidden = true;
+    introPoster.hidden = true;
+    emailCard.hidden = true;
+    video.hidden = false;
     video.currentTime = 0;
     var playPromise = video.play();
     if (playPromise && playPromise.catch) {
       playPromise.catch(function () {
-        playBtn.hidden = false;
+        // Si el navegador bloquea la reproducción, volvemos a la portada
+        // para que la usuaria pueda tocar el botón otra vez.
+        video.hidden = true;
+        introPoster.hidden = false;
       });
     }
   }
@@ -108,14 +104,12 @@
   playBtn.addEventListener("click", playIntroVideo);
 
   video.addEventListener("ended", function () {
-    showFormScreen();
-    playBtn.hidden = false;
+    introPoster.hidden = true;
+    video.hidden = true;
+    emailCard.hidden = false;
   });
 
-  replayLink.addEventListener("click", function () {
-    showVideoScreen();
-    playIntroVideo();
-  });
+  replayLink.addEventListener("click", playIntroVideo);
 
   // ---------- Fondo: estrellas ----------
 
