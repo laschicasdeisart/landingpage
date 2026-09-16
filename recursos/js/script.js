@@ -10,8 +10,10 @@
   // Mapa de recursos por campaña. La URL de cada campaña lleva un parámetro
   // ?r=clave que apunta al archivo público en Cloudflare R2. Añade una línea
   // aquí por cada leadmagnet nuevo — no hace falta tocar nada más.
+  // El enlace a compartir en el reel/story de "Analiza reels con ChatGPT" es:
+  // laschicasdeisart.com/recursos?r=analiza-reels
   var RESOURCES = {
-    // "guion-reels": "https://TU-BUCKET.r2.dev/guion-reels.pdf",
+    "analiza-reels": "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf",
   };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,6 +23,16 @@
   var form = document.getElementById("email-form");
   var emailInput = document.getElementById("email");
   var submitBtn = document.getElementById("btn-submit");
+
+  var introPoster = document.getElementById("intro-poster");
+  var video = document.getElementById("intro-video");
+  var playBtn = document.getElementById("play-btn");
+  var emailCard = document.getElementById("email-card");
+  var replayLink = document.getElementById("replay-link");
+
+  // "video": el botón sobre el póster reproduce el vídeo (estado inicial).
+  // "download": el botón abre el recurso descargable (tras dejar el email).
+  var posterMode = "video";
 
   function getResourceUrl() {
     var params = new URLSearchParams(window.location.search);
@@ -46,20 +58,24 @@
     }
     field.classList.remove("has-error");
 
-    // Reserva la pestaña de forma síncrona (dentro del gesto de clic) para que
-    // el navegador no la bloquee como popup cuando la abramos más tarde.
-    var resourceUrl = getResourceUrl();
-    var resourceTab = resourceUrl ? window.open("", "_blank") : null;
-
     submitBtn.disabled = true;
     submitBtn.textContent = "Un momento...";
 
-    if (resourceTab) {
-      resourceTab.location = resourceUrl;
-    }
+    var resourceUrl = getResourceUrl();
 
-    formScreen.hidden = true;
-    confirmScreen.hidden = false;
+    emailCard.hidden = true;
+
+    if (resourceUrl) {
+      // Vuelve a mostrar el póster de Arto, ahora como botón de descarga.
+      posterMode = "download";
+      playBtn.textContent = "Descarga tu regalo";
+      introPoster.hidden = false;
+    } else {
+      // Sin recurso mapeado para esta campaña (o visita directa sin ?r=):
+      // nos quedamos con la confirmación de texto de siempre.
+      formScreen.hidden = true;
+      confirmScreen.hidden = false;
+    }
 
     var payload = {
       email: email,
@@ -71,17 +87,11 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     }).catch(function () {
-      /* La entrega del recurso no depende de esto — el email ya está validado. */
+      /* El envío del email ya está validado; el guardado en MailerLite es best-effort. */
     });
   });
 
   // ---------- Vídeo intro a pantalla completa ----------
-
-  var introPoster = document.getElementById("intro-poster");
-  var video = document.getElementById("intro-video");
-  var playBtn = document.getElementById("play-btn");
-  var emailCard = document.getElementById("email-card");
-  var replayLink = document.getElementById("replay-link");
 
   video.src = window.matchMedia(MOBILE_BREAKPOINT).matches ? VIDEO_MOBILE : VIDEO_DESKTOP;
 
@@ -101,7 +111,13 @@
     }
   }
 
-  playBtn.addEventListener("click", playIntroVideo);
+  playBtn.addEventListener("click", function () {
+    if (posterMode === "download") {
+      window.open(getResourceUrl(), "_blank");
+    } else {
+      playIntroVideo();
+    }
+  });
 
   video.addEventListener("ended", function () {
     introPoster.hidden = true;
