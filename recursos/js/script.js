@@ -10,11 +10,17 @@
   // Mapa de recursos por campaña. La URL de cada campaña lleva un parámetro
   // ?r=clave que apunta al archivo público en Cloudflare R2. Añade una línea
   // aquí por cada leadmagnet nuevo — no hace falta tocar nada más.
-  // El enlace a compartir en el reel/story de "Analiza reels con ChatGPT" es:
+  // El enlace de campaña específico para "Analiza reels con ChatGPT" es:
   // laschicasdeisart.com/recursos?r=analiza-reels
   var RESOURCES = {
     "analiza-reels": "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf",
   };
+
+  // Recurso que se entrega cuando no hay ?r= en la URL (o no coincide con
+  // ninguna clave de arriba) — así /recursos funciona igual sin parámetro.
+  // Cuando haya más de un leadmagnet activo a la vez, cambia esto a "" para
+  // volver a exigir el parámetro de campaña, o apunta a otra clave.
+  var DEFAULT_RESOURCE_KEY = "analiza-reels";
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -36,8 +42,8 @@
 
   function getResourceUrl() {
     var params = new URLSearchParams(window.location.search);
-    var key = params.get("r");
-    return key ? RESOURCES[key] : undefined;
+    var key = params.get("r") || DEFAULT_RESOURCE_KEY;
+    return RESOURCES[key];
   }
 
   emailInput.addEventListener("input", function () {
