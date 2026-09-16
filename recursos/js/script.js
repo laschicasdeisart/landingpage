@@ -7,20 +7,22 @@
   var VIDEO_MOBILE = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/arto%20web%20vertical.mp4";
   var MOBILE_BREAKPOINT = "(max-width: 720px)";
 
-  // Mapa de recursos por campaña. La URL de cada campaña lleva un parámetro
-  // ?r=clave que apunta al archivo público en Cloudflare R2. Añade una línea
-  // aquí por cada leadmagnet nuevo — no hace falta tocar nada más.
-  // El enlace de campaña específico para "Analiza reels con ChatGPT" es:
-  // laschicasdeisart.com/recursos?r=analiza-reels
-  var RESOURCES = {
-    "analiza-reels": "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf",
-  };
+  // ---- Recurso "actual" (el que se entrega por defecto, sin ?r=) ----
+  //
+  // Es el PDF de hoy ("Analiza reels con ChatGPT"). Para cambiarlo en el
+  // futuro SIN tocar este código: sube el archivo nuevo a Cloudflare R2 con
+  // este mismo nombre exacto, sobrescribiendo el actual:
+  //   video web arto/recurso-actual.pdf
+  // (pídeme que haga ese primer renombrado una vez — después de eso, cada
+  // cambio es solo subir el archivo nuevo con ese nombre fijo, sin más).
+  var DEFAULT_RESOURCE_URL = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf";
 
-  // Recurso que se entrega cuando no hay ?r= en la URL (o no coincide con
-  // ninguna clave de arriba) — así /recursos funciona igual sin parámetro.
-  // Cuando haya más de un leadmagnet activo a la vez, cambia esto a "" para
-  // volver a exigir el parámetro de campaña, o apunta a otra clave.
-  var DEFAULT_RESOURCE_KEY = "analiza-reels";
+  // Recursos de campaña específicos (opcionales). Solo se usan si la visita
+  // trae ?r=clave en la URL — útil cuando hay más de un leadmagnet activo a
+  // la vez, cada uno con su propio enlace. Añade una línea aquí por cada uno.
+  var RESOURCES = {
+    // "otra-campana": "https://TU-BUCKET.r2.dev/otro-archivo.pdf",
+  };
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,8 +44,8 @@
 
   function getResourceUrl() {
     var params = new URLSearchParams(window.location.search);
-    var key = params.get("r") || DEFAULT_RESOURCE_KEY;
-    return RESOURCES[key];
+    var key = params.get("r");
+    return (key && RESOURCES[key]) || DEFAULT_RESOURCE_URL;
   }
 
   emailInput.addEventListener("input", function () {
@@ -119,7 +121,10 @@
 
   playBtn.addEventListener("click", function () {
     if (posterMode === "download") {
-      window.open(getResourceUrl(), "_blank");
+      // Navegamos en la misma pestaña en vez de abrir una nueva: los
+      // navegadores integrados (Instagram, TikTok) suelen bloquear o romper
+      // window.open, así que esto es más fiable para el tráfico real.
+      window.location.href = getResourceUrl();
     } else {
       playIntroVideo();
     }
