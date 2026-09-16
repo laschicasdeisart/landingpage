@@ -160,13 +160,13 @@ button, input {
 
 @media (min-width: 721px) {
   .intro-poster {
-    --poster-image: url("../images/play-desktop.jpg");
+    --poster-image: url("https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/imagen%20arto%20web%20horizontal.png");
   }
 }
 
 @media (max-width: 720px) {
   .intro-poster {
-    --poster-image: url("../images/play-mobile.jpg");
+    --poster-image: url("https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/imagen%20arto%20web%20vertical.png");
   }
 }
 
