@@ -7,27 +7,12 @@
   var VIDEO_MOBILE = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/arto%20web%20vertical.mp4";
   var MOBILE_BREAKPOINT = "(max-width: 720px)";
 
-  // ---- Recurso "actual" (el que se entrega por defecto, sin ?r=) ----
-  //
-  // Es el PDF de hoy ("Analiza reels con ChatGPT"). Para cambiarlo en el
-  // futuro SIN tocar este código: sube el archivo nuevo a Cloudflare R2 con
-  // este mismo nombre exacto, sobrescribiendo el actual:
-  //   video web arto/recurso-actual.pdf
-  // (pídeme que haga ese primer renombrado una vez — después de eso, cada
-  // cambio es solo subir el archivo nuevo con ese nombre fijo, sin más).
-  var DEFAULT_RESOURCE_URL = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf";
-
-  // Recursos de campaña específicos (opcionales). Solo se usan si la visita
-  // trae ?r=clave en la URL — útil cuando hay más de un leadmagnet activo a
-  // la vez, cada uno con su propio enlace. Añade una línea aquí por cada uno.
-  var RESOURCES = {
-    // "otra-campana": "https://TU-BUCKET.r2.dev/otro-archivo.pdf",
-  };
+  // Recurso que se descarga al enviar el email. Para cambiarlo en el futuro,
+  // sustituye esta URL por la del archivo nuevo en Cloudflare R2.
+  var RESOURCE_URL = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf";
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  var formScreen = document.getElementById("screen-form");
-  var confirmScreen = document.getElementById("screen-confirm");
   var form = document.getElementById("email-form");
   var emailInput = document.getElementById("email");
   var submitBtn = document.getElementById("btn-submit");
@@ -36,17 +21,8 @@
   var video = document.getElementById("intro-video");
   var playBtn = document.getElementById("play-btn");
   var emailCard = document.getElementById("email-card");
+  var finalScreen = document.getElementById("final-screen");
   var replayLink = document.getElementById("replay-link");
-
-  // "video": el botón sobre el póster reproduce el vídeo (estado inicial).
-  // "download": el botón abre el recurso descargable (tras dejar el email).
-  var posterMode = "video";
-
-  function getResourceUrl() {
-    var params = new URLSearchParams(window.location.search);
-    var key = params.get("r");
-    return (key && RESOURCES[key]) || DEFAULT_RESOURCE_URL;
-  }
 
   emailInput.addEventListener("input", function () {
     emailInput.closest(".field").classList.remove("has-error");
@@ -69,21 +45,12 @@
     submitBtn.disabled = true;
     submitBtn.textContent = "Un momento...";
 
-    var resourceUrl = getResourceUrl();
+    // Se abre en una pestaña nueva (gesto directo del clic, no bloqueado por
+    // popup blockers) mientras esta pantalla pasa a mostrar la imagen final.
+    window.open(RESOURCE_URL, "_blank");
 
     emailCard.hidden = true;
-
-    if (resourceUrl) {
-      // Vuelve a mostrar el póster de Arto, ahora como botón de descarga.
-      posterMode = "download";
-      playBtn.textContent = "Descarga tu regalo";
-      introPoster.hidden = false;
-    } else {
-      // Sin recurso mapeado para esta campaña (o visita directa sin ?r=):
-      // nos quedamos con la confirmación de texto de siempre.
-      formScreen.hidden = true;
-      confirmScreen.hidden = false;
-    }
+    finalScreen.hidden = false;
 
     var payload = {
       email: email,
@@ -119,16 +86,7 @@
     }
   }
 
-  playBtn.addEventListener("click", function () {
-    if (posterMode === "download") {
-      // Navegamos en la misma pestaña en vez de abrir una nueva: los
-      // navegadores integrados (Instagram, TikTok) suelen bloquear o romper
-      // window.open, así que esto es más fiable para el tráfico real.
-      window.location.href = getResourceUrl();
-    } else {
-      playIntroVideo();
-    }
-  });
+  playBtn.addEventListener("click", playIntroVideo);
 
   video.addEventListener("ended", function () {
     introPoster.hidden = true;

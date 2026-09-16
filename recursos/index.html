@@ -48,12 +48,15 @@
 </div>
 
 <!-- Portada a pantalla completa: imagen de Arto + botón. Es lo primero que se ve. -->
-<div class="intro-poster" id="intro-poster">
+<div class="arto-fullscreen" id="intro-poster">
   <button type="button" class="play-pill" id="play-btn">Cuéntame Arto</button>
 </div>
 
 <!-- Vídeo a pantalla completa, sin reproductor visible. Oculto hasta que se toca el botón. -->
 <video id="intro-video" class="intro-video-full" playsinline webkit-playsinline preload="metadata" hidden></video>
+
+<!-- Pantalla final: la misma imagen de Arto a pantalla completa, sin nada encima. -->
+<div class="arto-fullscreen" id="final-screen" hidden></div>
 
 <main class="shell">
   <div class="card" id="email-card" hidden>
@@ -71,14 +74,10 @@
           <p class="field-error" id="error-email" role="alert"></p>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="btn-submit">Venga, toma mi email</button>
+        <button type="submit" class="btn btn-primary" id="btn-submit">Quiero mi regalito</button>
       </form>
 
       <button type="button" class="replay-link" id="replay-link">Volver a reproducir el vídeo</button>
-    </section>
-
-    <section id="screen-confirm" hidden>
-      <p class="confirm-text">Ya está. Revisa tu correo.</p>
     </section>
 
   </div>

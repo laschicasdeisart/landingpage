@@ -132,14 +132,13 @@ button, input {
   overflow: hidden;
 }
 
-#screen-form,
-#screen-confirm {
+#screen-form {
   padding: 56px 48px;
 }
 
-/* ---------- Portada e intro a pantalla completa ---------- */
+/* ---------- Portada, pantalla final e intro a pantalla completa ---------- */
 
-.intro-poster {
+.arto-fullscreen {
   position: fixed;
   inset: 0;
   z-index: 20;
@@ -152,20 +151,20 @@ button, input {
   transition: opacity 0.4s ease;
 }
 
-.intro-poster[hidden] {
+.arto-fullscreen[hidden] {
   display: flex;
   opacity: 0;
   pointer-events: none;
 }
 
 @media (min-width: 721px) {
-  .intro-poster {
+  .arto-fullscreen {
     --poster-image: url("https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/imagen%20arto%20web%20horizontal.png");
   }
 }
 
 @media (max-width: 720px) {
-  .intro-poster {
+  .arto-fullscreen {
     --poster-image: url("https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/imagen%20arto%20web%20vertical.png");
   }
 }
@@ -234,14 +233,6 @@ button, input {
   line-height: 1.55;
   color: var(--text-muted);
   margin: 0 0 36px;
-}
-
-.confirm-text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-style: italic;
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
-  margin: 24px 0;
 }
 
 /* ---------- Formulario ---------- */
@@ -338,8 +329,7 @@ button, input {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 560px) {
-  #screen-form,
-  #screen-confirm {
+  #screen-form {
     padding: 40px 26px;
   }
 }
