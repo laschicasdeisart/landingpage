@@ -50,9 +50,17 @@
 <main class="shell">
   <div class="card">
 
-    <section id="screen-form">
-      <h1 class="headline">Todos tenemos ese amigo gorrón que solo aparece cuando necesita algo<span class="headline-aside">... (y si no lo tienes, es que eres tú).</span></h1>
-      <p class="lede">Así que no seas ese amigo, y déjanos tu email pa' llevarte el regalito. No seas agarrao'.</p>
+    <section id="screen-video">
+      <div class="video-frame">
+        <video id="intro-video" class="intro-video" playsinline webkit-playsinline preload="metadata"></video>
+        <button type="button" class="play-btn" id="play-btn" aria-label="Reproducir vídeo">
+          <span class="play-btn-label">Cuéntame Arto</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-form" hidden>
+      <p class="lede">Así que no seas agarrao' y déjanos tu email para llevarte el regalito.</p>
 
       <form id="email-form" novalidate>
         <div class="honeypot-field">
@@ -66,6 +74,8 @@
 
         <button type="submit" class="btn btn-primary" id="btn-submit">Venga, toma mi email</button>
       </form>
+
+      <button type="button" class="replay-link" id="replay-link">Volver a reproducir el vídeo</button>
     </section>
 
     <section id="screen-confirm" hidden>

@@ -3,6 +3,10 @@
 
   var SUBSCRIBE_ENDPOINT = "https://audiciones.netlify.app/.netlify/functions/subscribe-recursos";
 
+  var VIDEO_DESKTOP = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/Arto%20web%20horizontal.mp4";
+  var VIDEO_MOBILE = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/arto%20web%20vertical.mp4";
+  var MOBILE_BREAKPOINT = "(max-width: 720px)";
+
   // Mapa de recursos por campaña. La URL de cada campaña lleva un parámetro
   // ?r=clave que apunta al archivo público en Cloudflare R2. Añade una línea
   // aquí por cada leadmagnet nuevo — no hace falta tocar nada más.
@@ -69,6 +73,48 @@
     }).catch(function () {
       /* La entrega del recurso no depende de esto — el email ya está validado. */
     });
+  });
+
+  // ---------- Vídeo intro ----------
+
+  var videoScreen = document.getElementById("screen-video");
+  var video = document.getElementById("intro-video");
+  var playBtn = document.getElementById("play-btn");
+  var replayLink = document.getElementById("replay-link");
+
+  video.src = window.matchMedia(MOBILE_BREAKPOINT).matches ? VIDEO_MOBILE : VIDEO_DESKTOP;
+
+  function showVideoScreen() {
+    videoScreen.hidden = false;
+    formScreen.hidden = true;
+  }
+
+  function showFormScreen() {
+    videoScreen.hidden = true;
+    formScreen.hidden = false;
+  }
+
+  function playIntroVideo() {
+    playBtn.hidden = true;
+    video.currentTime = 0;
+    var playPromise = video.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function () {
+        playBtn.hidden = false;
+      });
+    }
+  }
+
+  playBtn.addEventListener("click", playIntroVideo);
+
+  video.addEventListener("ended", function () {
+    showFormScreen();
+    playBtn.hidden = false;
+  });
+
+  replayLink.addEventListener("click", function () {
+    showVideoScreen();
+    playIntroVideo();
   });
 
   // ---------- Fondo: estrellas ----------
