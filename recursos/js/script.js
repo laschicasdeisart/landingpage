@@ -7,9 +7,12 @@
   var VIDEO_MOBILE = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/arto%20web%20vertical.mp4";
   var MOBILE_BREAKPOINT = "(max-width: 720px)";
 
-  // Recurso que se descarga al enviar el email. Para cambiarlo en el futuro,
-  // sustituye esta URL por la del archivo nuevo en Cloudflare R2.
-  var RESOURCE_URL = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/ANALIZA%20REELS%20CON%20CHAT%20GPT%20WORK%20(1).pdf";
+  // Recurso que se descarga al enviar el email. Vive en este mismo repo
+  // (recursos/files/recurso-actual.pdf) en vez de en Cloudflare R2 — para
+  // cambiarlo en el futuro, sustituye ese archivo por el nuevo manteniendo
+  // el mismo nombre (puede hacerse directamente desde GitHub, sin tocar
+  // este código ni depender de Claude Code).
+  var RESOURCE_URL = "files/recurso-actual.pdf";
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
