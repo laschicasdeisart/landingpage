@@ -1,0 +1,1655 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Evita que buscadores indexen la página. OJO: esto NO la protege; cualquiera con el enlace puede abrirla. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Propuesta Blazmed Connect</title>
+<meta name="description" content="Propuesta personalizada de IsART (Irene y María) para Cristian Blazmed: plataforma a medida para gestionar marcas, tiendas Shopify, acuerdos y liquidaciones.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0d0b09">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d0b09'/%3E%3Crect x='40' y='40' width='10' height='10' fill='%23d42a20'/%3E%3C/svg%3E">
+<!-- Tipografías: Anton (titulares condensados) y Poppins (texto). Se cargan desde Google Fonts; si no cargan, se usan fuentes del sistema. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   TOKENS DE DISEÑO
+   Blanco y negro como base; rojo solo para detalles mínimos.
+   ========================================================= */
+:root{
+  --ink:#0d0b09;
+  --ink-2:#161411;
+  --ink-3:#221f1b;
+  --ink-line:#34302a;
+  --paper:#ffffff;
+  --bone:#f4f2ee;
+  --paper-line:#e2ddd5;
+  --grey-on-light:#57524a;   /* contraste AA sobre blanco */
+  --grey-on-dark:#b8b1a6;    /* contraste AA sobre negro */
+  --red:#d42a20;             /* acento: usar muy poco */
+  --display:"Anton","Impact","Haettenschweiler","Arial Narrow Bold",sans-serif;
+  --body:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --radius:22px;
+  --radius-sm:12px;
+  --gutter:clamp(16px,4vw,48px);
+  --header-h:64px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+/* Cada sección define sus colores; así la impresión puede pasar todo a claro */
+.s-dark{ --bg:var(--ink); --fg:#fff; --muted:var(--grey-on-dark); --line:var(--ink-line); --card:var(--ink-2); --card-2:var(--ink-3); }
+.s-light{ --bg:var(--paper); --fg:var(--ink); --muted:var(--grey-on-light); --line:var(--paper-line); --card:var(--bone); --card-2:#ebe7e0; }
+.s-bone{ --bg:var(--bone); --fg:var(--ink); --muted:var(--grey-on-light); --line:var(--paper-line); --card:var(--paper); --card-2:#f9f8f5; }
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:var(--ink); color:#fff;
+  font-family:var(--body); font-size:16.5px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; }
+p{ margin:0 0 1em; }
+h1,h2,h3,h4{ margin:0; font-weight:400; }
+button{ font:inherit; color:inherit; }
+:focus-visible{ outline:3px solid var(--red); outline-offset:3px; border-radius:6px; }
+
+.sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.skip{ position:absolute; left:12px; top:-60px; z-index:100; background:#fff; color:var(--ink); padding:10px 16px; border-radius:10px; font-weight:600; text-decoration:none; }
+.skip:focus{ top:12px; }
+
+.wrap{ width:100%; max-width:1240px; margin:0 auto; padding:0 var(--gutter); }
+/* Evita que el contenido de una rejilla fuerce scroll horizontal */
+.hero-grid > *,.panel-grid > *,.sim-wrap > *,.trans-grid > *,.invest > *,.warranty > *,.closing-grid > *,.answer-grid > *,.minute-grid > *{ min-width:0; }
+section{ background:var(--bg); color:var(--fg); padding:clamp(72px,10vw,136px) 0; scroll-margin-top:var(--header-h); position:relative; }
+.print-only{ display:none; }
+
+/* ---------- Tipografía ---------- */
+.display{
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.005em;
+  line-height:.92; overflow-wrap:break-word; hyphens:manual;
+}
+.dot{ color:var(--red); }
+.eyebrow{
+  display:flex; align-items:center; gap:12px; margin:0 0 22px;
+  font-size:.78rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
+}
+.eyebrow .num{ color:var(--fg); }
+.eyebrow::after{ content:""; height:1px; width:56px; background:var(--line); }
+.h-section{ font-size:clamp(2.5rem,6.6vw,5.6rem); max-width:16ch; }
+.lead{ font-size:clamp(1.05rem,1.6vw,1.22rem); color:var(--muted); max-width:62ch; margin-top:26px; }
+.lead strong{ color:var(--fg); font-weight:600; }
+.note{
+  display:flex; gap:10px; align-items:flex-start; margin:14px 0 0;
+  font-size:.82rem; line-height:1.5; color:var(--muted);
+}
+.note svg{ flex:none; width:16px; height:16px; margin-top:2px; }
+
+/* ---------- Iconos ---------- */
+.ic{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+.ic-box{
+  width:44px; height:44px; border-radius:12px; display:grid; place-items:center; flex:none;
+  background:var(--card); border:1px solid var(--line); color:var(--fg);
+}
+
+/* ---------- Botones ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  min-height:50px; padding:0 24px; border-radius:999px; border:1.5px solid transparent;
+  font-weight:600; font-size:.98rem; text-decoration:none; cursor:pointer; white-space:nowrap;
+  transition:transform .25s var(--ease), background-color .25s, color .25s, border-color .25s;
+}
+.btn .ic{ width:18px; height:18px; transition:transform .25s var(--ease); }
+.btn:hover .ic{ transform:translateX(3px); }
+.btn-solid{ background:var(--fg); color:var(--bg); }
+.btn-solid:hover{ transform:translateY(-2px); }
+.btn-ghost{ border-color:var(--line); color:var(--fg); background:transparent; }
+.btn-ghost:hover{ border-color:var(--fg); }
+.btn-sm{ min-height:40px; padding:0 18px; font-size:.88rem; }
+.btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:34px; }
+
+/* =========================================================
+   CABECERA, PROGRESO Y MENÚ
+   ========================================================= */
+.progress{ position:fixed; inset:0 0 auto 0; height:3px; z-index:60; pointer-events:none; }
+.progress span{ display:block; height:100%; width:100%; background:var(--red); transform-origin:0 50%; transform:scaleX(0); }
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:50; height:var(--header-h);
+  background:rgba(13,11,9,.86); color:#fff;
+  backdrop-filter:saturate(1.2) blur(12px); -webkit-backdrop-filter:saturate(1.2) blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.site-header .wrap{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand{ display:flex; align-items:baseline; gap:10px; text-decoration:none; min-width:0; }
+.brand b{ font-family:var(--display); font-weight:400; font-size:1.35rem; letter-spacing:.02em; }
+.brand span{ font-size:.78rem; color:var(--grey-on-dark); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nav-desktop{ display:none; }
+.nav-desktop ul{ list-style:none; display:flex; gap:4px; margin:0; padding:0; }
+.nav-desktop a{
+  display:block; padding:8px 11px; border-radius:999px; text-decoration:none;
+  font-size:.84rem; color:var(--grey-on-dark); transition:color .2s, background-color .2s;
+}
+.nav-desktop a:hover{ color:#fff; }
+.nav-desktop a[aria-current="true"]{ color:#fff; background:rgba(255,255,255,.08); }
+.header-actions{ display:flex; align-items:center; gap:8px; flex:none; }
+.header-actions .btn-solid{ --fg:#fff; --bg:var(--ink); }
+.menu-btn{
+  width:44px; height:44px; border-radius:12px; border:1px solid rgba(255,255,255,.18);
+  background:transparent; display:grid; place-items:center; cursor:pointer;
+}
+.menu-btn .ic{ width:22px; height:22px; }
+.menu-btn .i-close{ display:none; }
+.menu-btn[aria-expanded="true"] .i-open{ display:none; }
+.menu-btn[aria-expanded="true"] .i-close{ display:block; }
+.menu{
+  position:fixed; inset:var(--header-h) 0 0 0; z-index:45; background:var(--ink); color:#fff;
+  overflow-y:auto; padding:24px var(--gutter) 40px;
+  opacity:0; visibility:hidden; transform:translateY(-8px);
+  transition:opacity .25s, transform .25s var(--ease), visibility 0s .25s;
+}
+.menu.open{ opacity:1; visibility:visible; transform:none; transition:opacity .25s, transform .25s var(--ease); }
+.menu ol{ list-style:none; margin:0 auto; padding:0; max-width:640px; counter-reset:m; }
+.menu li{ counter-increment:m; border-bottom:1px solid var(--ink-line); }
+.menu a{
+  display:flex; align-items:baseline; gap:16px; padding:14px 0; text-decoration:none;
+  font-family:var(--display); text-transform:uppercase; font-size:1.7rem; line-height:1.1;
+}
+.menu a::before{ content:counter(m,decimal-leading-zero); font-family:var(--body); font-size:.78rem; color:var(--grey-on-dark); width:24px; }
+@media (min-width:1180px){
+  .nav-desktop{ display:block; }
+  .menu-btn{ display:none; }
+}
+@media (max-width:520px){
+  .brand span{ display:none; }
+  .ui-dots{ display:none; }
+  .btn-row .btn{ flex:1 1 auto; }
+  .header-actions .btn-solid{ padding:0 14px; }
+}
+
+/* =========================================================
+   PORTADA
+   ========================================================= */
+.hero{ padding-top:calc(var(--header-h) + clamp(40px,7vw,90px)); overflow:hidden; }
+.hero-meta{ display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; margin-bottom:28px; }
+.pill{
+  display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px;
+  border:1px solid var(--line); font-size:.8rem; font-weight:500; color:var(--fg); background:var(--card);
+}
+.pill-dot{ width:7px; height:7px; border-radius:2px; background:var(--red); }
+.hero-by{ font-size:.86rem; color:var(--muted); }
+.hero-by b{ color:var(--fg); font-weight:600; }
+.project{ display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; margin-bottom:18px; }
+.project .display{ font-size:clamp(1.5rem,2.6vw,2.1rem); letter-spacing:.03em; }
+.project small{ font-size:.76rem; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+.hero h1{ font-size:clamp(2.7rem,7.2vw,6.9rem); max-width:13.5ch; line-height:.95; }
+.hero-grid{ display:grid; gap:48px; margin-top:44px; align-items:start; }
+.hero-copy p{ font-size:clamp(1.05rem,1.5vw,1.18rem); color:var(--muted); max-width:46ch; }
+.hero-copy p strong{ color:var(--fg); font-weight:500; }
+@media (min-width:1000px){
+  .hero-grid{ grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:56px; }
+}
+
+/* ---------- Maquetas de interfaz (conceptuales) ---------- */
+.ui{
+  --u-bg:#fff; --u-fg:var(--ink); --u-muted:#6b655c; --u-line:#e9e5de; --u-soft:#f6f4f0;
+  background:var(--u-bg); color:var(--u-fg); border-radius:18px; overflow:hidden;
+  font-size:13px; line-height:1.45; box-shadow:0 30px 80px -30px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.06);
+}
+.s-light .ui,.s-bone .ui{ box-shadow:0 24px 60px -30px rgba(13,11,9,.35), 0 0 0 1px var(--u-line); }
+.ui-bar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:11px 16px; border-bottom:1px solid var(--u-line); background:var(--u-soft); min-width:0; flex-wrap:wrap;
+}
+.ui-dots{ display:flex; gap:6px; flex:none; }
+.ui-dots i{ width:9px; height:9px; border-radius:50%; background:#d8d3cb; }
+.ui-title{ font-weight:600; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1 1 auto; min-width:0; }
+.sync{ display:inline-flex; align-items:center; gap:6px; font-size:11px; color:var(--u-muted); white-space:nowrap; }
+.sync .ic{ width:13px; height:13px; }
+.sync i{ width:7px; height:7px; border-radius:50%; background:#2e9c5b; flex:none; }
+.ui-body{ display:grid; grid-template-columns:1fr; min-width:0; }
+.ui-side{ display:none; background:var(--ink); color:#fff; padding:16px 10px; }
+.ui-side span{ display:flex; align-items:center; gap:9px; padding:8px 10px; border-radius:9px; color:#bdb6ab; font-size:12px; }
+.ui-side span.on{ background:rgba(255,255,255,.1); color:#fff; }
+.ui-side .ic{ width:15px; height:15px; }
+.ui-main{ padding:18px; min-width:0; }
+.ui-head{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; margin-bottom:14px; }
+.ui-head h4{ font-weight:600; font-size:15px; }
+.chip{
+  display:inline-flex; align-items:center; gap:6px; padding:3px 9px; border-radius:999px;
+  font-size:11px; font-weight:500; background:var(--u-soft); border:1px solid var(--u-line); color:var(--u-fg); white-space:nowrap;
+}
+.chip.dark{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.chip.ok::before,.chip.rev::before,.chip.pen::before{ content:""; width:6px; height:6px; border-radius:50%; }
+.chip.ok::before{ background:#2e9c5b; }
+.chip.rev::before{ background:#c9871a; }
+.chip.pen::before{ background:#9a948a; }
+.kpis{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:14px; }
+.kpi{ border:1px solid var(--u-line); border-radius:12px; padding:12px; min-width:0; }
+.kpi small{ display:block; color:var(--u-muted); font-size:11px; }
+.kpi b{ display:block; font-family:var(--display); font-weight:400; font-size:22px; letter-spacing:.01em; margin-top:2px; }
+.kpi em{ display:block; font-style:normal; font-size:10.5px; color:var(--u-muted); margin-top:2px; }
+.kpi.dark{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.kpi.dark small,.kpi.dark em{ color:#c9c2b7; }
+.rows{ border:1px solid var(--u-line); border-radius:12px; overflow:hidden; }
+.row{
+  display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto; gap:10px; align-items:center;
+  padding:10px 12px; border-top:1px solid var(--u-line);
+}
+.row:first-child{ border-top:0; }
+.row.head{ background:var(--u-soft); color:var(--u-muted); font-size:11px; font-weight:500; }
+.row .name{ display:flex; align-items:center; gap:9px; font-weight:500; min-width:0; }
+.row .name span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.avatar{ width:26px; height:26px; border-radius:8px; background:var(--ink); color:#fff; display:grid; place-items:center; font-size:10px; font-weight:600; flex:none; }
+.row .num{ font-variant-numeric:tabular-nums; text-align:right; }
+.row .col-hide{ display:none; }
+.ui-actions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.fake-btn{
+  display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:999px;
+  border:1px solid var(--u-line); font-size:11.5px; font-weight:500; background:#fff; white-space:nowrap;
+}
+.fake-btn.dark{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.fake-btn .ic{ width:13px; height:13px; }
+.bars{ display:grid; gap:9px; }
+.bar-row{ display:grid; grid-template-columns:92px minmax(0,1fr) auto; gap:10px; align-items:center; font-size:12px; }
+.bar{ height:8px; border-radius:99px; background:var(--u-soft); overflow:hidden; }
+.bar i{ display:block; height:100%; background:var(--ink); border-radius:99px; }
+.ui-grid2{ display:grid; gap:12px; }
+.ui-card{ border:1px solid var(--u-line); border-radius:12px; padding:12px; min-width:0; }
+.ui-card h5{ margin:0 0 10px; font-size:12px; font-weight:600; }
+.list-doc{ display:grid; gap:0; }
+.list-doc div{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:8px 0; border-top:1px solid var(--u-line); font-size:12px; }
+.list-doc div:first-child{ border-top:0; padding-top:0; }
+.list-doc .ic{ width:14px; height:14px; }
+.cond{ display:flex; flex-wrap:wrap; gap:6px; }
+@media (min-width:640px){
+  .ui-side{ display:block; }
+  .ui-body{ grid-template-columns:150px minmax(0,1fr); }
+  .row{ grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) auto; }
+  .row .col-hide{ display:block; }
+  .ui-grid2{ grid-template-columns:1fr 1fr; }
+}
+
+/* =========================================================
+   EN UN MINUTO
+   ========================================================= */
+.minute{ padding:clamp(48px,6vw,72px) 0; }
+.minute-grid{ display:grid; gap:14px; }
+.minute-card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:26px; display:flex; flex-direction:column; gap:10px;
+}
+.minute-card .k{ font-size:.75rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+.minute-card p{ margin:0; font-size:1.02rem; }
+.minute-card.price{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.minute-card.price .k{ color:var(--grey-on-dark); }
+.minute-card.price .display{ font-size:2.6rem; line-height:1; }
+.minute-card.price a{ margin-top:auto; font-weight:600; font-size:.92rem; display:inline-flex; gap:8px; align-items:center; text-underline-offset:4px; }
+.minute-card.price a .ic{ width:16px; height:16px; }
+@media (min-width:900px){ .minute-grid{ grid-template-columns:1fr 1fr; } }
+
+/* =========================================================
+   EL RETO
+   ========================================================= */
+.challenge{ display:grid; gap:0; margin-top:48px; border-top:1px solid var(--line); }
+.challenge li{
+  list-style:none; display:grid; grid-template-columns:64px minmax(0,1fr); gap:18px; align-items:baseline;
+  padding:24px 0; border-bottom:1px solid var(--line);
+}
+.challenge ol{ margin:0; padding:0; }
+.challenge .n{ font-family:var(--display); font-size:2.2rem; line-height:1; color:var(--fg); }
+.challenge h3{ font-size:clamp(1.15rem,2vw,1.45rem); font-weight:600; line-height:1.3; }
+.challenge p{ margin:4px 0 0; color:var(--muted); grid-column:2; }
+@media (min-width:900px){
+  .challenge li{ grid-template-columns:100px minmax(0,1fr) minmax(0,1fr); }
+  .challenge p{ margin:0; grid-column:auto; }
+}
+.statement{
+  margin-top:48px; background:var(--ink); color:#fff; border-radius:var(--radius);
+  padding:clamp(28px,4vw,48px); display:grid; gap:18px;
+}
+.statement p{ margin:0; font-size:clamp(1.15rem,2.1vw,1.55rem); line-height:1.45; max-width:44ch; }
+.statement p span{ color:var(--grey-on-dark); }
+.benefits{ display:grid; gap:14px; margin-top:56px; }
+.benefit{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+.benefit .ic-box{ margin-bottom:18px; background:var(--bg); }
+.benefit h3{ font-family:var(--display); text-transform:uppercase; font-size:1.55rem; line-height:1; margin-bottom:10px; }
+.benefit p{ margin:0; color:var(--muted); font-size:.96rem; }
+.benefits-title{ margin-top:72px; font-size:.78rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.benefits-title + .benefits{ margin-top:18px; }
+@media (min-width:700px){ .benefits{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1100px){ .benefits{ grid-template-columns:repeat(4,1fr); } }
+
+/* =========================================================
+   OBJECIÓN SHOPIFY
+   ========================================================= */
+.quote{ font-size:clamp(2.6rem,7.4vw,6.4rem); max-width:15ch; }
+.quote .q{ color:var(--grey-on-dark); }
+.flow{ list-style:none; margin:52px 0 0; padding:0; display:grid; gap:12px; counter-reset:f; }
+.flow li{
+  counter-increment:f; position:relative; background:var(--card); border:1px solid var(--line);
+  border-radius:var(--radius-sm); padding:20px 20px 20px 20px; display:grid; gap:6px; align-content:start;
+}
+.flow li::before{ content:counter(f,decimal-leading-zero); font-size:.75rem; font-weight:600; color:var(--muted); letter-spacing:.1em; }
+.flow h3{ font-weight:600; font-size:1.04rem; line-height:1.3; }
+.flow p{ margin:0; font-size:.9rem; color:var(--muted); }
+.flow .tag{ font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+.flow li.origin{ background:transparent; border-style:dashed; }
+.flow li.app{ background:#fff; color:var(--ink); border-color:#fff; }
+.flow li.app::before,.flow li.app p,.flow li.app .tag{ color:#57524a; }
+.flow-legend{ display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:20px; font-size:.84rem; color:var(--muted); }
+.flow-legend span{ display:inline-flex; align-items:center; gap:8px; }
+.flow-legend i{ width:14px; height:14px; border-radius:4px; display:inline-block; }
+.flow-legend .l1{ border:1.5px dashed var(--grey-on-dark); }
+.flow-legend .l2{ background:#fff; }
+@media (min-width:760px){ .flow{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:1160px){ .flow{ grid-template-columns:repeat(6,1fr); } }
+.answer-grid{ display:grid; gap:28px; margin-top:40px; }
+.answer-grid p{ color:var(--muted); font-size:1.08rem; margin:0; }
+.answer-grid p strong{ color:var(--fg); font-weight:600; }
+@media (min-width:900px){ .answer-grid{ grid-template-columns:1fr 1fr; gap:48px; } }
+
+/* =========================================================
+   DOS ESPACIOS: PESTAÑAS
+   ========================================================= */
+.tablist{
+  display:inline-flex; gap:4px; padding:5px; margin-top:40px; border-radius:999px;
+  background:var(--card); border:1px solid var(--line); max-width:100%;
+}
+.tab{
+  border:0; background:transparent; cursor:pointer; padding:11px 20px; border-radius:999px;
+  font-weight:600; font-size:.95rem; color:var(--muted); display:inline-flex; align-items:center; gap:9px;
+  transition:background-color .25s, color .25s; white-space:nowrap;
+}
+.tab .ic{ width:18px; height:18px; }
+.tab[aria-selected="true"]{ background:var(--ink); color:#fff; }
+.tab:hover{ color:var(--fg); }
+.tab[aria-selected="true"]:hover{ color:#fff; }
+@media (max-width:420px){ .tab{ padding:10px 14px; font-size:.88rem; } .tab .ic{ display:none; } }
+.tabpanel{ margin-top:34px; }
+.tabpanel:focus-visible{ outline-offset:8px; }
+.panel-grid{ display:grid; gap:40px; align-items:start; }
+@media (min-width:1040px){ .panel-grid{ grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:56px; } }
+.panel-intro{ font-size:1.08rem; color:var(--muted); margin-bottom:22px; }
+.feat{ list-style:none; margin:0; padding:0; display:grid; gap:2px; }
+.feat li{ display:grid; grid-template-columns:44px minmax(0,1fr); gap:16px; padding:14px 0; border-top:1px solid var(--line); }
+.feat li:first-child{ border-top:0; }
+.feat h3{ font-size:1rem; font-weight:600; line-height:1.35; }
+.feat p{ margin:2px 0 0; font-size:.93rem; color:var(--muted); }
+
+/* =========================================================
+   SIMULADOR
+   ========================================================= */
+.diff-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
+.diff-chips span{
+  display:inline-flex; align-items:baseline; gap:10px; padding:10px 18px; border-radius:999px;
+  border:1px solid var(--line); background:var(--card); font-weight:500;
+}
+.diff-chips b{ font-family:var(--display); font-weight:400; font-size:1.35rem; line-height:1; }
+.sim-wrap{ display:grid; gap:36px; margin-top:52px; align-items:start; }
+@media (min-width:1100px){ .sim-wrap{ grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr); gap:48px; } }
+.sim{
+  background:#fff; color:var(--ink); border-radius:var(--radius); padding:clamp(18px,3vw,32px);
+  --line:var(--paper-line); --muted:var(--grey-on-light);
+}
+.sim-top{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
+.sim-top h3{ font-weight:600; font-size:1.1rem; }
+.badge{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 11px; border-radius:999px;
+  font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  border:1px solid var(--line); color:var(--grey-on-light); white-space:nowrap;
+}
+.badge i{ width:7px; height:7px; border-radius:2px; background:var(--red); }
+.sim-head,.sim-row,.sim-total{
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1.25fr) minmax(0,.8fr) minmax(0,.8fr); gap:14px; align-items:start;
+}
+.sim-head{ font-size:.74rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--grey-on-light); padding:0 0 10px; border-bottom:1px solid var(--line); }
+.sim-head span:nth-child(n+3),.sim-row .out,.sim-total .out{ text-align:right; }
+.sim-row{ padding:16px 0; border-bottom:1px solid var(--line); }
+.cat{ display:flex; flex-direction:column; gap:2px; padding-top:8px; }
+.cat b{ font-weight:600; font-size:1.02rem; }
+.cat span{ font-size:.86rem; color:var(--grey-on-light); }
+.cell-label{ display:block; font-size:.74rem; font-weight:600; color:var(--grey-on-light); margin-bottom:5px; }
+.money{
+  display:flex; align-items:center; border:1.5px solid #cfc9bf; border-radius:12px; background:#fff;
+  transition:border-color .2s, box-shadow .2s; max-width:220px;
+}
+.money:focus-within{ border-color:var(--ink); box-shadow:0 0 0 3px rgba(13,11,9,.12); }
+.money input{
+  width:100%; min-width:0; border:0; background:transparent; padding:11px 4px 11px 14px; font:inherit; font-size:1.02rem;
+  font-variant-numeric:tabular-nums; color:var(--ink); outline:none; text-align:right;
+}
+.money span{ padding:0 14px 0 6px; color:var(--grey-on-light); font-weight:500; }
+.money.invalid{ border-color:var(--red); }
+.field-error{ margin:6px 0 0; font-size:.78rem; color:#b3221a; min-height:0; }
+.field-error:empty{ display:none; }
+.out{ padding-top:8px; font-variant-numeric:tabular-nums; }
+.out output{ display:block; font-size:1.08rem; font-weight:600; }
+.out .cell-label{ margin-bottom:2px; }
+.sim-total{ padding:18px 0 4px; align-items:center; }
+.sim-total .lbl{ font-family:var(--display); text-transform:uppercase; font-size:1.5rem; }
+.sim-total output{ font-family:var(--display); font-weight:400; font-size:clamp(1.5rem,2.4vw,1.9rem); letter-spacing:.01em; }
+.sim-total .tb output{ font-family:var(--body); font-weight:600; font-size:1.1rem; }
+.sim-split{ margin-top:18px; }
+.split-bar{ height:12px; border-radius:99px; background:#e8e4dd; overflow:hidden; display:flex; }
+.split-bar i{ display:block; height:100%; background:var(--ink); transition:width .45s var(--ease); }
+.split-legend{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 16px; margin-top:8px; font-size:.85rem; color:var(--grey-on-light); }
+.split-legend b{ color:var(--ink); font-weight:600; }
+.sim-msg{ margin:12px 0 0; font-size:.86rem; color:#b3221a; }
+.sim-msg:empty{ display:none; }
+.sim-foot{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px; margin-top:20px; padding-top:18px; border-top:1px solid var(--line); }
+.sim-foot .btn{ --fg:var(--ink); --line:#cfc9bf; }
+.disclaimer{ display:flex; gap:10px; margin:0; font-size:.84rem; line-height:1.5; color:var(--grey-on-light); max-width:56ch; }
+.disclaimer .ic{ width:17px; height:17px; margin-top:1px; }
+.sim-aside h3{ font-family:var(--display); text-transform:uppercase; font-size:1.7rem; line-height:1; margin-bottom:14px; }
+.sim-aside p{ color:var(--muted); }
+.sim-aside ul{ list-style:none; margin:20px 0 0; padding:0; display:grid; gap:12px; }
+.sim-aside li{ display:flex; gap:12px; color:var(--fg); font-size:.95rem; }
+.sim-aside li .ic{ width:18px; height:18px; margin-top:3px; color:var(--grey-on-dark); }
+@media (min-width:760px){ .cell-label{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; } }
+@media (max-width:759px){
+  .sim-head{ display:none; }
+  .sim-row{ grid-template-columns:1fr 1fr; gap:12px 14px; }
+  .sim-row .cat{ grid-column:1 / -1; flex-direction:row; justify-content:space-between; align-items:baseline; padding-top:0; }
+  .sim-row .base{ grid-column:1 / -1; }
+  .money{ max-width:none; }
+  .sim-row .out{ text-align:left; padding-top:0; }
+  .sim-total{ grid-template-columns:1fr 1fr; gap:10px 14px; }
+  .sim-total .lbl{ grid-column:1 / -1; }
+  .sim-total .tb{ grid-column:1 / -1; }
+  .sim-total .out{ text-align:left; }
+  .sim-total .cell-label{ position:static!important; width:auto; height:auto; clip:auto; }
+}
+
+/* =========================================================
+   TRANSPARENCIA
+   ========================================================= */
+.trans-grid{ display:grid; gap:40px; margin-top:52px; align-items:start; }
+@media (min-width:1040px){ .trans-grid{ grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:56px; } }
+.ledger{ background:#fff; color:var(--ink); border:1px solid var(--paper-line); border-radius:var(--radius); overflow:hidden; box-shadow:0 24px 60px -34px rgba(13,11,9,.35); }
+.ledger-head{ background:var(--ink); color:#fff; padding:18px 22px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; align-items:center; }
+.ledger-head b{ font-weight:600; }
+.ledger-head span{ font-size:.82rem; color:var(--grey-on-dark); }
+.ledger dl{ margin:0; padding:6px 22px 4px; }
+.ledger .li{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px; padding:13px 0; border-bottom:1px solid var(--paper-line); align-items:baseline; }
+.ledger dt{ color:var(--grey-on-light); font-size:.92rem; }
+.ledger dt small{ display:block; font-size:.78rem; }
+.ledger dd{ margin:0; text-align:right; font-weight:600; font-variant-numeric:tabular-nums; }
+.ledger .li.split dd{ font-family:var(--display); font-weight:400; font-size:1.35rem; letter-spacing:.01em; }
+.ledger .adj{ margin:8px 22px 0; padding:14px 16px; border-radius:12px; background:var(--bone); border-left:3px solid var(--red); }
+.ledger .adj b{ display:block; font-size:.92rem; }
+.ledger .adj p{ margin:4px 0 0; font-size:.86rem; color:var(--grey-on-light); }
+.ledger .adj .nums{ display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:8px; font-size:.88rem; font-weight:600; font-variant-numeric:tabular-nums; }
+.ledger .res{ display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:18px 22px 22px; }
+.ledger .res div{ border:1px solid var(--paper-line); border-radius:12px; padding:12px 14px; }
+.ledger .res small{ display:block; font-size:.78rem; color:var(--grey-on-light); }
+.ledger .res b{ font-family:var(--display); font-weight:400; font-size:1.5rem; }
+.principles{ list-style:none; margin:0; padding:0; display:grid; gap:0; }
+.principles li{ display:grid; grid-template-columns:44px minmax(0,1fr); gap:16px; padding:18px 0; border-top:1px solid var(--line); }
+.principles li:first-child{ border-top:0; padding-top:0; }
+.principles h3{ font-weight:600; font-size:1.02rem; line-height:1.35; }
+.principles p{ margin:3px 0 0; color:var(--muted); font-size:.93rem; }
+.versions{ margin-top:56px; display:grid; gap:12px; }
+.versions-title{ font-size:.78rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.version{ display:grid; gap:10px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-sm); padding:18px 20px; }
+.version-top{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; align-items:center; }
+.version-top b{ font-weight:600; }
+.v-tag{ font-size:.75rem; font-weight:600; padding:3px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background:var(--bg); white-space:nowrap; }
+.v-tag.cur{ background:var(--ink); color:#fff; border-color:var(--ink); }
+.version p{ margin:0; font-size:.92rem; color:var(--muted); }
+.version .op{ display:flex; gap:10px; align-items:center; font-size:.9rem; }
+.version .op .ic{ width:16px; height:16px; color:var(--muted); }
+@media (min-width:860px){ .versions{ grid-template-columns:1fr 1fr; } .versions-title{ grid-column:1 / -1; } }
+.trust-line{ margin-top:48px; font-family:var(--display); text-transform:uppercase; font-size:clamp(1.6rem,3.4vw,2.6rem); line-height:1.05; max-width:26ch; }
+
+/* =========================================================
+   ALCANCE
+   ========================================================= */
+.scope{ list-style:none; margin:48px 0 0; padding:0; display:grid; gap:0; counter-reset:s; border-top:1px solid var(--line); }
+.scope li{ counter-increment:s; display:grid; grid-template-columns:28px minmax(0,1fr) auto; gap:14px; align-items:center; padding:17px 0; border-bottom:1px solid var(--line); font-size:1.02rem; }
+.scope li::before{ content:counter(s,decimal-leading-zero); font-size:.75rem; color:var(--muted); font-weight:600; }
+.scope li .ic{ width:20px; height:20px; color:var(--fg); }
+@media (min-width:900px){
+  .scope{ grid-template-columns:1fr 1fr; column-gap:48px; border-top:0; }
+  .scope li:nth-child(-n+2){ border-top:1px solid var(--line); }
+}
+.scope-notes{ display:grid; gap:14px; margin-top:36px; }
+@media (min-width:900px){ .scope-notes{ grid-template-columns:1fr 1fr; } }
+.scope-note{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius-sm); padding:20px 22px; }
+.scope-note h3{ font-weight:600; font-size:1rem; margin-bottom:8px; display:flex; gap:10px; align-items:center; }
+.scope-note h3 .ic{ width:18px; height:18px; }
+.scope-note p{ margin:0; color:var(--muted); font-size:.93rem; }
+.out-list{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.out-list li{ font-size:.84rem; padding:5px 12px; border-radius:999px; border:1px solid var(--line); color:var(--muted); }
+
+/* =========================================================
+   PROCESO
+   ========================================================= */
+.steps{ list-style:none; margin:48px 0 0; padding:0; display:grid; gap:14px; }
+.step{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; display:flex; flex-direction:column; gap:12px; }
+.step .n{ font-family:var(--display); font-size:3.4rem; line-height:.9; }
+.step h3{ font-weight:600; font-size:1.08rem; line-height:1.35; }
+.step p{ margin:0; color:var(--muted); font-size:.94rem; }
+@media (min-width:760px){ .steps{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1160px){ .steps{ grid-template-columns:repeat(4,1fr); } }
+.connect-box{
+  margin-top:28px; display:grid; grid-template-columns:44px minmax(0,1fr); gap:18px;
+  background:var(--ink); color:#fff; border-radius:var(--radius); padding:clamp(22px,3vw,34px);
+}
+.connect-box .ic-box{ background:var(--ink-2); border-color:var(--ink-line); color:#fff; }
+.connect-box h3{ font-weight:600; font-size:1.1rem; margin-bottom:6px; }
+.connect-box p{ margin:0 0 8px; color:var(--grey-on-dark); font-size:.95rem; max-width:80ch; }
+.connect-box p:last-child{ margin:0; }
+.calendar{ display:flex; gap:10px; align-items:center; margin-top:22px; font-size:.95rem; color:var(--muted); }
+.calendar .ic{ width:18px; height:18px; }
+
+/* =========================================================
+   INVERSIÓN
+   ========================================================= */
+.invest{ display:grid; gap:44px; margin-top:44px; align-items:start; }
+@media (min-width:1000px){ .invest{ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:64px; } }
+.price{ border-top:1px solid var(--line); padding-top:28px; }
+.price .amount{ display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; }
+.price .amount .display{ font-size:clamp(4.4rem,14vw,8.4rem); line-height:.85; white-space:nowrap; }
+.price .amount .vat{ font-family:var(--display); font-size:clamp(1.8rem,4vw,3rem); color:var(--grey-on-dark); text-transform:uppercase; }
+.price p{ margin:22px 0 0; font-size:clamp(1.08rem,1.6vw,1.25rem); max-width:40ch; }
+.invest-notes{ display:grid; gap:12px; }
+.inote{ display:grid; grid-template-columns:44px minmax(0,1fr); gap:16px; background:var(--card); border:1px solid var(--line); border-radius:var(--radius-sm); padding:18px 20px; }
+.inote h3{ font-weight:600; font-size:1rem; line-height:1.35; }
+.inote p{ margin:3px 0 0; color:var(--muted); font-size:.92rem; }
+
+/* =========================================================
+   GARANTÍA
+   ========================================================= */
+.warranty{ display:grid; gap:40px; margin-top:44px; align-items:start; }
+@media (min-width:1000px){ .warranty{ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:56px; } }
+.w-text p{ font-size:1.04rem; }
+.w-text p.first{ font-size:clamp(1.12rem,1.8vw,1.3rem); font-weight:500; }
+.w-text p.muted{ color:var(--muted); }
+.rate{ margin:28px 0; padding:22px 24px; border-radius:var(--radius-sm); background:var(--ink); color:#fff; display:grid; gap:6px; }
+.rate b{ font-family:var(--display); font-weight:400; font-size:2rem; line-height:1; letter-spacing:.01em; }
+.rate span{ color:var(--grey-on-dark); font-size:.95rem; }
+.examples{ display:grid; gap:14px; }
+.ex{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+.ex .k{ font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+.ex h3{ font-family:var(--display); text-transform:uppercase; font-size:1.6rem; line-height:1.05; margin:10px 0 14px; }
+.ex .verdict{ display:inline-flex; align-items:center; gap:9px; padding:8px 14px; border-radius:999px; font-weight:600; font-size:.9rem; }
+.ex .verdict .ic{ width:18px; height:18px; }
+.ex .verdict.in{ background:var(--ink); color:#fff; }
+.ex .verdict.extra{ border:1.5px solid var(--ink); }
+.ex p{ margin:12px 0 0; color:var(--muted); font-size:.92rem; }
+
+/* =========================================================
+   PREGUNTAS FRECUENTES
+   ========================================================= */
+.faq{ margin-top:44px; border-top:1px solid var(--line); max-width:920px; }
+.faq-item{ border-bottom:1px solid var(--line); }
+.faq-item h3{ margin:0; }
+.faq-q{
+  width:100%; display:flex; justify-content:space-between; align-items:center; gap:18px; text-align:left;
+  background:transparent; border:0; padding:22px 0; cursor:pointer; font-size:clamp(1.02rem,1.6vw,1.15rem); font-weight:600; line-height:1.4;
+}
+.faq-q .pm{ width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; flex:none; transition:transform .3s var(--ease), background-color .2s; }
+.faq-q .pm .ic{ width:16px; height:16px; }
+.faq-q[aria-expanded="true"] .pm{ transform:rotate(45deg); background:var(--fg); color:var(--bg); border-color:var(--fg); }
+.faq-a{ padding:0 56px 24px 0; color:var(--muted); font-size:1rem; }
+.faq-a p{ margin:0; max-width:70ch; }
+.faq-tools{ display:flex; gap:10px; margin-top:22px; }
+
+/* =========================================================
+   CIERRE Y PIE
+   ========================================================= */
+.closing .display.big{ font-size:clamp(2.8rem,8vw,7.4rem); max-width:13ch; }
+.closing-grid{ display:grid; gap:36px; margin-top:44px; align-items:end; }
+@media (min-width:1000px){ .closing-grid{ grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:64px; } }
+.closing-grid p{ color:var(--muted); font-size:clamp(1.05rem,1.6vw,1.2rem); }
+.closing-grid p strong{ color:var(--fg); font-weight:500; }
+.sign{ margin-top:26px; font-weight:600; }
+.sign span{ display:block; font-weight:400; color:var(--muted); font-size:.92rem; }
+.cta-box{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:clamp(22px,3vw,34px); }
+.cta-box .btn{ width:100%; min-height:58px; font-size:1.05rem; white-space:normal; text-align:center; }
+.cta-msg{ margin-top:18px; padding:18px 20px; border-radius:var(--radius-sm); background:#fff; color:var(--ink); font-size:1rem; line-height:1.55; display:flex; gap:12px; }
+.cta-msg .ic{ width:20px; height:20px; margin-top:2px; }
+.cta-msg[hidden]{ display:none; }
+.cta-hint{ margin:14px 0 0; font-size:.82rem; color:var(--muted); }
+footer{ background:var(--ink); color:var(--grey-on-dark); border-top:1px solid var(--ink-line); padding:34px 0 40px; font-size:.82rem; }
+footer .wrap{ display:grid; gap:18px; }
+@media (min-width:900px){ footer .wrap{ grid-template-columns:minmax(0,1fr) auto; align-items:center; } }
+footer p{ margin:0; max-width:90ch; }
+footer .btn{ --fg:#fff; --line:var(--ink-line); }
+
+/* =========================================================
+   ANIMACIONES (respetan "reducir movimiento")
+   ========================================================= */
+.js .reveal{ opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+.js .reveal.in{ opacity:1; transform:none; }
+.js .reveal.d1{ transition-delay:.08s; } .js .reveal.d2{ transition-delay:.16s; } .js .reveal.d3{ transition-delay:.24s; }
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .js .reveal{ opacity:1; transform:none; transition:none; }
+  *,*::before,*::after{ transition-duration:.01ms!important; animation-duration:.01ms!important; }
+}
+
+/* =========================================================
+   IMPRESIÓN / GUARDAR COMO PDF
+   ========================================================= */
+@media print{
+  @page{ size:A4; margin:14mm 13mm; }
+  html,body{ background:#fff!important; color:#000!important; font-size:11pt; }
+  .s-dark,.s-light,.s-bone{ --bg:#fff; --fg:#000; --muted:#3d3a35; --line:#cfcac2; --card:#fff; --card-2:#fff; }
+  section{ padding:12mm 0!important; break-inside:auto; }
+  section + section{ border-top:1px solid #cfcac2; }
+  footer{ background:#fff!important; color:#333!important; border-top:1px solid #cfcac2; }
+  .site-header,.progress,.menu,.skip,.no-print,.tablist,.faq-tools,.sim-reset,.hero .btn-row{ display:none!important; }
+  .print-only{ display:block!important; }
+  .hero{ padding-top:0!important; }
+  .js .reveal{ opacity:1!important; transform:none!important; }
+  .tabpanel[hidden]{ display:block!important; }
+  .tabpanel + .tabpanel{ margin-top:12mm; }
+  .faq-a[hidden]{ display:block!important; }
+  .faq-q .pm{ display:none; }
+  .cta-msg[hidden]{ display:flex!important; }
+  .cta-box .btn{ display:none!important; }
+  .statement,.minute-card.price,.connect-box,.rate,.ex .verdict.in,.ledger-head,.kpi.dark,.chip.dark,.fake-btn.dark,.v-tag.cur,.tab[aria-selected="true"]{ background:#fff!important; color:#000!important; border:1px solid #000!important; }
+  .statement p span,.minute-card.price .k,.connect-box p,.rate span,.ledger-head span,.kpi.dark small,.kpi.dark em{ color:#333!important; }
+  .flow li.app{ border:1px solid #000!important; }
+  .flow-legend .l2{ border:1px solid #000; }
+  .ui,.ledger{ box-shadow:none!important; border:1px solid #bbb; }
+  .ui-side{ background:#fff!important; color:#000!important; border-right:1px solid #ddd; }
+  .ui-side span{ color:#333!important; }
+  .ui-side span.on{ background:#eee!important; }
+  .avatar,.bar i,.split-bar i{ background:#000!important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .price .amount .vat{ color:#333; }
+  .step,.benefit,.minute-card,.inote,.ex,.version,.scope-note,.feat li,.principles li,.faq-item,.ui,.ledger,.sim,.flow li,.challenge li,.scope li{ break-inside:avoid; }
+  h2,h3{ break-after:avoid; }
+  a{ text-decoration:none!important; }
+  .sim{ border:1px solid #bbb; }
+  .money{ border-color:#999; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- Sprite de iconos SVG -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.8 2.8L16.2 9.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9h16v1.5a2.7 2.7 0 0 1-5.3 0 2.7 2.7 0 0 1-5.4 0A2.7 2.7 0 0 1 4 10.5V9z"/><path d="M5.5 13v7h13v-7M10 20v-4h4v4"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="M3 11l4-4 3 1 2-1.5L14.5 8 21 11"/><path d="M3 11l5.5 5.5a1.5 1.5 0 0 0 2.1 0l.4-.4M21 11l-4.5 4.5a1.5 1.5 0 0 1-2.1 0L11 12l1.5-1.5"/><path d="M13.5 17.5l1 1a1.4 1.4 0 0 0 2 0"/></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 16v-4M12 16V8M17 16v-7"/></symbol>
+    <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="10" cy="8" r="3.5"/><path d="M3.5 20a6.5 6.5 0 0 1 13 0M19 8v6M16 11h6"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M15.5 4.8a3.2 3.2 0 0 1 0 6.4M17.5 14.2A6 6 0 0 1 21 20"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 4v4h4M12 8v4.5l3 2"/></symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-14.3 4.9M4 12a8 8 0 0 1 14.3-4.9"/><path d="M18.5 3v4.3h-4.3M5.5 21v-4.3h4.3"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+    <symbol id="i-support" viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v7H7z"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 8h14"/><path d="M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0z"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  </defs>
+</svg>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- ======================= CABECERA ======================= -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="IsART, propuesta para Blazmed. Volver al inicio">
+      <b>IsART</b><span>Propuesta para Blazmed</span>
+    </a>
+    <nav class="nav-desktop" aria-label="Secciones de la propuesta">
+      <ul>
+        <li><a href="#reto">El reto</a></li>
+        <li><a href="#espacios">Dos espacios</a></li>
+        <li><a href="#acuerdos">Acuerdos</a></li>
+        <li><a href="#transparencia">Transparencia</a></li>
+        <li><a href="#alcance">Alcance</a></li>
+        <li><a href="#inversion">Inversión</a></li>
+        <li><a href="#garantia">Garantía</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-solid btn-sm" href="#inversion">Ver inversión</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir el índice de la propuesta">
+        <svg class="ic i-open" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="ic i-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="false" aria-label="Índice de la propuesta">
+  <ol>
+    <li><a href="#inicio">Portada</a></li>
+    <li><a href="#reto">El reto al crecer</a></li>
+    <li><a href="#shopify">¿Y Shopify?</a></li>
+    <li><a href="#espacios">Dos espacios</a></li>
+    <li><a href="#acuerdos">Libertad para negociar</a></li>
+    <li><a href="#transparencia">Transparencia</a></li>
+    <li><a href="#alcance">Alcance incluido</a></li>
+    <li><a href="#proceso">Cómo lo construiremos</a></li>
+    <li><a href="#inversion">Inversión</a></li>
+    <li><a href="#garantia">Garantía y ampliaciones</a></li>
+    <li><a href="#preguntas">Preguntas frecuentes</a></li>
+    <li><a href="#cierre">Siguiente paso</a></li>
+  </ol>
+</div>
+
+<main id="contenido">
+
+<!-- ======================= 1. PORTADA ======================= -->
+<section class="hero s-dark" id="inicio" aria-labelledby="t-hero">
+  <div class="wrap">
+    <div class="hero-meta reveal">
+      <span class="pill"><span class="pill-dot" aria-hidden="true"></span>Propuesta personalizada para Cristian Blazmed</span>
+      <span class="hero-by">Presentada por <b>Irene y María</b> · IsART</span>
+    </div>
+    <div class="project reveal d1">
+      <span class="display">Blazmed Connect</span>
+      <small>Nombre de trabajo del proyecto</small>
+    </div>
+    <h1 class="display reveal d1" id="t-hero">Haz crecer las marcas que gestionas, con todas las cuentas claras<span class="dot">.</span></h1>
+
+    <div class="hero-grid">
+      <div class="hero-copy reveal d2">
+        <p>Te proponemos una <strong>plataforma a medida</strong> que conecta las tiendas Shopify de las marcas con las que colaboras, aplica el acuerdo de cada una y prepara sus liquidaciones. <strong>Tú ves todas las marcas; cada cliente, solo la suya.</strong></p>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="#minuto">Explorar la propuesta <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-ghost" href="#inversion">Ver inversión</a>
+        </div>
+      </div>
+
+      <figure class="reveal d3" style="margin:0">
+        <div class="ui" role="img" aria-label="Vista conceptual del panel global: cuatro marcas de ejemplo con sus ventas del periodo, el reparto estimado pendiente de liquidar y el estado de cada liquidación.">
+          <div class="ui-bar">
+            <div class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span class="ui-title">Blazmed Connect · Panel global</span>
+            <span class="sync"><i></i>Última actualización: hoy, 10:42</span>
+          </div>
+          <div class="ui-body">
+            <div class="ui-side">
+              <span class="on"><svg class="ic"><use href="#i-grid"/></svg>Resumen</span>
+              <span><svg class="ic"><use href="#i-users"/></svg>Clientes</span>
+              <span><svg class="ic"><use href="#i-sliders"/></svg>Acuerdos</span>
+              <span><svg class="ic"><use href="#i-check-circle"/></svg>Liquidaciones</span>
+              <span><svg class="ic"><use href="#i-folder"/></svg>Documentos</span>
+            </div>
+            <div class="ui-main">
+              <div class="ui-head">
+                <h4>Resumen · Septiembre</h4>
+                <span class="chip">Sincronización automática</span>
+              </div>
+              <div class="kpis">
+                <div class="kpi"><small>Ventas de las tiendas</small><b>18.420 €</b><em>4 marcas</em></div>
+                <div class="kpi"><small>Base de reparto</small><b>15.960 €</b><em>según acuerdos</em></div>
+                <div class="kpi dark"><small>Reparto Blazmed</small><b>1.112 €</b><em>estimado · pendiente de liquidar</em></div>
+              </div>
+              <div class="rows">
+                <div class="row head"><span>Marca</span><span class="num">Ventas</span><span class="num col-hide">Reparto est.</span><span>Liquidación</span></div>
+                <div class="row"><span class="name"><span class="avatar">NS</span><span>Norte Studio</span></span><span class="num">7.240 €</span><span class="num col-hide">425 €</span><span class="chip rev">En revisión</span></div>
+                <div class="row"><span class="name"><span class="avatar">MC</span><span>Marea Club</span></span><span class="num">5.180 €</span><span class="num col-hide">352 €</span><span class="chip pen">Abierta</span></div>
+                <div class="row"><span class="name"><span class="avatar">KW</span><span>Kilo Wear</span></span><span class="num">3.650 €</span><span class="num col-hide">214 €</span><span class="chip pen">Abierta</span></div>
+                <div class="row"><span class="name"><span class="avatar">AL</span><span>Atlas Lab</span></span><span class="num">2.350 €</span><span class="num col-hide">121 €</span><span class="chip ok">Cerrada</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Vista conceptual con datos de ejemplo. El diseño final se definirá durante el proyecto.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EN UN MINUTO ======================= -->
+<section class="minute s-bone" id="minuto" aria-labelledby="t-minuto">
+  <div class="wrap">
+    <h2 class="sr-only" id="t-minuto">La propuesta en un minuto</h2>
+    <div class="minute-grid">
+      <div class="minute-card reveal">
+        <span class="k">Qué proponemos</span>
+        <p>Una plataforma web a medida para gestionar tus marcas, sus tiendas Shopify, sus acuerdos y sus liquidaciones desde un solo lugar.</p>
+      </div>
+      <div class="minute-card reveal d1">
+        <span class="k">Por qué te sirve</span>
+        <p>Para sumar marcas con un proceso ordenado, negociar cada acuerdo a medida y que cada cliente pueda consultar y entender sus cuentas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 2. EL RETO AL CRECER ======================= -->
+<section class="s-light" id="reto" aria-labelledby="t-reto">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">01</span> El reto al crecer</p>
+    <h2 class="display h-section reveal" id="t-reto">Cada marca nueva llega con su propia gestión<span class="dot">.</span></h2>
+    <p class="lead reveal">Sumar marcas es la mejor señal de que el modelo funciona. Y cada nueva colaboración trae consigo:</p>
+
+    <div class="challenge">
+      <ol>
+        <li class="reveal"><span class="n">01</span><h3>Otra tienda que consultar</h3><p>Sus ventas, productos, descuentos y devoluciones.</p></li>
+        <li class="reveal"><span class="n">02</span><h3>Un acuerdo que aplicar</h3><p>Las condiciones pactadas con esa marca en concreto.</p></li>
+        <li class="reveal"><span class="n">03</span><h3>Porcentajes que pueden variar</h3><p>Según la categoría o el producto vendido.</p></li>
+        <li class="reveal"><span class="n">04</span><h3>Cuentas que revisar y explicar</h3><p>Para que cada marca entienda qué le corresponde y por qué.</p></li>
+        <li class="reveal"><span class="n">05</span><h3>Documentos que organizar</h3><p>Contratos, liquidaciones y justificantes de pago.</p></li>
+      </ol>
+    </div>
+
+    <div class="statement reveal">
+      <p>La carga administrativa crece con cada marca y con cada condición distinta. <span>Prepararla ahora permite incorporar nuevas marcas con un proceso ya organizado.</span></p>
+    </div>
+
+    <p class="benefits-title reveal">Lo que aporta la plataforma</p>
+    <div class="benefits">
+      <article class="benefit reveal">
+        <div class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-user-plus"/></svg></div>
+        <h3>Escalabilidad</h3>
+        <p>Cada marca nueva se incorpora siguiendo los mismos pasos: cliente, tienda y acuerdo.</p>
+      </article>
+      <article class="benefit reveal d1">
+        <div class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-grid"/></svg></div>
+        <h3>Control</h3>
+        <p>Clientes, acuerdos, resultados y liquidaciones reunidos en un mismo panel.</p>
+      </article>
+      <article class="benefit reveal d2">
+        <div class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-sliders"/></svg></div>
+        <h3>Flexibilidad comercial</h3>
+        <p>Porcentajes diferentes por marca, categoría o producto, según lo que negocies.</p>
+      </article>
+      <article class="benefit reveal d3">
+        <div class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-eye"/></svg></div>
+        <h3>Confianza</h3>
+        <p>Cada cliente puede consultar sus cuentas y entender de dónde sale cada importe.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 3. OBJECIÓN SHOPIFY ======================= -->
+<section class="s-dark" id="shopify" aria-labelledby="t-shopify">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">02</span> Una pregunta lógica</p>
+    <h2 class="display quote reveal" id="t-shopify"><span class="q">“</span>Esto ya lo puedo ver en Shopify<span class="q">”</span><span class="dot">.</span></h2>
+
+    <div class="answer-grid">
+      <p class="reveal">Y es cierto: <strong>los datos de cada tienda están en Shopify</strong>, y ahí seguirán. Shopify sigue siendo la tienda de cada marca.</p>
+      <p class="reveal d1">Lo que proponemos es <strong>conectar esos datos con los acuerdos de Blazmed</strong> y convertirlos en una gestión conjunta de todas tus marcas y en cuentas que cada cliente pueda entender.</p>
+    </div>
+
+    <p class="lead reveal" style="margin-top:44px">Después de consultar una venta, todavía queda trabajo:</p>
+    <ol class="flow">
+      <li class="origin reveal"><h3>La venta</h3><p>Pedido, productos, descuentos y devoluciones.</p><span class="tag">Dato de origen · Shopify</span></li>
+      <li class="app reveal d1"><h3>Aplicar condiciones</h3><p>Qué acuerdo y qué porcentaje corresponden.</p><span class="tag">Blazmed Connect</span></li>
+      <li class="app reveal d1"><h3>Revisar ajustes</h3><p>Devoluciones, descuentos y correcciones.</p><span class="tag">Blazmed Connect</span></li>
+      <li class="app reveal d2"><h3>Calcular el reparto</h3><p>Qué corresponde a Blazmed y qué a la marca.</p><span class="tag">Blazmed Connect</span></li>
+      <li class="app reveal d2"><h3>Preparar la liquidación</h3><p>Agrupar el periodo, revisarlo y cerrarlo.</p><span class="tag">Blazmed Connect</span></li>
+      <li class="app reveal d3"><h3>Compartirlo con el cliente</h3><p>En su espacio privado, con el desglose.</p><span class="tag">Blazmed Connect</span></li>
+    </ol>
+    <div class="flow-legend reveal">
+      <span><i class="l1" aria-hidden="true"></i>Información que ya existe en cada tienda</span>
+      <span><i class="l2" aria-hidden="true"></i>Trabajo que organiza la plataforma</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 4. DOS ESPACIOS ======================= -->
+<section class="s-bone" id="espacios" aria-labelledby="t-espacios">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">03</span> Dos espacios, una misma relación</p>
+    <h2 class="display h-section reveal" id="t-espacios">Tú ves el conjunto. Cada cliente, lo suyo<span class="dot">.</span></h2>
+    <p class="lead reveal">Los dos espacios parten de los mismos datos y de las mismas condiciones. Así, lo que tú revisas y lo que consulta cada marca coincide.</p>
+
+    <div class="tablist reveal" role="tablist" aria-label="Espacios de la plataforma">
+      <button class="tab" role="tab" id="tab-cristian" aria-selected="true" aria-controls="panel-cristian" tabindex="0">
+        <svg class="ic" aria-hidden="true"><use href="#i-grid"/></svg>Vista de Cristian
+      </button>
+      <button class="tab" role="tab" id="tab-cliente" aria-selected="false" aria-controls="panel-cliente" tabindex="-1">
+        <svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Vista del cliente
+      </button>
+    </div>
+
+    <!-- Pestaña: Vista de Cristian -->
+    <div class="tabpanel" role="tabpanel" id="panel-cristian" aria-labelledby="tab-cristian" tabindex="0">
+      <h3 class="print-only display" style="font-size:1.8rem;margin-bottom:10px">Vista de Cristian</h3>
+      <div class="panel-grid">
+        <div>
+          <p class="panel-intro">Tu panel de control: todas las marcas, sus resultados y la gestión de cada colaboración.</p>
+          <ul class="feat">
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-grid"/></svg></span><div><h3>Panel global</h3><p>Todos tus clientes y sus tiendas vinculadas en un mismo lugar.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span><div><h3>Resultados generales y por marca</h3><p>Ventas y repartos del periodo, en conjunto o marca a marca.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-user-plus"/></svg></span><div><h3>Alta de clientes</h3><p>Cada marca se incorpora con los mismos pasos: datos, tienda y acuerdo.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-external"/></svg></span><div><h3>Acceso a cada tienda</h3><p>Acceso al administrador de Shopify de cada marca, mediante los permisos correspondientes.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-sliders"/></svg></span><div><h3>Acuerdos a medida</h3><p>Configuración de porcentajes por marca, categoría y producto.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-check-circle"/></svg></span><div><h3>Revisión y cierre de liquidaciones</h3><p>Revisas cada periodo y lo cierras cuando esté conforme.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-receipt"/></svg></span><div><h3>Pagos y justificantes</h3><p>Registras cada pago realizado y subes su justificante.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-upload"/></svg></span><div><h3>Contratos</h3><p>Subes el contrato de cada colaboración para tenerlo siempre a mano.</p></div></li>
+          </ul>
+        </div>
+        <figure style="margin:0">
+          <div class="ui" role="img" aria-label="Vista conceptual del panel de Cristian: listado de clientes con sus tiendas, ventas, reparto estimado y accesos; y una liquidación en revisión con acciones para cerrarla, registrar el pago y subir el justificante.">
+            <div class="ui-bar">
+              <div class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span class="ui-title">Clientes y tiendas</span>
+              <span class="sync"><i></i>Actualizado hace 12 min</span>
+            </div>
+            <div class="ui-body">
+              <div class="ui-side">
+                <span><svg class="ic"><use href="#i-grid"/></svg>Resumen</span>
+                <span class="on"><svg class="ic"><use href="#i-users"/></svg>Clientes</span>
+                <span><svg class="ic"><use href="#i-sliders"/></svg>Acuerdos</span>
+                <span><svg class="ic"><use href="#i-check-circle"/></svg>Liquidaciones</span>
+                <span><svg class="ic"><use href="#i-folder"/></svg>Documentos</span>
+              </div>
+              <div class="ui-main">
+                <div class="ui-head">
+                  <h4>Clientes · 4 marcas</h4>
+                  <span class="fake-btn dark"><svg class="ic"><use href="#i-plus"/></svg>Nuevo cliente</span>
+                </div>
+                <div class="rows">
+                  <div class="row head"><span>Marca · tienda</span><span class="num">Ventas sept.</span><span class="num col-hide">Reparto est.</span><span>Tienda</span></div>
+                  <div class="row"><span class="name"><span class="avatar">NS</span><span>Norte Studio</span></span><span class="num">7.240 €</span><span class="num col-hide">425 €</span><span class="chip"><svg class="ic" style="width:12px;height:12px"><use href="#i-external"/></svg>Shopify</span></div>
+                  <div class="row"><span class="name"><span class="avatar">MC</span><span>Marea Club</span></span><span class="num">5.180 €</span><span class="num col-hide">352 €</span><span class="chip"><svg class="ic" style="width:12px;height:12px"><use href="#i-external"/></svg>Shopify</span></div>
+                  <div class="row"><span class="name"><span class="avatar">KW</span><span>Kilo Wear</span></span><span class="num">3.650 €</span><span class="num col-hide">214 €</span><span class="chip"><svg class="ic" style="width:12px;height:12px"><use href="#i-external"/></svg>Shopify</span></div>
+                </div>
+                <div class="ui-card" style="margin-top:12px">
+                  <h5>Liquidación de septiembre · Norte Studio <span class="chip rev" style="margin-left:6px">En revisión</span></h5>
+                  <div class="list-doc">
+                    <div><span>Base de reparto</span><b>6.000 €</b></div>
+                    <div><span>Corresponde a Blazmed (estimado)</span><b>425 €</b></div>
+                    <div><span>Corresponde a la marca (estimado)</span><b>5.575 €</b></div>
+                  </div>
+                  <div class="ui-actions">
+                    <span class="fake-btn dark"><svg class="ic"><use href="#i-check"/></svg>Cerrar liquidación</span>
+                    <span class="fake-btn"><svg class="ic"><use href="#i-receipt"/></svg>Registrar pago</span>
+                    <span class="fake-btn"><svg class="ic"><use href="#i-upload"/></svg>Subir justificante</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Vista conceptual con datos de ejemplo. El diseño final se definirá durante el proyecto.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Pestaña: Vista del cliente -->
+    <div class="tabpanel" role="tabpanel" id="panel-cliente" aria-labelledby="tab-cliente" tabindex="0" hidden>
+      <h3 class="print-only display" style="font-size:1.8rem;margin-bottom:10px">Vista del cliente</h3>
+      <div class="panel-grid">
+        <div>
+          <p class="panel-intro">El espacio de cada marca: su información, sus cuentas y sus documentos, explicados con claridad.</p>
+          <ul class="feat">
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-lock"/></svg></span><div><h3>Acceso privado</h3><p>Cada marca entra con su propio usuario y accede únicamente a la información de su marca.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-chart"/></svg></span><div><h3>Resultados de su tienda</h3><p>Las ventas de su tienda en cada periodo.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-layers"/></svg></span><div><h3>Desglose de su importe</h3><p>Qué le corresponde y cómo se ha calculado.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-percent"/></svg></span><div><h3>Condiciones aplicadas</h3><p>Los porcentajes vigentes y desde qué fecha se aplican.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-history"/></svg></span><div><h3>Historial de liquidaciones y pagos</h3><p>Liquidaciones cerradas y pagos registrados, periodo a periodo.</p></div></li>
+            <li><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-download"/></svg></span><div><h3>Contratos y justificantes</h3><p>Descarga de su contrato y de los justificantes de pago.</p></div></li>
+          </ul>
+        </div>
+        <figure style="margin:0">
+          <div class="ui" role="img" aria-label="Vista conceptual del espacio de una marca de ejemplo: ventas del periodo, importe estimado pendiente de liquidación, desglose por categoría, condiciones vigentes e historial de liquidaciones con justificantes descargables.">
+            <div class="ui-bar">
+              <div class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span class="ui-title">Norte Studio · Tu espacio</span>
+              <span class="sync"><i></i>Actualizado hace 12 min</span>
+            </div>
+            <div class="ui-main">
+              <div class="ui-head">
+                <h4>Septiembre</h4>
+                <span class="chip"><svg class="ic" style="width:12px;height:12px"><use href="#i-lock"/></svg>Solo tu marca</span>
+              </div>
+              <div class="kpis">
+                <div class="kpi"><small>Ventas de tu tienda</small><b>7.240 €</b><em>periodo en curso</em></div>
+                <div class="kpi dark"><small>Importe para tu marca</small><b>5.575 €</b><em>estimado · pendiente de liquidación</em></div>
+              </div>
+              <div class="ui-grid2">
+                <div class="ui-card">
+                  <h5>Desglose por categoría</h5>
+                  <div class="bars">
+                    <div class="bar-row"><span>Complementos</span><span class="bar"><i style="width:25%"></i></span><span>1.500 €</span></div>
+                    <div class="bar-row"><span>Camisetas</span><span class="bar"><i style="width:58%"></i></span><span>3.500 €</span></div>
+                    <div class="bar-row"><span>Gorros</span><span class="bar"><i style="width:17%"></i></span><span>1.000 €</span></div>
+                  </div>
+                  <p style="margin:10px 0 0;font-size:11px;color:#6b655c">Base de reparto por categoría</p>
+                </div>
+                <div class="ui-card">
+                  <h5>Condiciones vigentes · desde 01/09</h5>
+                  <div class="cond">
+                    <span class="chip">Complementos 3 %</span>
+                    <span class="chip">Camisetas 8 %</span>
+                    <span class="chip">Gorros 10 %</span>
+                  </div>
+                  <h5 style="margin-top:14px">Liquidaciones y documentos</h5>
+                  <div class="list-doc">
+                    <div><span>Agosto · <b>Pagada</b></span><span class="chip"><svg class="ic"><use href="#i-download"/></svg>Justificante</span></div>
+                    <div><span>Julio · <b>Pagada</b></span><span class="chip"><svg class="ic"><use href="#i-download"/></svg>Justificante</span></div>
+                    <div><span>Contrato de colaboración</span><span class="chip"><svg class="ic"><use href="#i-download"/></svg>PDF</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption class="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Vista conceptual con datos de ejemplo. El diseño final se definirá durante el proyecto.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 5. DIFERENCIAL: LIBERTAD PARA NEGOCIAR ======================= -->
+<section class="s-dark" id="acuerdos" aria-labelledby="t-acuerdos">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">04</span> Libertad para negociar</p>
+    <h2 class="display h-section reveal" id="t-acuerdos" style="max-width:18ch">La complejidad de los cálculos no debería limitar tus acuerdos<span class="dot">.</span></h2>
+    <p class="lead reveal">Cada marca es distinta, y cada acuerdo también. La plataforma aplicará los porcentajes que pactes <strong>por marca, por categoría o por producto</strong>, para que negocies pensando en la colaboración y no en cómo calcularla después.</p>
+
+    <div class="diff-chips reveal" aria-label="Ejemplo: una misma marca con tres porcentajes para Blazmed">
+      <span>Complementos <b>3 %</b></span>
+      <span>Camisetas <b>8 %</b></span>
+      <span>Gorros <b>10 %</b></span>
+    </div>
+
+    <div class="sim-wrap">
+      <!-- SIMULADOR (simulación comercial, no es la plataforma) -->
+      <div class="sim reveal" role="group" aria-labelledby="sim-title" id="simulador">
+        <div class="sim-top">
+          <h3 id="sim-title">Prueba un acuerdo: cambia la base de reparto</h3>
+          <span class="badge"><i aria-hidden="true"></i>Simulación comercial</span>
+        </div>
+
+        <div class="sim-head" aria-hidden="true">
+          <span>Categoría</span><span>Base de reparto</span><span>Blazmed</span><span>Marca</span>
+        </div>
+
+        <div class="sim-row" data-key="comp" data-pct="3">
+          <div class="cat"><b>Complementos</b><span>3 % para Blazmed</span></div>
+          <div class="base">
+            <label class="cell-label" for="in-comp">Base de reparto de Complementos (€)</label>
+            <div class="money"><input id="in-comp" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="1.000" data-default="1.000" aria-describedby="er-comp"><span aria-hidden="true">€</span></div>
+            <p class="field-error" id="er-comp" role="alert"></p>
+          </div>
+          <div class="out"><span class="cell-label">Blazmed</span><output id="bz-comp" for="in-comp" aria-label="Importe para Blazmed en Complementos">30 €</output></div>
+          <div class="out"><span class="cell-label">Marca</span><output id="mk-comp" for="in-comp" aria-label="Importe para la marca en Complementos">970 €</output></div>
+        </div>
+
+        <div class="sim-row" data-key="cami" data-pct="8">
+          <div class="cat"><b>Camisetas</b><span>8 % para Blazmed</span></div>
+          <div class="base">
+            <label class="cell-label" for="in-cami">Base de reparto de Camisetas (€)</label>
+            <div class="money"><input id="in-cami" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="2.000" data-default="2.000" aria-describedby="er-cami"><span aria-hidden="true">€</span></div>
+            <p class="field-error" id="er-cami" role="alert"></p>
+          </div>
+          <div class="out"><span class="cell-label">Blazmed</span><output id="bz-cami" for="in-cami" aria-label="Importe para Blazmed en Camisetas">160 €</output></div>
+          <div class="out"><span class="cell-label">Marca</span><output id="mk-cami" for="in-cami" aria-label="Importe para la marca en Camisetas">1.840 €</output></div>
+        </div>
+
+        <div class="sim-row" data-key="gorr" data-pct="10">
+          <div class="cat"><b>Gorros</b><span>10 % para Blazmed</span></div>
+          <div class="base">
+            <label class="cell-label" for="in-gorr">Base de reparto de Gorros (€)</label>
+            <div class="money"><input id="in-gorr" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="500" data-default="500" aria-describedby="er-gorr"><span aria-hidden="true">€</span></div>
+            <p class="field-error" id="er-gorr" role="alert"></p>
+          </div>
+          <div class="out"><span class="cell-label">Blazmed</span><output id="bz-gorr" for="in-gorr" aria-label="Importe para Blazmed en Gorros">50 €</output></div>
+          <div class="out"><span class="cell-label">Marca</span><output id="mk-gorr" for="in-gorr" aria-label="Importe para la marca en Gorros">450 €</output></div>
+        </div>
+
+        <div class="sim-total" aria-live="polite">
+          <span class="lbl">Totales</span>
+          <div class="tb"><span class="cell-label">Total base</span><output id="t-base" aria-label="Total base de reparto">3.500 €</output></div>
+          <div class="out"><span class="cell-label">Total Blazmed</span><output id="t-bz" aria-label="Total para Blazmed">240 €</output></div>
+          <div class="out"><span class="cell-label">Total marca</span><output id="t-mk" aria-label="Total para la marca">3.260 €</output></div>
+        </div>
+
+        <div class="sim-split" aria-hidden="true">
+          <div class="split-bar"><i id="split-bz" style="width:6.86%"></i></div>
+          <div class="split-legend"><span>Blazmed <b id="pct-bz">6,86 %</b> del total</span><span>Marca <b id="pct-mk">93,14 %</b></span></div>
+        </div>
+        <p class="sim-msg" id="sim-msg" role="status"></p>
+
+        <div class="sim-foot">
+          <p class="disclaimer"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg><span>Ejemplo ilustrativo. Los porcentajes y la base de reparto se definirán según cada acuerdo. No representa ventas reales ni beneficio neto.</span></p>
+          <button class="btn btn-ghost btn-sm sim-reset" type="button" id="sim-reset">Restablecer valores</button>
+        </div>
+      </div>
+
+      <div class="sim-aside reveal d1">
+        <h3>Así funcionará en la plataforma</h3>
+        <p>El simulador es solo una muestra comercial. En la plataforma, los cálculos se harán a partir de las ventas sincronizadas de cada tienda:</p>
+        <ul>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Cada venta se asigna a su categoría o producto.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Se aplica la regla vigente en la fecha de la operación.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>El resultado queda guardado con su desglose.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>La base sobre la que se aplica cada porcentaje se define contigo al inicio.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 6. TRANSPARENCIA ======================= -->
+<section class="s-light" id="transparencia" aria-labelledby="t-trans">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">05</span> Transparencia que se puede comprobar</p>
+    <h2 class="display h-section reveal" id="t-trans">Cada cifra, con su explicación<span class="dot">.</span></h2>
+    <p class="lead reveal">La confianza llega cuando cada parte puede <strong>entender de dónde sale una cifra y comprobarla</strong>. Por eso cada cálculo mostrará su origen y las reglas aplicadas.</p>
+
+    <div class="trans-grid">
+      <figure style="margin:0" class="reveal">
+        <div class="ledger" role="img" aria-label="Ejemplo de desglose de una operación ficticia: base de cálculo 60 euros, regla de la categoría Camisetas, 8 por ciento, 4,80 euros para Blazmed y 55,20 para la marca; una devolución parcial ajusta el resultado a 2,40 y 27,60 euros.">
+          <div class="ledger-head"><b>Pedido #1048 · Norte Studio</b><span>2 × Camiseta oversize · 05/09</span></div>
+          <dl>
+            <div class="li"><dt>Base de cálculo<small>según la definición del acuerdo</small></dt><dd>60,00 €</dd></div>
+            <div class="li"><dt>Regla aplicada<small>Categoría Camisetas · acuerdo v2, desde 01/09</small></dt><dd>Camisetas</dd></div>
+            <div class="li"><dt>Porcentaje Blazmed</dt><dd>8 %</dd></div>
+            <div class="li split"><dt>Corresponde a Blazmed</dt><dd>4,80 €</dd></div>
+            <div class="li split"><dt>Corresponde a la marca</dt><dd>55,20 €</dd></div>
+          </dl>
+          <div class="adj">
+            <b>Ajuste identificado · devolución de 1 unidad (12/09)</b>
+            <p>Se descuenta su parte de la base con el mismo porcentaje de la operación original.</p>
+            <div class="nums"><span>Base −30,00 €</span><span>Blazmed −2,40 €</span><span>Marca −27,60 €</span></div>
+          </div>
+          <div class="res">
+            <div><small>Blazmed tras el ajuste</small><b>2,40 €</b></div>
+            <div><small>Marca tras el ajuste</small><b>27,60 €</b></div>
+          </div>
+        </div>
+        <figcaption class="note"><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Ejemplo ilustrativo con datos ficticios. El formato final del desglose se definirá durante el proyecto.</figcaption>
+      </figure>
+
+      <ul class="principles">
+        <li class="reveal"><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-calendar"/></svg></span><div><h3>Los cambios de condiciones tienen fecha de aplicación</h3><p>Un nuevo acuerdo se aplica desde el día que decidas.</p></div></li>
+        <li class="reveal"><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-history"/></svg></span><div><h3>Cada operación conserva sus condiciones</h3><p>Queda guardado qué regla y qué porcentaje se usaron en su cálculo.</p></div></li>
+        <li class="reveal"><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-return"/></svg></span><div><h3>Las devoluciones generan sus ajustes</h3><p>Se reflejan como ajustes identificados, sin rehacer las cuentas a mano.</p></div></li>
+        <li class="reveal"><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-lock"/></svg></span><div><h3>Las liquidaciones cerradas conservan su historial</h3><p>Lo que ya se cerró se mantiene tal como se cerró.</p></div></li>
+        <li class="reveal"><span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-link"/></svg></span><div><h3>Los justificantes se vinculan a cada pago</h3><p>Cada pago registrado tiene su documento asociado.</p></div></li>
+      </ul>
+    </div>
+
+    <div class="versions">
+      <p class="versions-title reveal">Ejemplo: un cambio de condiciones sin tocar el pasado</p>
+      <div class="version reveal">
+        <div class="version-top"><b>Acuerdo Norte Studio · v1</b><span class="v-tag">Hasta 31/08</span></div>
+        <p>Camisetas: 6 % para Blazmed</p>
+        <div class="op"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pedido #1012 (24/08) se calculó con la v1 y así se mantiene.</span></div>
+      </div>
+      <div class="version reveal d1">
+        <div class="version-top"><b>Acuerdo Norte Studio · v2</b><span class="v-tag cur">Desde 01/09</span></div>
+        <p>Camisetas: 8 % para Blazmed</p>
+        <div class="op"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg><span>Pedido #1048 (05/09) se calcula con la v2.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 7. ALCANCE INCLUIDO ======================= -->
+<!-- ALCANCE: editar esta lista si cambia lo incluido. No añadir funciones no acordadas. -->
+<section class="s-dark" id="alcance" aria-labelledby="t-alcance">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">06</span> Alcance incluido</p>
+    <h2 class="display h-section reveal" id="t-alcance">Lo que incluye la propuesta<span class="dot">.</span></h2>
+
+    <ul class="scope">
+      <li class="reveal"><span>Diseño personalizado y adaptable a móvil</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Acceso de administración y acceso privado por cliente</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Alta y gestión de clientes</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Conexión de varias tiendas Shopify</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Sincronización de los datos necesarios para ventas y repartos</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Panel global y panel individual por marca</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Reglas de reparto por marca, categoría y producto</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Historial de condiciones y desglose de cálculos</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Revisión y cierre de liquidaciones</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Registro de pagos y subida de justificantes</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Subida y descarga de contratos</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+      <li class="reveal"><span>Puesta en marcha y formación de uso</span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></li>
+    </ul>
+
+    <div class="scope-notes">
+      <div class="scope-note reveal">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>Para que quede claro</h3>
+        <p>La subida de contratos no incluye firma electrónica. El registro de pagos no ejecuta transferencias: los pagos se realizan fuera de la plataforma y aquí se registran con su justificante.</p>
+      </div>
+      <div class="scope-note reveal d1">
+        <h3><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg>Fuera de esta propuesta</h3>
+        <p>Si en el futuro se necesitan, se presupuestarán por separado.</p>
+        <ul class="out-list">
+          <li>Gestión del taller y producción</li>
+          <li>Logística y seguimiento de envíos</li>
+          <li>Transferencias automáticas</li>
+          <li>Facturación fiscal</li>
+          <li>Firma electrónica</li>
+          <li>Aplicación móvil nativa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 8. CÓMO LO CONSTRUIREMOS ======================= -->
+<section class="s-light" id="proceso" aria-labelledby="t-proceso">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">07</span> Cómo lo construiremos</p>
+    <h2 class="display h-section reveal" id="t-proceso">Cuatro etapas, paso a paso<span class="dot">.</span></h2>
+
+    <ol class="steps">
+      <li class="step reveal"><span class="n">01</span><h3>Definición de acuerdos, reglas y alcance</h3><p>Revisamos contigo cómo son tus acuerdos, sobre qué base se aplica cada porcentaje y qué necesita ver cada parte.</p></li>
+      <li class="step reveal d1"><span class="n">02</span><h3>Validación de la conexión con una tienda piloto</h3><p>Conectamos una primera tienda para confirmar el procedimiento de autorización, los datos disponibles y su sincronización.</p></li>
+      <li class="step reveal d2"><span class="n">03</span><h3>Desarrollo de paneles, cálculos y documentación</h3><p>Construimos los dos espacios, las reglas de reparto, las liquidaciones y la gestión de contratos y justificantes.</p></li>
+      <li class="step reveal d3"><span class="n">04</span><h3>Pruebas conjuntas, entrega y formación</h3><p>Revisamos los cálculos contigo con casos reales, entregamos la plataforma y te enseñamos a usarla.</p></li>
+    </ol>
+
+    <p class="calendar reveal"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>El calendario se concretará al validar el alcance y la integración.</p>
+
+    <div class="connect-box reveal">
+      <span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-store"/></svg></span>
+      <div>
+        <h3>Sobre la conexión con Shopify</h3>
+        <p>Cada tienda debe autorizar la conexión desde su propia cuenta de Shopify. Al inicio del proyecto validaremos con la tienda piloto el procedimiento definitivo de conexión y cualquier revisión que Shopify pueda requerir.</p>
+        <p>La plataforma funcionará con sincronización automática. La frecuencia de actualización y el histórico de ventas disponible se confirmarán en esa misma validación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 9. INVERSIÓN ======================= -->
+<!-- PRECIO: editar aquí el importe y las condiciones económicas. -->
+<section class="s-dark" id="inversion" aria-labelledby="t-inversion">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">08</span> Inversión</p>
+    <h2 class="sr-only" id="t-inversion">Inversión</h2>
+    <div class="invest">
+      <div class="price reveal">
+        <div class="amount"><span class="display">4.500 €</span><span class="vat">+ IVA</span></div>
+        <p>Diseño, desarrollo e implantación de la plataforma según el alcance acordado.</p>
+        <div class="btn-row">
+          <a class="btn btn-solid" href="#alcance">Ver qué incluye</a>
+          <a class="btn btn-ghost" href="#garantia">Ver garantía</a>
+        </div>
+      </div>
+      <div class="invest-notes">
+        <div class="inote reveal">
+          <span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-server"/></svg></span>
+          <div><h3>Alojamiento, dominio y servicios externos</h3><p>Se contratan por separado. Se prevé el alojamiento en una cuenta propia de Blazmed, y su configuración se validará según las necesidades del proyecto.</p></div>
+        </div>
+        <div class="inote reveal d1">
+          <span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-calendar"/></svg></span>
+          <div><h3>Sin cuota mensual incluida</h3><p>Esta propuesta no incluye una cuota mensual de mantenimiento.</p></div>
+        </div>
+        <div class="inote reveal d2">
+          <span class="ic-box" aria-hidden="true"><svg class="ic"><use href="#i-support"/></svg></span>
+          <div><h3>Soporte posterior bajo presupuesto</h3><p>Tras la garantía, cualquier intervención se presupuesta antes de empezar.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 10. GARANTÍA Y AMPLIACIONES ======================= -->
+<!-- GARANTÍA: editar aquí el plazo, la tarifa y las condiciones. -->
+<section class="s-bone" id="garantia" aria-labelledby="t-garantia">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">09</span> Garantía y ampliaciones</p>
+    <h2 class="display h-section reveal" id="t-garantia">Reglas claras también después de la entrega<span class="dot">.</span></h2>
+
+    <div class="warranty">
+      <div class="w-text reveal">
+        <p class="first">Garantía de funcionamiento: 3 meses desde la entrega final.</p>
+        <p>Durante este periodo se corregirán, sin coste adicional, los errores de programación, fallos de funcionamiento y lógicas incompletas respecto al alcance acordado que se comuniquen dentro del plazo.</p>
+        <p>Los errores comunicados durante la garantía seguirán cubiertos aunque su resolución se complete después de los tres meses.</p>
+        <p>Las nuevas funcionalidades, integraciones, herramientas o modificaciones del funcionamiento acordado se presupuestarán por separado, tanto durante el desarrollo como después de la entrega.</p>
+        <div class="rate">
+          <b>45 € + IVA por hora</b>
+          <span>Siempre con presupuesto previo y aprobación de Blazmed antes de comenzar.</span>
+        </div>
+        <p>Finalizado el periodo de garantía, las intervenciones de soporte y mantenimiento se presupuestarán a esa misma tarifa.</p>
+        <p class="muted">Las adaptaciones por cambios posteriores de Shopify u otros servicios externos y las incidencias causadas por modificaciones de terceros se evaluarán y presupuestarán por separado.</p>
+      </div>
+
+      <div class="examples">
+        <article class="ex reveal">
+          <span class="k">Ejemplo 1</span>
+          <h3>“Un porcentaje acordado se calcula mal”</h3>
+          <span class="verdict in"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Corrección incluida en garantía</span>
+          <p>Es un fallo respecto a lo acordado: se corrige sin coste adicional.</p>
+        </article>
+        <article class="ex reveal d1">
+          <span class="k">Ejemplo 2</span>
+          <h3>“Se solicita una nueva modalidad de reparto”</h3>
+          <span class="verdict extra"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>Ampliación con presupuesto previo</span>
+          <p>Es una función nueva: se presupuesta y empieza solo con tu aprobación.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 11. PREGUNTAS FRECUENTES ======================= -->
+<section class="s-light" id="preguntas" aria-labelledby="t-faq">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">10</span> Preguntas frecuentes</p>
+    <h2 class="display h-section reveal" id="t-faq">Respuestas rápidas<span class="dot">.</span></h2>
+
+    <div class="faq-tools no-print">
+      <button class="btn btn-ghost btn-sm" type="button" id="faq-all" aria-controls="faq-list">Desplegar todas</button>
+    </div>
+
+    <div class="faq" id="faq-list">
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa1" id="fq1">¿Por qué esta plataforma si ya usamos Shopify?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa1" role="region" aria-labelledby="fq1" hidden><p>Shopify seguirá siendo la tienda de cada marca. La plataforma usa esos datos para aplicar los acuerdos de Blazmed, calcular los repartos, preparar las liquidaciones y dar a cada cliente un espacio donde consultarlas.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa2" id="fq2">¿Cada cliente podrá ver información de otras marcas?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa2" role="region" aria-labelledby="fq2" hidden><p>No. Cada acceso estará limitado a la información autorizada de su marca.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa3" id="fq3">¿Podemos aplicar porcentajes diferentes dentro de una marca?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa3" role="region" aria-labelledby="fq3" hidden><p>Sí. Podrás definir porcentajes por marca, por categoría y por producto; por ejemplo, un 3 % en complementos, un 8 % en camisetas y un 10 % en gorros dentro de la misma tienda.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">¿Qué ocurre cuando cambian las condiciones?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa4" role="region" aria-labelledby="fq4" hidden><p>Las nuevas condiciones se registran con su fecha de aplicación. Las operaciones anteriores conservan las condiciones con las que se calcularon y las liquidaciones cerradas mantienen su historial.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa5" id="fq5">¿La plataforma realiza los pagos?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa5" role="region" aria-labelledby="fq5" hidden><p>No. Permite registrar los pagos y adjuntar sus justificantes; las transferencias se realizan fuera de la plataforma.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa6" id="fq6">¿Qué pasa si queremos añadir funciones?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa6" role="region" aria-labelledby="fq6" hidden><p>Se presupuestan por separado a 45 € + IVA por hora, siempre con presupuesto previo y tu aprobación antes de comenzar, tanto durante el desarrollo como después de la entrega.</p></div>
+      </div>
+      <div class="faq-item">
+        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa7" id="fq7">¿Qué ocurre después de los tres meses de garantía?<span class="pm" aria-hidden="true"><svg class="ic"><use href="#i-plus"/></svg></span></button></h3>
+        <div class="faq-a" id="fa7" role="region" aria-labelledby="fq7" hidden><p>El soporte y el mantenimiento se presupuestan a la misma tarifa de 45 € + IVA por hora. Los errores comunicados dentro de la garantía siguen cubiertos aunque su resolución termine después.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 12. CIERRE ======================= -->
+<!-- CONTACTO: no hay enlace de contacto confirmado. Si se añade uno (email, WhatsApp...), sustituir el botón #cta-btn por un enlace real. -->
+<section class="s-dark closing" id="cierre" aria-labelledby="t-cierre">
+  <div class="wrap">
+    <p class="eyebrow reveal"><span class="num">11</span> Siguiente paso</p>
+    <h2 class="display big reveal" id="t-cierre">Una estructura propia para crecer<span class="dot">.</span></h2>
+    <div class="closing-grid">
+      <div class="reveal">
+        <p>Blazmed ayuda a crear y hacer crecer marcas. Esta plataforma quiere dar a ese crecimiento una base propia: <strong>cada acuerdo en su sitio, cada cifra explicada y cada cliente con acceso claro a sus cuentas.</strong></p>
+        <p>Nos encantaría construirla contigo.</p>
+        <p class="sign">Irene y María<span>IsART</span></p>
+      </div>
+      <div class="cta-box reveal d1">
+        <button class="btn btn-solid" type="button" id="cta-btn" aria-expanded="false" aria-controls="cta-msg">Hablemos del siguiente paso <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="cta-msg" id="cta-msg" role="status" hidden>
+          <svg class="ic" aria-hidden="true"><use href="#i-message"/></svg>
+          <span>Para avanzar, responde a Irene y María en la conversación donde has recibido esta propuesta. Revisaremos contigo el alcance y los próximos pasos.</span>
+        </div>
+        <p class="cta-hint">Este botón no envía ningún formulario ni registra datos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Propuesta preparada por Irene y María (IsART) para Cristian Blazmed · Octubre de 2026. Documento comercial: no es una página oficial de Blazmed. «Blazmed Connect» es un nombre de trabajo. Las vistas, marcas y cifras mostradas son ejemplos ilustrativos.</p>
+    <button class="btn btn-ghost btn-sm no-print" type="button" id="print-btn"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg>Guardar como PDF</button>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var doc = document.documentElement;
+  doc.classList.add("js");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Progreso de lectura ---------- */
+  var bar = document.getElementById("progressBar");
+  var ticking = false;
+  function updateProgress(){
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.transform = "scaleX(" + p + ")";
+    ticking = false;
+  }
+  window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(updateProgress); } }, {passive:true});
+  window.addEventListener("resize", updateProgress);
+  updateProgress();
+
+  /* ---------- Menú móvil ---------- */
+  var menuBtn = document.querySelector(".menu-btn");
+  var menu = document.getElementById("menu");
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Cerrar el índice de la propuesta" : "Abrir el índice de la propuesta");
+    document.body.style.overflow = open ? "hidden" : "";
+    if(open){ var first = menu.querySelector("a"); if(first) first.focus(); }
+  }
+  menuBtn.addEventListener("click", function(){ setMenu(menuBtn.getAttribute("aria-expanded") !== "true"); });
+  menu.addEventListener("click", function(e){ if(e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && menu.classList.contains("open")){ setMenu(false); menuBtn.focus(); }
+  });
+  window.addEventListener("resize", function(){ if(window.innerWidth >= 1180 && menu.classList.contains("open")) setMenu(false); });
+
+  /* ---------- Sección activa en la navegación ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-desktop a"));
+  if("IntersectionObserver" in window){
+    var ids = navLinks.map(function(a){ return a.getAttribute("href").slice(1); });
+    var sectionObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          navLinks.forEach(function(a){
+            if(a.getAttribute("href") === "#" + en.target.id) a.setAttribute("aria-current","true");
+            else a.removeAttribute("aria-current");
+          });
+        }
+      });
+    }, {rootMargin:"-45% 0px -50% 0px"});
+    ids.forEach(function(id){ var s = document.getElementById(id); if(s) sectionObs.observe(s); });
+  }
+
+  /* ---------- Aparición suave ---------- */
+  var reveals = document.querySelectorAll(".reveal");
+  if(reduceMotion || !("IntersectionObserver" in window)){
+    reveals.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var revObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("in"); revObs.unobserve(en.target); } });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.08});
+    reveals.forEach(function(el){ revObs.observe(el); });
+  }
+
+  /* ---------- Pestañas (teclado: flechas, Inicio, Fin) ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function selectTab(tab, focus){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if(focus) tab.focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ selectTab(t, false); });
+    t.addEventListener("keydown", function(e){
+      var n = null;
+      if(e.key === "ArrowRight" || e.key === "ArrowDown") n = tabs[(i + 1) % tabs.length];
+      else if(e.key === "ArrowLeft" || e.key === "ArrowUp") n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if(e.key === "Home") n = tabs[0];
+      else if(e.key === "End") n = tabs[tabs.length - 1];
+      if(n){ e.preventDefault(); selectTab(n, true); }
+    });
+  });
+
+  /* ---------- Simulador de reparto (importes en céntimos para evitar errores de redondeo) ---------- */
+  var MAX_CENTS = 1000000000; // 10.000.000 €
+  function groupThousands(intStr){ return intStr.replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function formatNumber(cents){
+    var neg = cents < 0, abs = Math.abs(cents);
+    var euros = Math.floor(abs / 100), dec = abs % 100;
+    var s = groupThousands(String(euros)) + (dec ? "," + (dec < 10 ? "0" : "") + dec : "");
+    return (neg ? "−" : "") + s;
+  }
+  function formatEUR(cents){ return formatNumber(cents) + " €"; }
+  function formatPct(value){ return value.toFixed(2).replace(".", ",") + " %"; }
+
+  // Acepta formato español: 1.000 · 1000 · 1.250,50 · 1250,5 (y 12.5 como decimal)
+  function parseES(raw){
+    var s = String(raw).replace(/[\s €]/g, "");
+    if(s === "") return {error:"Introduce un importe (puede ser 0)."};
+    if(/-/.test(s)) return {error:"El importe no puede ser negativo."};
+    if(!/^[0-9.,]+$/.test(s)) return {error:"Usa solo números, por ejemplo 1.250,50."};
+    var value;
+    if(s.indexOf(",") !== -1){
+      var parts = s.split(",");
+      if(parts.length !== 2) return {error:"Usa una sola coma para los decimales."};
+      var intPart = parts[0] === "" ? "0" : parts[0], dec = parts[1];
+      if(!/^\d{1,2}$/.test(dec)) return {error:"Indica como máximo dos decimales."};
+      if(!/^(\d+|\d{1,3}(\.\d{3})+)$/.test(intPart)) return {error:"Revisa los separadores de miles."};
+      value = Number(intPart.replace(/\./g, "") + "." + dec);
+    } else if(s.indexOf(".") !== -1){
+      if(/^\d{1,3}(\.\d{3})+$/.test(s)) value = Number(s.replace(/\./g, ""));
+      else if(/^\d+\.\d{1,2}$/.test(s)) value = Number(s);
+      else return {error:"Revisa el formato, por ejemplo 1.250,50."};
+    } else {
+      value = Number(s);
+    }
+    if(!isFinite(value)) return {error:"Importe no válido."};
+    var cents = Math.round(value * 100);
+    if(cents > MAX_CENTS) return {error:"Para el ejemplo, usa un importe de hasta 10.000.000 €."};
+    return {cents:cents};
+  }
+
+  var rows = Array.prototype.slice.call(document.querySelectorAll(".sim-row"));
+  var tBase = document.getElementById("t-base"), tBz = document.getElementById("t-bz"), tMk = document.getElementById("t-mk");
+  var splitBz = document.getElementById("split-bz"), pctBz = document.getElementById("pct-bz"), pctMk = document.getElementById("pct-mk");
+  var simMsg = document.getElementById("sim-msg");
+
+  function calc(){
+    var totBase = 0, totBz = 0, totMk = 0, invalid = 0;
+    rows.forEach(function(row){
+      var key = row.getAttribute("data-key");
+      var pct = Number(row.getAttribute("data-pct"));
+      var input = document.getElementById("in-" + key);
+      var err = document.getElementById("er-" + key);
+      var bz = document.getElementById("bz-" + key), mk = document.getElementById("mk-" + key);
+      var r = parseES(input.value);
+      var box = input.closest(".money");
+      if(r.error){
+        invalid++;
+        input.setAttribute("aria-invalid","true"); box.classList.add("invalid");
+        if(err.textContent !== r.error) err.textContent = r.error;
+        bz.textContent = "—"; mk.textContent = "—";
+        return;
+      }
+      input.removeAttribute("aria-invalid"); box.classList.remove("invalid"); err.textContent = "";
+      var bzC = Math.round(r.cents * pct / 100);
+      var mkC = r.cents - bzC;
+      bz.textContent = formatEUR(bzC); mk.textContent = formatEUR(mkC);
+      totBase += r.cents; totBz += bzC; totMk += mkC;
+    });
+    if(invalid){
+      tBase.textContent = "—"; tBz.textContent = "—"; tMk.textContent = "—";
+      simMsg.textContent = "Corrige los importes marcados para ver los totales.";
+      splitBz.style.width = "0%"; pctBz.textContent = "—"; pctMk.textContent = "—";
+      return;
+    }
+    simMsg.textContent = "";
+    tBase.textContent = formatEUR(totBase); tBz.textContent = formatEUR(totBz); tMk.textContent = formatEUR(totMk);
+    var share = totBase > 0 ? (totBz / totBase) * 100 : 0;
+    splitBz.style.width = share.toFixed(2) + "%";
+    pctBz.textContent = totBase > 0 ? formatPct(share) : "—";
+    pctMk.textContent = totBase > 0 ? formatPct(100 - Number(share.toFixed(2))) : "—";
+  }
+
+  rows.forEach(function(row){
+    var input = document.getElementById("in-" + row.getAttribute("data-key"));
+    input.addEventListener("input", calc);
+    input.addEventListener("blur", function(){
+      var r = parseES(input.value);
+      if(!r.error) input.value = formatNumber(r.cents);
+    });
+  });
+  document.getElementById("sim-reset").addEventListener("click", function(){
+    rows.forEach(function(row){
+      var input = document.getElementById("in-" + row.getAttribute("data-key"));
+      input.value = input.getAttribute("data-default");
+    });
+    calc();
+  });
+  calc();
+
+  /* ---------- Preguntas frecuentes ---------- */
+  var faqBtns = Array.prototype.slice.call(document.querySelectorAll(".faq-q"));
+  var faqAll = document.getElementById("faq-all");
+  function setFaq(btn, open){
+    btn.setAttribute("aria-expanded", String(open));
+    document.getElementById(btn.getAttribute("aria-controls")).hidden = !open;
+  }
+  function syncFaqAll(){
+    var allOpen = faqBtns.every(function(b){ return b.getAttribute("aria-expanded") === "true"; });
+    faqAll.textContent = allOpen ? "Plegar todas" : "Desplegar todas";
+  }
+  faqBtns.forEach(function(b){
+    b.addEventListener("click", function(){ setFaq(b, b.getAttribute("aria-expanded") !== "true"); syncFaqAll(); });
+  });
+  faqAll.addEventListener("click", function(){
+    var allOpen = faqBtns.every(function(b){ return b.getAttribute("aria-expanded") === "true"; });
+    faqBtns.forEach(function(b){ setFaq(b, !allOpen); });
+    syncFaqAll();
+  });
+
+  /* ---------- CTA: muestra el mensaje (no envía nada) ---------- */
+  var ctaBtn = document.getElementById("cta-btn"), ctaMsg = document.getElementById("cta-msg");
+  ctaBtn.addEventListener("click", function(){
+    var open = ctaMsg.hidden;
+    ctaMsg.hidden = !open;
+    ctaBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  /* ---------- Impresión / PDF ---------- */
+  document.getElementById("print-btn").addEventListener("click", function(){ window.print(); });
+  window.addEventListener("beforeprint", function(){ reveals.forEach(function(el){ el.classList.add("in"); }); });
+})();
+</script>
+</body>
+</html>
