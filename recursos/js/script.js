@@ -7,12 +7,13 @@
   var VIDEO_MOBILE = "https://pub-6ae185c6fb554bb99ca07e1a58b735dc.r2.dev/video%20web%20arto/arto%20web%20vertical.mp4";
   var MOBILE_BREAKPOINT = "(max-width: 720px)";
 
-  // Recurso que se descarga al enviar el email. Vive en este mismo repo
-  // (recursos/files/recurso-actual.pdf) en vez de en Cloudflare R2 — para
-  // cambiarlo en el futuro, sustituye ese archivo por el nuevo manteniendo
-  // el mismo nombre (puede hacerse directamente desde GitHub, sin tocar
-  // este código ni depender de Claude Code).
-  var RESOURCE_URL = "files/recurso-actual.pdf";
+  // Recurso que se abre al enviar el email. Vive en Google Drive (en vez de
+  // un archivo dentro del repo) para poder cambiarlo sin depender de subir
+  // archivos pesados aquí — para cambiarlo, comparte el nuevo archivo con
+  // acceso "cualquiera con el enlace puede ver" y sustituye el ID de abajo
+  // por el suyo (es la parte de la URL de Drive entre "/d/" y "/view").
+  var RESOURCE_FILE_ID = "1eEpzfNBJ5v0mEQE__wu2XcCaKogSV8r6";
+  var RESOURCE_URL = "https://drive.google.com/uc?export=download&id=" + RESOURCE_FILE_ID;
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
