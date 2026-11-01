@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="color-scheme" content="light">
+<title>Propuesta YouTax</title>
+<meta name="description" content="Propuesta de plataforma para YouTax, preparada por Irene y María, de Las Chicas de IsART.">
+<link rel="icon" href="data:,">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --navy:#0C2D4C; --navy-deep:#082038; --petrol:#0D4A58;
+  --mint:#16D3A6; --mint-soft:#E2F8F2; --mint-ink:#00725C;
+  --blue:#0B4FAE; --blue-soft:#E6EEFA;
+  --cream:#F6F2E7; --paper:#FFFFFF; --mist:#F3F7F9;
+  --ink:#10283F; --muted:#4C6175; --line:#D9E3EA;
+  --red:#BE2F25; --red-soft:#FCEBE9; --amber:#8A5A00; --amber-soft:#FBF0D9;
+  --on-dark:#FFFFFF; --on-dark-muted:#BFD3DE; --line-dark:rgba(255,255,255,.16);
+  --radius:18px; --gutter:clamp(16px,4vw,40px);
+  --font:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,dl,dd,table{margin:0;padding:0}
+ul{list-style:none}
+h1,h2,h3{font-weight:500;line-height:1.14;letter-spacing:-.015em;text-wrap:balance}
+a{color:inherit}
+svg{display:block}
+.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--gutter)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.s-dark :focus-visible,.hero :focus-visible{outline-color:var(--mint)}
+.skip{position:absolute;left:12px;top:-60px;background:var(--navy);color:#fff;padding:10px 14px;border-radius:10px;z-index:60}
+.skip:focus{top:12px}
+
+/* Cabecera */
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.top img{width:172px;height:auto}
+.top nav{margin-left:auto}
+.top nav ul{display:flex;gap:22px}
+.top nav a{text-decoration:none;font-size:.86rem;font-weight:500;color:var(--ink)}
+.top nav a:hover{color:var(--mint-ink)}
+
+/* Portada */
+.hero{background:linear-gradient(120deg,var(--navy-deep) 0%,var(--navy) 46%,var(--petrol) 100%);color:var(--on-dark);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 58%,rgba(22,211,166,.07) 58%,rgba(22,211,166,.07) 74%,transparent 74%),linear-gradient(65deg,transparent 40%,rgba(255,255,255,.025) 40%,rgba(255,255,255,.025) 60%,transparent 60%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,72px);align-items:center;padding-top:clamp(48px,8vw,88px);padding-bottom:clamp(48px,8vw,88px)}
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mint-ink)}
+.hero .eyebrow,.s-dark .eyebrow{color:var(--mint)}
+h1{font-size:clamp(2.1rem,4.6vw,3.3rem);margin-top:14px}
+h1 em{font-style:italic;color:var(--mint)}
+.hero .lead{margin-top:20px;font-size:1.1rem;color:var(--on-dark-muted);max-width:50ch}
+.byline{margin-top:28px;font-size:.86rem;color:var(--on-dark-muted)}
+.stack{display:grid;gap:14px;justify-items:end}
+.fcard{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:20px 22px;box-shadow:0 22px 50px rgba(3,18,33,.38);width:100%;max-width:400px}
+.fcard.small{max-width:300px;margin-right:clamp(0px,4vw,40px)}
+.fcard h2{font-size:.95rem;font-weight:600;letter-spacing:0}
+.note-dark{font-size:.75rem;color:var(--on-dark-muted);text-align:right;width:100%}
+
+/* Secciones */
+section{padding:clamp(56px,8vw,92px) 0}
+.s-mist{background:var(--mist)}
+.s-cream{background:var(--cream)}
+.s-dark{background:linear-gradient(130deg,var(--navy-deep),var(--navy) 60%,var(--petrol));color:var(--on-dark)}
+.head{max-width:680px;margin-bottom:clamp(28px,4vw,44px)}
+.head h2{font-size:clamp(1.7rem,3.2vw,2.35rem);margin-top:10px}
+.head p:not(.eyebrow){margin-top:14px;color:var(--muted);font-size:1.05rem}
+
+/* Qué resolverá */
+.resolve{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.7fr);gap:clamp(28px,5vw,64px);align-items:start}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.row h3{font-size:1rem;font-weight:600}
+.row p{font-size:.95rem}
+.row .now{color:var(--muted)}
+.row .then{font-weight:500}
+.rowhead{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);gap:20px;padding-bottom:10px;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rowhead span:last-child{color:var(--mint-ink)}
+blockquote{margin:0;padding:24px;background:var(--navy);color:var(--on-dark);border-radius:var(--radius)}
+blockquote p{font-size:1.25rem;font-style:italic;font-weight:500;line-height:1.35}
+blockquote footer{margin-top:12px;font-size:.82rem;color:var(--on-dark-muted)}
+
+/* Pestañas */
+.tablist{display:none}
+.js .tablist{display:inline-flex;gap:4px;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:999px;margin-bottom:24px;max-width:100%}
+.tablist button{font:inherit;font-size:.92rem;font-weight:600;color:var(--ink);background:none;border:0;border-radius:999px;padding:10px 20px;cursor:pointer;white-space:nowrap}
+.tablist button:hover{background:var(--mist)}
+.tablist button[aria-selected="true"]{background:var(--navy);color:#fff}
+.panel{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(24px,4vw,48px);align-items:start}
+.panel[hidden]{display:none}
+html:not(.js) .panel+.panel{margin-top:48px}
+.panel h3{font-size:1.3rem}
+.panel .who{margin-top:8px;color:var(--muted);font-size:.95rem}
+.checks{margin-top:18px;display:grid;gap:11px}
+.checks li{display:flex;gap:10px;font-size:.95rem;line-height:1.45}
+.checks .icon{width:18px;height:18px;color:var(--mint-ink);margin-top:2px}
+.aside-note{margin-top:18px;padding:12px 14px;border-radius:12px;background:var(--mint-soft);font-size:.87rem;line-height:1.45}
+.disclaimer{margin-top:18px;font-size:.8rem;color:var(--muted)}
+
+/* Maquetas */
+.app{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 44px rgba(12,45,76,.1);overflow:hidden;font-size:.84rem;line-height:1.4}
+.app-grid{display:grid;grid-template-columns:158px minmax(0,1fr)}
+.side{background:var(--navy);color:var(--on-dark-muted);padding:16px 10px}
+.side b{display:block;color:#fff;font-size:.8rem;font-weight:600;padding:0 10px 12px;line-height:1.3}
+.side ul{display:grid;gap:2px}
+.side li{padding:7px 10px;border-radius:9px;font-weight:500;font-size:.8rem}
+.side li.on{background:rgba(22,211,166,.18);color:#fff}
+.main{padding:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
+.main h4{margin:0;font-size:.95rem;font-weight:600}
+.sub{color:var(--muted);font-size:.76rem}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile{padding:11px 12px;border-radius:12px;background:var(--mist)}
+.tile span{display:block;font-size:.74rem;color:var(--muted)}
+.tile b{display:block;font-size:1.02rem;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.tile.pay{background:var(--red-soft)}.tile.pay b{color:var(--red)}
+.tile.good{background:var(--mint-soft)}.tile.good b{color:var(--mint-ink)}
+.scroll{overflow-x:auto}
+.mini{width:100%;border-collapse:collapse;font-size:.8rem}
+.mini th{text-align:left;font-weight:600;color:var(--muted);font-size:.72rem;padding:0 8px 7px 0;white-space:nowrap}
+.mini td{padding:8px 8px 8px 0;border-top:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mini .c{text-align:center}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:600}
+.pill.ok{background:var(--mint-soft);color:var(--mint-ink)}
+.pill.wait{background:var(--amber-soft);color:var(--amber)}
+.pill.type{background:var(--blue-soft);color:var(--blue)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid var(--line);vertical-align:-1px}
+.dot.on{background:var(--mint-ink);border-color:var(--mint-ink)}
+.bubbles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bubble{border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.bubble b{display:block;font-weight:600;margin-bottom:7px}
+.fake{display:inline-block;padding:5px 11px;border-radius:999px;background:var(--mint);color:var(--navy);font-weight:600;font-size:.75rem;margin:0 4px 4px 0}
+.fake.alt{background:var(--blue-soft);color:var(--blue)}
+.phone{width:min(100%,300px);margin:0 auto;background:var(--navy-deep);border-radius:34px;padding:10px;box-shadow:0 20px 44px rgba(12,45,76,.22)}
+.screen{background:var(--paper);border-radius:25px;overflow:hidden;font-size:.84rem;line-height:1.4}
+.screen header{background:var(--navy);color:#fff;padding:18px 18px 16px}
+.screen header b{display:block;font-size:1.05rem;font-weight:600}
+.screen header span{font-size:.74rem;color:var(--on-dark-muted)}
+.screen .body{padding:14px;display:grid;gap:12px}
+.card{border:1px solid var(--line);border-radius:14px;padding:12px}
+.card h4{margin:0 0 6px;font-size:.84rem;font-weight:600}
+.big{font-size:1.3rem;font-weight:700;color:var(--mint-ink)}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line)}
+.line:first-of-type{border-top:0}
+.line .icon{width:16px;height:16px;color:var(--blue)}
+
+/* Qué incluye */
+.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,32px) clamp(20px,3vw,36px)}
+.mod{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 14px}
+.mod .ic{width:40px;height:40px;border-radius:11px;background:var(--mint-soft);color:var(--mint-ink);display:grid;place-items:center;grid-row:span 2}
+.mod h3{font-size:1rem;font-weight:600;line-height:1.3}
+.mod p{margin-top:4px;font-size:.92rem;color:var(--muted);line-height:1.5}
+.tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:.7rem;font-weight:600;vertical-align:1px;white-space:nowrap}
+.origin{margin-top:26px;font-size:.87rem;color:var(--muted)}
+.out{margin-top:36px;padding:22px 24px;background:var(--cream);border-radius:var(--radius)}
+.out h3{font-size:1.02rem;font-weight:600}
+.out p{margin-top:6px;font-size:.92rem;color:var(--muted)}
+.out ul{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px;font-size:.93rem}
+.out li{display:flex;gap:8px;line-height:1.45}
+.out li::before{content:"–";color:var(--muted)}
+
+/* Proceso */
+.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:f}
+.phase{counter-increment:f;border-top:3px solid var(--mint);padding-top:14px}
+.phase::before{content:counter(f);font-size:.8rem;font-weight:700;color:var(--mint-ink)}
+.phase h3{font-size:1.02rem;font-weight:600;margin-top:2px}
+.phase p{margin-top:6px;font-size:.9rem;color:var(--muted);line-height:1.5}
+.facts{margin-top:clamp(28px,4vw,44px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.fact{background:var(--paper);border-radius:var(--radius);padding:22px 24px}
+.fact b{display:block;font-size:1.3rem;font-weight:600;color:var(--navy);line-height:1.25}
+.fact p{margin-top:8px;font-size:.94rem;color:var(--muted)}
+
+/* Condiciones */
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,5vw,64px)}
+.term{padding:18px 0;border-top:1px solid var(--line)}
+.term h3{font-size:1rem;font-weight:600}
+.term p{margin-top:5px;font-size:.93rem;color:var(--muted)}
+.term p+p{margin-top:8px}
+.support{margin-top:32px}
+.support h3{font-size:1.1rem;margin-bottom:12px}
+.st{width:100%;border-collapse:collapse;font-size:.93rem}
+.st th{text-align:left;font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:0 16px 8px 0}
+.st td{vertical-align:top;padding:12px 16px 12px 0;border-top:1px solid var(--line);min-width:150px}
+.st td:first-child{font-weight:600}
+
+/* Inversión */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.plan{background:rgba(255,255,255,.07);border:1px solid var(--line-dark);border-radius:var(--radius);padding:clamp(22px,3vw,30px)}
+.plan h3{font-size:1.05rem;font-weight:600}
+.price{margin-top:12px;font-size:clamp(2rem,4vw,2.7rem);font-weight:600;line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--mint)}
+.price small{font-size:.95rem;font-weight:500;letter-spacing:0;color:var(--on-dark)}
+.plan>p:not(.price){margin-top:12px;font-size:.96rem;color:var(--on-dark-muted)}
+.calc{margin-top:16px;border-top:1px solid var(--line-dark)}
+.calc div{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid var(--line-dark);font-size:.92rem;font-variant-numeric:tabular-nums}
+.calc dt{color:var(--on-dark-muted)}
+.calc dd{white-space:nowrap}
+.calc .tot dt,.calc .tot dd{color:#fff;font-weight:600}
+.next{margin-top:clamp(28px,4vw,40px);max-width:64ch}
+.next h3{font-size:1.2rem}
+.next p{margin-top:8px;color:var(--on-dark-muted)}
+
+footer.foot{background:var(--navy-deep);color:var(--on-dark-muted);font-size:.84rem}
+footer.foot .wrap{padding-top:20px;padding-bottom:20px}
+
+@media (max-width:980px){
+  .top nav{display:none}
+  .top .wrap{justify-content:center}
+  .hero .wrap,.resolve,.panel{grid-template-columns:minmax(0,1fr)}
+  .stack{justify-items:start}
+  .fcard.small{margin:0}
+  .note-dark{text-align:left}
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mods{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:680px){
+  .row,.rowhead{grid-template-columns:minmax(0,1fr)}
+  .row{gap:5px}
+  .rowhead{display:none}
+  .row .then::before{content:"Con la plataforma: ";color:var(--mint-ink);font-weight:600}
+  .row .now::before{content:"Hoy: ";font-weight:600}
+  .js .tablist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;border-radius:16px}
+  .tablist button{padding:10px 6px;font-size:.82rem;white-space:normal;border-radius:12px}
+  .app-grid{grid-template-columns:minmax(0,1fr)}
+  .side{padding:12px}
+  .side b{padding:0 0 8px}
+  .side ul{display:flex;overflow-x:auto;gap:4px}
+  .side li{white-space:nowrap}
+  .tiles{grid-template-columns:minmax(0,1fr)}
+  .bubbles,.mods,.out ul,.facts,.terms,.plans,.phases{grid-template-columns:minmax(0,1fr)}
+  .st,.st tbody,.st tr,.st td{display:block;width:100%}
+  .st thead{display:none}
+  .st tr{padding:12px 0;border-top:1px solid var(--line)}
+  .st td{border:0;padding:2px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{.top{position:static}.js .panel[hidden]{display:grid!important}.tablist{display:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><rect x="3" y="4" width="14" height="11" rx="2"/><rect x="14" y="9" width="7" height="11" rx="2"/><path d="M3 19h9"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c.6-4 3-6 6-6s5.400 2 6 6"/><path d="M16 5a3.500 3.500 0 010 6.500M18 14.300c1.700.8 2.700 2.800 3 5.700"/></symbol>
+  <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.500 4-7 8-7s7.200 2.500 8 7"/></symbol>
+  <symbol id="i-case" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 12h18"/></symbol>
+  <symbol id="i-bill" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 3h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></symbol>
+  <symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.500 8.500l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <img src="logo-youtax.png" alt="YouTax" width="328" height="51">
+    <nav aria-label="Secciones de la propuesta">
+      <ul>
+        <li><a href="#resuelve">Qué resolverá</a></li>
+        <li><a href="#perfiles">Tres perfiles</a></li>
+        <li><a href="#incluye">Qué incluye</a></li>
+        <li><a href="#proceso">Cómo trabajaremos</a></li>
+        <li><a href="#condiciones">Condiciones</a></li>
+        <li><a href="#inversion">Inversión</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Propuesta de plataforma</p>
+      <h1>Vuestra asesoría, <em>vuestros clientes</em> y sus equipos, en un solo lugar.</h1>
+      <p class="lead">Una plataforma propia de YouTax para que cada empresa y cada trabajador encuentre lo suyo sin tener que pedirlo.</p>
+      <p class="byline">Propuesta preparada por Irene y María · Las Chicas de IsART</p>
+    </div>
+    <div class="stack">
+      <div class="fcard">
+        <h2>Tu previsión de impuestos</h2>
+        <p class="sub">Según la contabilidad procesada por YouTax</p>
+        <div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:12px">
+          <div class="tile pay"><span>IVA, a pagar</span><b>1.240,00 €</b></div>
+          <div class="tile good"><span>A compensar</span><b>180,00 €</b></div>
+        </div>
+      </div>
+      <div class="fcard small">
+        <h2>Mis nóminas</h2>
+        <div class="line" style="margin-top:6px"><span>Septiembre</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></div>
+        <div class="line"><span>Agosto</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></div>
+      </div>
+      <p class="note-dark">Ejemplo orientativo con datos ficticios</p>
+    </div>
+  </div>
+</div>
+
+<section id="resuelve" aria-labelledby="t-resuelve">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Qué resolverá</p>
+      <h2 id="t-resuelve">Menos gestiones repetidas, más autonomía para vuestros clientes</h2>
+    </div>
+    <div class="resolve">
+      <div>
+        <div class="rowhead" aria-hidden="true"><span></span><span>Hoy</span><span>Con la plataforma</span></div>
+        <div class="rows">
+          <div class="row">
+            <h3>Impuestos</h3>
+            <p class="now">Cada mes preparáis la previsión de cada cliente.</p>
+            <p class="then">El cliente la ve al entrar, con su fecha de actualización.</p>
+          </div>
+          <div class="row">
+            <h3>Nóminas</h3>
+            <p class="now">Si al trabajador le piden las últimas en el banco, tiene que escribir a alguien.</p>
+            <p class="then">Las descarga él mismo desde el móvil.</p>
+          </div>
+          <div class="row">
+            <h3>Permisos</h3>
+            <p class="now">En una empresa no todo el mundo necesita ver lo mismo.</p>
+            <p class="then">El administrador activa los módulos de cada persona.</p>
+          </div>
+          <div class="row">
+            <h3>Herramientas</h3>
+            <p class="now">Facturas, documentos e informes viven en sitios distintos.</p>
+            <p class="then">Todo en un portal propio, con botones sencillos.</p>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>«Si la tienen ellos ahí a mano, mucho mejor.»</p>
+        <footer>De nuestra llamada, sobre la previsión de impuestos</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="perfiles" class="s-mist" aria-labelledby="t-perfiles">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Una plataforma, tres perfiles</p>
+      <h2 id="t-perfiles">Cada persona entra y ve solo lo que le corresponde</h2>
+    </div>
+
+    <div class="tablist" role="tablist" aria-label="Perfiles de la plataforma">
+      <button role="tab" id="tab-equipo" aria-controls="p-equipo" aria-selected="true">Equipo YouTax</button>
+      <button role="tab" id="tab-empresa" aria-controls="p-empresa" aria-selected="false" tabindex="-1">Empresa</button>
+      <button role="tab" id="tab-empleado" aria-controls="p-empleado" aria-selected="false" tabindex="-1">Empleado</button>
+    </div>
+
+    <div class="panel" id="p-equipo" role="tabpanel" aria-labelledby="tab-equipo" tabindex="0">
+      <div>
+        <h3>Equipo YouTax</h3>
+        <p class="who">Vuestro panel, con todos los clientes.</p>
+        <ul class="checks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Dais de alta empresas, autónomos y usuarios.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Actualizáis previsiones, informes y documentos.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cargáis nóminas y costes laborales.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Publicáis vídeos en YouTax Academy mediante enlace.</li>
+        </ul>
+        <p class="aside-note">Cada cliente es un espacio separado: una empresa nunca ve los datos de otra.</p>
+      </div>
+      <div class="app">
+        <div class="app-grid">
+          <div class="side">
+            <b>Panel YouTax</b>
+            <ul><li class="on">Clientes</li><li>Previsiones</li><li>Documentos</li><li>Laboral</li><li>Academy</li></ul>
+          </div>
+          <div class="main">
+            <div><h4>Clientes</h4><p class="sub">Ejemplo con datos ficticios</p></div>
+            <div class="scroll" tabindex="0" role="region" aria-label="Tabla de clientes de ejemplo">
+              <table class="mini">
+                <thead><tr><th>Cliente</th><th>Tipo</th><th>Previsión</th><th class="c">Usuarios</th></tr></thead>
+                <tbody>
+                  <tr><td>Cafetería Ejemplo, S.L.</td><td><span class="pill type">Empresa</span></td><td><span class="pill ok">Al día</span></td><td class="c">6</td></tr>
+                  <tr><td>Reformas Ejemplo, S.L.</td><td><span class="pill type">Empresa</span></td><td><span class="pill wait">Por actualizar</span></td><td class="c">14</td></tr>
+                  <tr><td>Autónomo Ejemplo</td><td><span class="pill type">Autónomo</span></td><td><span class="pill ok">Al día</span></td><td class="c">1</td></tr>
+                  <tr><td>Taller Ejemplo, S.L.</td><td><span class="pill type">Empresa</span></td><td><span class="pill ok">Al día</span></td><td class="c">9</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bubbles">
+              <div class="bubble"><b>Previsión de impuestos</b><span class="sub">La cargáis vosotros o llega por API</span></div>
+              <div class="bubble"><b>Nóminas y costes</b><span class="sub">Por empresa y por trabajador</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-empresa" role="tabpanel" aria-labelledby="tab-empresa" tabindex="0">
+      <div>
+        <h3>Empresa</h3>
+        <p class="who">El administrador, o las personas a las que dé permiso.</p>
+        <ul class="checks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ve la previsión de impuestos nada más entrar.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Decide qué módulos usa cada persona.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consulta nóminas y el resumen de costes laborales.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Hace o sube facturas y tiene sus documentos a mano.</li>
+        </ul>
+        <p class="aside-note">Un autónomo usa este mismo perfil, como una empresa con un solo usuario.</p>
+      </div>
+      <div class="app">
+        <div class="app-grid">
+          <div class="side">
+            <b>Cafetería Ejemplo, S.L.</b>
+            <ul><li class="on">Inicio</li><li>Mi perfil</li><li>Laboral</li><li>Facturas</li><li>Mis documentos</li><li>Academy</li><li>Usuarios</li></ul>
+          </div>
+          <div class="main">
+            <div><h4>Previsión de impuestos hasta hoy</h4><p class="sub">Contabilidad procesada por YouTax · Actualizado hace 2 días · Datos ficticios</p></div>
+            <div class="tiles">
+              <div class="tile pay"><span>IVA, a pagar</span><b>1.240,00 €</b></div>
+              <div class="tile pay"><span>Retenciones, a pagar</span><b>410,00 €</b></div>
+              <div class="tile good"><span>A compensar</span><b>180,00 €</b></div>
+            </div>
+            <div class="bubbles">
+              <div class="bubble"><b>Facturas emitidas</b><span class="fake">Hacer factura</span><span class="fake alt">Subir factura</span></div>
+              <div class="bubble"><b>Facturas recibidas</b><span class="fake alt">Subir factura</span></div>
+            </div>
+            <div>
+              <h4 style="margin-bottom:8px">Usuarios y permisos</h4>
+              <div class="scroll" tabindex="0" role="region" aria-label="Permisos de ejemplo por usuario">
+                <table class="mini">
+                  <thead><tr><th>Persona</th><th class="c">Mi perfil</th><th class="c">Laboral</th><th class="c">Facturas</th><th class="c">Documentos</th></tr></thead>
+                  <tbody>
+                    <tr><td>Dirección</td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td></tr>
+                    <tr><td>Administración</td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot" role="img" aria-label="Desactivado"></span></td></tr>
+                    <tr><td>Trabajador</td><td class="c"><span class="dot on" role="img" aria-label="Activado"></span></td><td class="c"><span class="dot" role="img" aria-label="Desactivado"></span></td><td class="c"><span class="dot" role="img" aria-label="Desactivado"></span></td><td class="c"><span class="dot" role="img" aria-label="Desactivado"></span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-empleado" role="tabpanel" aria-labelledby="tab-empleado" tabindex="0">
+      <div>
+        <h3>Empleado</h3>
+        <p class="who">Cada trabajador, desde el móvil o el ordenador.</p>
+        <ul class="checks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consulta sus vacaciones y las solicita.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consulta y descarga sus nóminas.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tiene sus datos en Mi perfil.</li>
+        </ul>
+        <p class="aside-note">Solo ve su propia información. Más módulos, únicamente si su empresa se los activa.</p>
+      </div>
+      <div class="phone">
+        <div class="screen">
+          <header><b>Hola, Laura</b><span>Cafetería Ejemplo, S.L. · Datos ficticios</span></header>
+          <div class="body">
+            <div class="card">
+              <h4>Mis vacaciones</h4>
+              <p><span class="big">12 días</span> <span class="sub">disponibles</span></p>
+              <div class="line"><span>Del 3 al 7 de agosto</span><span class="pill ok">Aprobada</span></div>
+              <p style="margin-top:6px"><span class="fake">Solicitar vacaciones</span></p>
+            </div>
+            <div class="card">
+              <h4>Mis nóminas</h4>
+              <div class="line"><span>Septiembre</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></div>
+              <div class="line"><span>Agosto</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></div>
+              <div class="line"><span>Julio</span><svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">Propuesta visual orientativa. Las pantallas y los datos son de ejemplo: el diseño final se define con vosotros.</p>
+  </div>
+</section>
+
+<section id="incluye" aria-labelledby="t-incluye">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Qué incluye</p>
+      <h2 id="t-incluye">Los módulos de esta primera versión</h2>
+    </div>
+    <div class="mods">
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg></span><h3>Acceso web y móvil</h3><p>Desde el navegador del ordenador o del móvil, con la misma cuenta.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span><h3>Inicio con previsión de impuestos</h3><p>Lo que toca pagar hasta la fecha, en colores fáciles de entender. Se carga a mano o por API.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Empresas, usuarios y permisos</h3><p>Uno o varios administradores activan los módulos de cada persona. Vosotros también podéis hacerlo.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg></span><h3>Mi perfil</h3><p>Sus datos, sus vacaciones con solicitud y sus nóminas para consultar y descargar.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-case"/></svg></span><h3>Laboral</h3><p>Para quien tenga permiso: nóminas de los trabajadores y resumen de costes laborales cargado por YouTax.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bill"/></svg></span><h3>Facturas</h3><p>Emitidas: hacerlas con numeración correlativa o subirlas. Recibidas: subirlas en PDF o imagen.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg></span><h3>Mis documentos</h3><p>Documentación de la empresa, informes como pérdidas y ganancias o balance, y las facturas de YouTax.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span><h3>YouTax Academy</h3><p>Vídeos que publicáis mediante enlace desde vuestro panel, visibles para los administradores.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-guide"/></svg></span><h3>Tutorial guiado <span class="tag">Idea nuestra</span></h3><p>Un recorrido de bienvenida que cada persona puede repetir cuando quiera.</p></div>
+    </div>
+    <p class="origin">Salvo el tutorial, todo sale de lo que nos contasteis en la llamada.</p>
+    <div class="out">
+      <h3>Fuera de esta primera versión</h3>
+      <p>Para que quede claro desde el principio. Se pueden valorar aparte como ampliación.</p>
+      <ul>
+        <li>Fichajes</li>
+        <li>App en App Store y Google Play</li>
+        <li>Adaptación a Verifactu</li>
+        <li>Traspaso de históricos del portal actual</li>
+        <li>Contenidos por sector, novedades o tablón</li>
+        <li>Vídeo explicativo con motion graphics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" class="s-mist" aria-labelledby="t-proceso">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Cómo trabajaremos</p>
+      <h2 id="t-proceso">Cinco fases, con vosotros en cada una</h2>
+    </div>
+    <ol class="phases" style="list-style:none;padding:0;margin:0">
+      <li class="phase"><h3>Definición</h3><p>Repasamos vuestras herramientas y flujos, y comprobamos qué permite la API.</p></li>
+      <li class="phase"><h3>Diseño</h3><p>Preparamos las pantallas de los tres perfiles para que las validéis.</p></li>
+      <li class="phase"><h3>Desarrollo</h3><p>Construimos los módulos acordados y os enseñamos los avances.</p></li>
+      <li class="phase"><h3>Pruebas</h3><p>Lo probáis con vuestro equipo y corregimos lo que haga falta.</p></li>
+      <li class="phase"><h3>Puesta en marcha</h3><p>Publicamos la plataforma y vais dejando el portal actual poco a poco.</p></li>
+    </ol>
+    <div class="facts">
+      <div class="fact">
+        <b>Mínimo de 45 días laborables</b>
+        <p>Depende de que tengamos a tiempo información, accesos, materiales, decisiones y vuestro feedback. Si algo de esto se retrasa, el calendario se desplaza.</p>
+      </div>
+      <div class="fact">
+        <b>Hasta 2 horas a la semana</b>
+        <p>Es nuestra estimación de colaboración para revisar avances, resolver dudas y facilitar lo necesario. No son reuniones fijas, y habrá semanas distintas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="condiciones" aria-labelledby="t-condiciones">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Condiciones esenciales</p>
+      <h2 id="t-condiciones">Lo importante, claro desde el principio</h2>
+    </div>
+    <div class="terms">
+      <div class="term">
+        <h3>Conexión con vuestro programa contable</h3>
+        <p>Está prevista por API. En la fase de definición confirmamos con su documentación y accesos reales qué datos ofrece. Lo que no llegue por API lo carga vuestro equipo.</p>
+      </div>
+      <div class="term">
+        <h3>Servidor y dominio</h3>
+        <p>Los contrata y paga YouTax, a su nombre. Coste orientativo del servidor, para hasta 450 clientes de YouTax: unos 150 € + IVA al año (12,50 € + IVA al mes). No es una tarifa garantizada, y se revisaría si el volumen crece.</p>
+        <p>El envío de correos de la plataforma no supone un coste aparte.</p>
+      </div>
+      <div class="term">
+        <h3>Facturas</h3>
+        <p>Se crean con numeración correlativa. La adaptación a Verifactu no está incluida: si se necesita, se presupuesta aparte.</p>
+      </div>
+      <div class="term">
+        <h3>Transición desde el portal actual</h3>
+        <p>Los datos nuevos entran en la plataforma nueva. Vosotros decidís qué históricos cargar y cuándo.</p>
+      </div>
+      <div class="term">
+        <h3>Propiedad</h3>
+        <p>La plataforma es de YouTax una vez pagada por completo.</p>
+      </div>
+      <div class="term">
+        <h3>Protección de datos</h3>
+        <p>Como habrá nóminas y datos de trabajadores, firmaremos un contrato de encargo de tratamiento.</p>
+      </div>
+    </div>
+
+    <div class="support">
+      <h3>Después de la entrega</h3>
+      <table class="st">
+        <thead><tr><th scope="col">Qué es</th><th scope="col">Ejemplo</th><th scope="col">Condición</th></tr></thead>
+        <tbody>
+          <tr><td>Error o fallo nuestro</td><td>Algo acordado no funciona como debe.</td><td>Lo solucionamos sin coste y sin límite de tiempo, salvo que un tercero haya modificado la plataforma.</td></tr>
+          <tr><td>Soporte</td><td>Ayuda, dudas o ajustes que no son un error.</td><td>Incluido durante 1 mes tras la entrega completa. Después, 45 €/hora + IVA.</td></tr>
+          <tr><td>Ampliación</td><td>Una función o un módulo nuevo.</td><td>Se presupuesta aparte por horas, a 45 €/hora + IVA.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="inversion" class="s-dark" aria-labelledby="t-inversion">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Inversión</p>
+      <h2 id="t-inversion">Dos formas de pago para el mismo alcance</h2>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Pago único</h3>
+        <p class="price">3.800 € <small>+ IVA</small></p>
+        <p>Se abona al inicio del proyecto.</p>
+      </div>
+      <div class="plan">
+        <h3>En 4 cuotas</h3>
+        <p class="price">1.045 € <small>+ IVA por cuota</small></p>
+        <p>Una cuota al mes durante 4 meses, desde el inicio del proyecto.</p>
+        <dl class="calc">
+          <div><dt>Precio base</dt><dd>3.800 € + IVA</dd></div>
+          <div><dt>Incremento del 10 % por fraccionar</dt><dd>380 € + IVA</dd></div>
+          <div class="tot"><dt>Total fraccionado</dt><dd>4.180 € + IVA</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="next">
+      <h3>Siguiente paso</h3>
+      <p>Lo repasamos juntos en la llamada y resolvemos vuestras dudas. Si encaja, empezamos por la fase de definición.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">Propuesta preparada por Irene y María · Las Chicas de IsART. Esta página está en nuestra web solo para presentaros la propuesta; no es el alojamiento de la plataforma.</div>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'))});
+  function show(i,focus){
+    tabs.forEach(function(t,n){
+      var on=n===i;
+      t.setAttribute('aria-selected',on?'true':'false');
+      on?t.removeAttribute('tabindex'):t.setAttribute('tabindex','-1');
+      panels[n].hidden=!on;
+    });
+    if(focus)tabs[i].focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i)});
+    t.addEventListener('keydown',function(e){
+      var n=tabs.length,k=e.key,to=k==='ArrowRight'?(i+1)%n:k==='ArrowLeft'?(i-1+n)%n:k==='Home'?0:k==='End'?n-1:-1;
+      if(to>=0){e.preventDefault();show(to,true)}
+    });
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
