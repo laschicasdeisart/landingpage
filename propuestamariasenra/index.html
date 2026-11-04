@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="color-scheme" content="light">
+<title>Propuesta María Senra</title>
+<meta name="description" content="Propuesta de plataforma para María Senra Coach, preparada por Irene y María, de Las Chicas de IsART.">
+<link rel="icon" href="data:,">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --cream:#F5EFE3; --paper:#FFFCF6; --sand:#EDE5D6; --line:#DCD2C0;
+  --sage:#B7C4AE; --sage-soft:#E7ECE0; --green:#46614E; --forest:#26382E; --forest-deep:#1D2C24;
+  --ink:#2A2E29; --muted:#5A6157;
+  --amber:#7A5A0C; --amber-soft:#F5E9CF;
+  --on-dark:#FBF7EE; --on-dark-muted:#CDD6C6; --line-dark:rgba(251,247,238,.18);
+  --radius:20px; --gutter:clamp(16px,4vw,40px);
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,ul,ol,dl,dd,table{margin:0;padding:0}
+ul,ol{list-style:none}
+h1,h2{font-family:var(--serif);font-weight:500;line-height:1.16;text-wrap:balance}
+h3,h4{font-weight:600;line-height:1.3}
+img{display:block;max-width:100%;height:auto}
+svg{display:block}
+.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 var(--gutter)}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+.s-dark :focus-visible{outline-color:var(--sage)}
+.skip{position:absolute;left:12px;top:-60px;background:var(--forest);color:#fff;padding:10px 14px;border-radius:10px;z-index:60}
+.skip:focus{top:12px}
+
+/* Cabecera */
+.top{position:sticky;top:0;z-index:40;background:var(--cream);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;min-height:68px}
+.brand{font-family:var(--serif);font-size:1.22rem;font-weight:600;color:var(--forest);white-space:nowrap}
+.top nav{margin-left:auto}
+.top nav ul{display:flex;gap:20px}
+.top nav a{text-decoration:none;font-size:.82rem;font-weight:500;color:var(--ink);white-space:nowrap}
+.top nav a:hover{color:var(--green);text-decoration:underline;text-underline-offset:4px}
+
+/* Portada */
+.hero{background:var(--cream)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,80px);align-items:center;padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(48px,7vw,84px)}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--green)}
+.s-dark .eyebrow{color:var(--sage)}
+h1{font-size:clamp(2.3rem,5vw,3.6rem);margin-top:14px;color:var(--forest)}
+h1 em{font-style:italic;color:var(--green)}
+.hero .lead{margin-top:20px;font-size:1.1rem;color:var(--muted);max-width:48ch}
+.byline{margin-top:26px;font-size:.86rem;color:var(--muted)}
+.photo{position:relative;max-width:400px;width:100%;margin-left:auto}
+.photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 12%;border-radius:999px 999px var(--radius) var(--radius)}
+.photo figcaption{position:absolute;left:-28px;bottom:26px;width:236px;background:var(--paper);border-radius:16px;padding:14px 16px;box-shadow:0 16px 36px rgba(38,56,46,.18);font-size:.84rem;line-height:1.4}
+.photo figcaption b{display:block;font-weight:600}
+.photo figcaption small{display:block;margin-top:8px;font-size:.72rem;color:var(--muted)}
+
+/* Secciones */
+section{padding:clamp(56px,8vw,92px) 0}
+.s-cream{background:var(--cream)}
+.s-sand{background:var(--sand)}
+.s-sage{background:var(--sage-soft)}
+.s-dark{background:var(--forest);color:var(--on-dark)}
+.head{max-width:680px;margin-bottom:clamp(28px,4vw,44px)}
+.head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin-top:10px;color:var(--forest)}
+.s-dark .head h2{color:var(--on-dark)}
+.head p:not(.eyebrow){margin-top:14px;color:var(--muted);font-size:1.05rem}
+
+/* Qué resolverá */
+.resolve{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr);gap:clamp(28px,5vw,64px);align-items:start}
+.rows{border-top:1px solid var(--line)}
+.row,.rowhead{display:grid;grid-template-columns:130px minmax(0,1fr) minmax(0,1fr);gap:20px}
+.row{padding:18px 0;border-bottom:1px solid var(--line)}
+.row h3{font-size:1rem}
+.row p{font-size:.93rem;line-height:1.55}
+.row .now{color:var(--muted)}
+.row .then{font-weight:500}
+.rowhead{padding-bottom:10px;font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.rowhead span:last-child{color:var(--green)}
+blockquote{margin:0;padding:26px 24px;background:var(--sage-soft);border-radius:var(--radius)}
+blockquote p{font-family:var(--serif);font-size:1.45rem;font-style:italic;font-weight:500;line-height:1.3;color:var(--forest)}
+blockquote footer{margin-top:12px;font-size:.8rem;color:var(--muted)}
+
+/* Recorrido */
+.path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:p}
+.path li{counter-increment:p;position:relative;padding-top:48px}
+.path li::before{content:counter(p);position:absolute;top:0;left:0;width:34px;height:34px;border-radius:50%;background:var(--forest);color:var(--on-dark);display:grid;place-items:center;font-size:.84rem;font-weight:600}
+.path li:not(:last-child)::after{content:"";position:absolute;top:17px;left:44px;right:-10px;border-top:1px dashed var(--sage)}
+.path h3{font-size:1rem}
+.path p{margin-top:5px;font-size:.9rem;color:var(--muted);line-height:1.5}
+
+/* Pestañas */
+.tablist{display:none}
+.js .tablist{display:inline-flex;gap:4px;padding:5px;background:var(--paper);border:1px solid var(--line);border-radius:999px;margin-bottom:24px;max-width:100%}
+.tablist button{font:inherit;font-size:.9rem;font-weight:600;color:var(--ink);background:none;border:0;border-radius:999px;padding:10px 22px;cursor:pointer;white-space:nowrap}
+.tablist button:hover{background:var(--sage-soft)}
+.tablist button[aria-selected="true"]{background:var(--forest);color:var(--on-dark)}
+.panel{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(24px,4vw,48px);align-items:start}
+.panel[hidden]{display:none}
+html:not(.js) .panel+.panel{margin-top:48px}
+.panel h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:var(--forest)}
+.panel .who{margin-top:8px;color:var(--muted);font-size:.95rem}
+.checks{margin-top:18px;display:grid;gap:11px}
+.checks li{display:flex;gap:10px;font-size:.93rem;line-height:1.45}
+.checks .icon{width:18px;height:18px;color:var(--green);margin-top:2px}
+.aside-note{margin-top:18px;padding:12px 14px;border-radius:12px;background:var(--sage-soft);font-size:.86rem;line-height:1.45}
+.disclaimer{margin-top:20px;font-size:.8rem;color:var(--muted)}
+
+/* Maquetas */
+.app{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 40px rgba(38,56,46,.1);overflow:hidden;font-size:.82rem;line-height:1.4}
+.app-grid{display:grid;grid-template-columns:138px minmax(0,1fr)}
+.side{background:var(--forest);color:var(--on-dark-muted);padding:16px 10px}
+.side b{display:block;font-family:var(--serif);color:var(--on-dark);font-size:.94rem;font-weight:600;padding:0 10px 12px;line-height:1.25}
+.side ul{display:grid;gap:2px}
+.side li{padding:7px 10px;border-radius:9px;font-weight:500;font-size:.78rem}
+.side li.on{background:rgba(183,196,174,.24);color:var(--on-dark)}
+.main{padding:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0}
+.main h4{font-size:.94rem}
+.sub{color:var(--muted);font-size:.75rem}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tile{padding:11px 12px;border-radius:12px;background:var(--cream)}
+.tile span{display:block;font-size:.73rem;color:var(--muted);line-height:1.3}
+.tile b{display:block;font-size:1.1rem;font-weight:600;margin-top:3px;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.mini{width:100%;border-collapse:collapse;font-size:.78rem}
+.mini th{text-align:left;font-weight:600;color:var(--muted);font-size:.71rem;padding:0 10px 7px 0;white-space:nowrap}
+.mini td{padding:8px 10px 8px 0;border-top:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.71rem;font-weight:600}
+.pill.ok{background:var(--sage-soft);color:var(--green)}
+.pill.wait{background:var(--amber-soft);color:var(--amber)}
+.bubbles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bubble{border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.bubble b{display:block;font-weight:600;margin-bottom:7px}
+.fake{display:inline-block;padding:5px 11px;border-radius:999px;background:var(--forest);color:var(--on-dark);font-weight:500;font-size:.74rem;margin:0 4px 4px 0}
+.fake.alt{background:var(--sage-soft);color:var(--forest)}
+.phone{width:min(100%,312px);margin:0 auto;background:var(--forest-deep);border-radius:34px;padding:10px;box-shadow:0 20px 44px rgba(38,56,46,.24)}
+.screen{background:var(--cream);border-radius:25px;overflow:hidden;font-size:.82rem;line-height:1.4}
+.screen header{padding:20px 18px 6px}
+.screen header b{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--forest)}
+.screen header span{font-size:.74rem;color:var(--muted)}
+.screen .body{padding:12px 14px 16px;display:grid;gap:10px}
+.card{background:var(--paper);border-radius:14px;padding:12px 13px}
+.card h4{margin-bottom:6px;font-size:.84rem}
+.bar{height:7px;border-radius:99px;background:var(--sand);overflow:hidden;margin:8px 0 10px}
+.bar i{display:block;height:100%;width:25%;background:var(--green)}
+.from{display:grid;grid-template-columns:42px minmax(0,1fr);gap:10px;align-items:center}
+.from img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+/* Qué incluye */
+.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,34px) clamp(20px,3vw,36px)}
+.mod{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 14px}
+.mod .ic{width:40px;height:40px;border-radius:50%;background:var(--sage-soft);color:var(--green);display:grid;place-items:center;grid-row:span 2}
+.mod h3{font-size:1rem}
+.mod p{margin-top:4px;font-size:.9rem;color:var(--muted);line-height:1.5}
+.tag{display:inline-block;margin-left:4px;padding:1px 8px;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-size:.68rem;font-weight:600;vertical-align:1px;white-space:nowrap}
+
+/* Paso desde Luxora */
+.move{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,64px);align-items:start}
+.move .head{margin:0}
+.steps{counter-reset:s;border-top:1px solid var(--line)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:15px 0;border-bottom:1px solid var(--line);font-size:.95rem;line-height:1.5}
+.steps li::before{content:counter(s);font-family:var(--serif);font-size:1.15rem;color:var(--green);line-height:1.3}
+
+/* Proceso */
+.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:f}
+.phase{counter-increment:f;border-top:2px solid var(--green);padding-top:12px}
+.phase::before{content:counter(f);font-family:var(--serif);font-size:1rem;color:var(--green)}
+.phase h3{font-size:1rem;margin-top:2px}
+.phase p{margin-top:6px;font-size:.88rem;color:var(--muted);line-height:1.5}
+.facts{margin-top:clamp(28px,4vw,44px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.fact{background:var(--paper);border-radius:var(--radius);padding:22px 24px}
+.fact b{display:block;font-family:var(--serif);font-size:1.4rem;font-weight:500;color:var(--forest);line-height:1.25}
+.fact p{margin-top:8px;font-size:.93rem;color:var(--muted)}
+
+/* Condiciones */
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,5vw,64px)}
+.term{padding:18px 0;border-top:1px solid var(--line)}
+.term h3{font-size:1rem}
+.term p{margin-top:5px;font-size:.92rem;color:var(--muted)}
+.term p+p{margin-top:8px}
+.support{margin-top:32px}
+.support h3{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--forest);margin-bottom:12px}
+.st{width:100%;border-collapse:collapse;font-size:.92rem}
+.st th{text-align:left;font-size:.74rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:0 16px 8px 0}
+.st td{vertical-align:top;padding:12px 16px 12px 0;border-top:1px solid var(--line);min-width:150px}
+.st td:first-child{font-weight:600}
+
+/* Inversión */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.plan{background:rgba(251,247,238,.07);border:1px solid var(--line-dark);border-radius:var(--radius);padding:clamp(22px,3vw,30px)}
+.plan h3{font-size:1.05rem}
+.price{margin-top:12px;font-family:var(--serif);font-size:clamp(2.2rem,4.4vw,3rem);font-weight:500;line-height:1.1;font-variant-numeric:lining-nums tabular-nums;color:var(--on-dark)}
+.price small{font-family:var(--sans);font-size:.92rem;font-weight:500}
+.plan>p:not(.price){margin-top:12px;font-size:.95rem;color:var(--on-dark-muted)}
+.next{margin-top:clamp(28px,4vw,40px);max-width:64ch}
+.next h3{font-size:1.1rem}
+.next p{margin-top:8px;color:var(--on-dark-muted)}
+
+footer.foot{background:var(--forest-deep);color:var(--on-dark-muted);font-size:.82rem}
+footer.foot .wrap{padding-top:20px;padding-bottom:20px}
+
+@media (max-width:1040px){
+  .top nav{display:none}
+  .top .wrap{justify-content:center}
+}
+@media (max-width:980px){
+  .resolve,.panel,.move{grid-template-columns:minmax(0,1fr)}
+  .path{grid-template-columns:minmax(0,1fr);gap:0}
+  .path li{padding:0 0 22px 48px}
+  .path li:last-child{padding-bottom:0}
+  .path li:not(:last-child)::after{top:40px;bottom:6px;left:17px;right:auto;border-top:0;border-left:1px dashed var(--sage)}
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mods{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .photo{margin:0 auto}
+  .photo figcaption{left:12px;bottom:14px}
+}
+@media (max-width:680px){
+  .row,.rowhead{grid-template-columns:minmax(0,1fr)}
+  .row{gap:5px}
+  .rowhead{display:none}
+  .row .then::before{content:"Con tu plataforma: ";color:var(--green);font-weight:600}
+  .row .now::before{content:"Hoy: ";font-weight:600}
+  .js .tablist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+  .tablist button{padding:10px 6px;font-size:.86rem}
+  .app-grid{grid-template-columns:minmax(0,1fr)}
+  .side{padding:12px}
+  .side b{padding:0 0 8px}
+  .side ul{display:flex;flex-wrap:wrap;gap:4px}
+  .tiles,.bubbles,.mods,.facts,.terms,.plans,.phases{grid-template-columns:minmax(0,1fr)}
+  .st,.st tbody,.st tr,.st td{display:block;width:100%}
+  .st thead{display:none}
+  .st tr{padding:12px 0;border-top:1px solid var(--line)}
+  .st td{border:0;padding:2px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{.top{position:static}.js .panel[hidden]{display:grid!important}.tablist{display:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+  <symbol id="i-device" viewBox="0 0 24 24"><rect x="3" y="4" width="14" height="11" rx="2"/><rect x="14" y="9" width="7" height="11" rx="2"/><path d="M3 19h9"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM13.500 7.500l3 3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M3 10h18M12 10v10M12 10C10 4 5 5 7 8.500c.8 1.200 3 1.500 5 1.500zM12 10c2-6 7-5 5-1.500-.8 1.200-3 1.500-5 1.500z"/></symbol>
+  <symbol id="i-steps" viewBox="0 0 24 24"><path d="M4 20h5v-5h5v-5h6"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="9" r="2"/><circle cx="12" cy="15" r="2"/><circle cx="19" cy="8" r="2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.500"/><path d="M3 20c.6-4 3-6 6-6s5.400 2 6 6"/><path d="M16 5a3.500 3.500 0 010 6.500M18 14.300c1.700.8 2.700 2.800 3 5.700"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l2 2H4zM10 21h4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <span class="brand">María Senra Coach</span>
+    <nav aria-label="Secciones de la propuesta">
+      <ul>
+        <li><a href="#resuelve">Qué resolverá</a></li>
+        <li><a href="#vistas">Dos vistas</a></li>
+        <li><a href="#incluye">Qué incluye</a></li>
+        <li><a href="#luxora">Paso desde Luxora</a></li>
+        <li><a href="#proceso">Cómo trabajaremos</a></li>
+        <li><a href="#condiciones">Condiciones</a></li>
+        <li><a href="#inversion">Inversión</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Propuesta de plataforma</p>
+      <h1>Todos tus programas, en un lugar <em>tuyo</em>.</h1>
+      <p class="lead">Una plataforma sencilla y tranquila para que cada pareja sepa qué le toca hoy, y tú veas cómo avanza y gestiones todo desde tu panel.</p>
+      <p class="byline">Propuesta preparada por Irene y María · Las Chicas de IsART</p>
+    </div>
+    <figure class="photo" style="margin-block:0">
+      <img src="maria-senra.webp" alt="María Senra sonriendo en su despacho, junto a una palmera" width="640" height="854">
+      <figcaption>
+        <b>Vuestra semana 3</b>
+        <div class="bar" role="img" aria-label="2 de 8 semanas completadas"><i></i></div>
+        <span class="fake">Continuar</span>
+        <small>Ejemplo orientativo</small>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="resuelve" aria-labelledby="t-resuelve">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Qué resolverá</p>
+      <h2 id="t-resuelve">Lo que nos contaste, ordenado en un solo sitio</h2>
+    </div>
+    <div class="resolve">
+      <div>
+        <div class="rowhead" aria-hidden="true"><span></span><span>Hoy</span><span>Con tu plataforma</span></div>
+        <div class="rows">
+          <div class="row">
+            <h3>Programas</h3>
+            <p class="now">Tus cursos están alojados en Luxora.</p>
+            <p class="then">Viven en una plataforma propia, con tu estética.</p>
+          </div>
+          <div class="row">
+            <h3>Recursos</h3>
+            <p class="now">Masterclasses y talleres que sientes poco aprovechados.</p>
+            <p class="then">Se desbloquean como premio a quien avanza en su programa.</p>
+          </div>
+          <div class="row">
+            <h3>Seguimiento</h3>
+            <p class="now">Necesitas saber quién avanza y dónde se queda parado.</p>
+            <p class="then">Lo ves en tu panel, pareja por pareja.</p>
+          </div>
+          <div class="row">
+            <h3>Acceso</h3>
+            <p class="now">El correo de bienvenida a veces llega a spam.</p>
+            <p class="then">Al pagar pasan directamente a crear su acceso; el correo queda de respaldo.</p>
+          </div>
+          <div class="row">
+            <h3>Contacto</h3>
+            <p class="now">No quieres un chat abierto con quien compra un programa grabado.</p>
+            <p class="then">Te escriben por formulario y respondes en 3 a 5 días laborables.</p>
+          </div>
+        </div>
+      </div>
+      <blockquote>
+        <p>«Todo muy simple y todo como muy claro.»</p>
+        <footer>De nuestra llamada, sobre lo que necesitan tus clientes</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="recorrido" class="s-cream" aria-labelledby="t-recorrido">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">El recorrido de tus clientes</p>
+      <h2 id="t-recorrido">Siempre saben cuál es el siguiente paso</h2>
+    </div>
+    <ol class="path">
+      <li><h3>Compra</h3><p>Desde el enlace de tu embudo, con pago en tu Stripe.</p></li>
+      <li><h3>Entra</h3><p>Crea su acceso y encuentra sus programas.</p></li>
+      <li><h3>Continúa</h3><p>Un botón le lleva a su semana y a su vídeo.</p></li>
+      <li><h3>Practica</h3><p>Rellena el ejercicio, lo guarda y puede descargarlo.</p></li>
+      <li><h3>Sigue avanzando</h3><p>Desbloquea recursos y, cuando tú decidas, conoce el premium.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="vistas" class="s-sand" aria-labelledby="t-vistas">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Dos vistas</p>
+      <h2 id="t-vistas">Lo que ven tus clientes y lo que gestionas tú</h2>
+    </div>
+
+    <div class="tablist" role="tablist" aria-label="Vistas de la plataforma">
+      <button role="tab" id="tab-pareja" aria-controls="p-pareja" aria-selected="true">Pareja</button>
+      <button role="tab" id="tab-panel" aria-controls="p-panel" aria-selected="false" tabindex="-1">Tu panel</button>
+    </div>
+
+    <div class="panel" id="p-pareja" role="tabpanel" aria-labelledby="tab-pareja" tabindex="0">
+      <div>
+        <h3>Pareja</h3>
+        <p class="who">Una cuenta por pareja, desde el móvil o el ordenador.</p>
+        <ul class="checks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ve sus programas y un botón para continuar.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tiene el contenido principal abierto desde el primer día.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rellena los ejercicios dentro y los descarga en PDF.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Desbloquea extras a medida que completa lecciones.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Te plantea sus dudas por formulario.</li>
+        </ul>
+        <p class="aside-note">Cada pareja entra en su propio espacio: nadie sabe quién más está dentro.</p>
+      </div>
+      <div class="phone">
+        <div class="screen">
+          <header><b>Hola, Ana y Luis</b><span>Love Reset · Datos ficticios</span></header>
+          <div class="body">
+            <div class="card">
+              <h4>Vuestra semana 3</h4>
+              <span class="sub">2 de 8 semanas completadas</span>
+              <div class="bar" role="img" aria-label="2 de 8 semanas completadas"><i></i></div>
+              <span class="fake">Continuar</span>
+            </div>
+            <div class="card">
+              <div class="line"><h4 style="margin:0">Extra desbloqueado</h4><span class="pill ok">Nuevo</span></div>
+              <p class="sub" style="margin-top:4px">Masterclass: Modo queja, modo protagonista</p>
+            </div>
+            <div class="card">
+              <div class="line"><h4 style="margin:0">Constancia</h4><span class="sub">3 semanas seguidas</span></div>
+            </div>
+            <div class="card from">
+              <img src="maria-retrato.webp" alt="" width="520" height="520">
+              <div><h4 style="margin:0">Un aviso de María</h4><span class="sub">Taller en directo este jueves</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p-panel" role="tabpanel" aria-labelledby="tab-panel" tabindex="0">
+      <div>
+        <h3>Tu panel</h3>
+        <p class="who">Lo gestionas tú, sin tocar código.</p>
+        <ul class="checks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Añades, cambias, ordenas o quitas programas, clases y recursos.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Subes vídeos, audios, PDF, imágenes y ejercicios.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Eliges qué desbloquea cada recurso.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ves el avance de cada pareja, sus accesos y caducidades.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Respondes dudas y publicas avisos.</li>
+        </ul>
+        <p class="aside-note">Ves si han hecho el ejercicio, no lo que han escrito. Leerlo sería opcional y solo con su permiso.</p>
+      </div>
+      <div class="app">
+        <div class="app-grid">
+          <div class="side">
+            <b>María Senra Coach</b>
+            <ul><li class="on">Clientes</li><li>Programas</li><li>Recursos</li><li>Dudas</li><li>Avisos</li></ul>
+          </div>
+          <div class="main">
+            <div><h4>Clientes</h4><p class="sub">Ejemplo con datos ficticios</p></div>
+            <div class="tiles">
+              <div class="tile"><span>Activos</span><b>38</b></div>
+              <div class="tile"><span>Han terminado</span><b>11</b></div>
+              <div class="tile"><span>Más de 14 días sin entrar</span><b>4</b></div>
+            </div>
+            <div class="scroll" tabindex="0" role="region" aria-label="Tabla de clientes de ejemplo">
+              <table class="mini">
+                <thead><tr><th>Cliente</th><th>Programa</th><th>Avance</th><th>Estado</th><th>Acceso hasta</th></tr></thead>
+                <tbody>
+                  <tr><td>Ana y Luis</td><td>Love Reset</td><td>Semana 3</td><td><span class="pill ok">Al día</span></td><td>14/10/2027</td></tr>
+                  <tr><td>Marta y Dani</td><td>Love Reset</td><td>Semana 5</td><td><span class="pill wait">Parados</span></td><td>02/09/2027</td></tr>
+                  <tr><td>Inés</td><td>Love Reset Mujer</td><td>Módulo 2</td><td><span class="pill ok">Al día</span></td><td>21/11/2027</td></tr>
+                  <tr><td>Clara y Jon</td><td>Consolidación</td><td>Mes 2</td><td><span class="pill ok">Al día</span></td><td>05/05/2027</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bubbles">
+              <div class="bubble"><b>Añadir a la semana 3</b><span class="fake alt">Vídeo</span><span class="fake alt">Audio</span><span class="fake alt">PDF</span><span class="fake alt">Imagen</span><span class="fake alt">Ejercicio</span></div>
+              <div class="bubble"><b>Dudas por responder</b><span class="sub">2 pendientes, la más antigua de hace 1 día</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">Propuesta visual orientativa. Las pantallas y los datos son de ejemplo: el diseño final lo definimos contigo.</p>
+  </div>
+</section>
+
+<section id="incluye" aria-labelledby="t-incluye">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Qué incluye</p>
+      <h2 id="t-incluye">Esta primera versión</h2>
+    </div>
+    <div class="mods">
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg></span><h3>Web que se usa como una app</h3><p>Funciona en móvil y ordenador, y se puede instalar en la pantalla de inicio del móvil.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span><h3>Todos tus programas actuales</h3><p>Love Reset, ITV de pareja, Love Reset Mujer, tu área premium, masterclasses y recursos.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pen"/></svg></span><h3>Ejercicios rellenables</h3><p>Convertimos los cuadernillos. Las respuestas se guardan y se pueden descargar en PDF.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg></span><h3>Progreso y desbloqueos</h3><p>El contenido principal está abierto; los extras se abren al completar lo que tú elijas.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-steps"/></svg></span><h3>Constancia e insignias <span class="tag">Idea nuestra</span></h3><p>Por semanas y discretas, sin la presión de entrar cada día.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></span><h3>Tu panel de contenidos</h3><p>Añades o modificas clases, vídeos, audios, PDF, imágenes y ejercicios cuando quieras.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Clientes y seguimiento</h3><p>Accesos, caducidad por programa, avance y dónde se detiene cada pareja.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg></span><h3>Compra con Stripe</h3><p>Una página de compra por programa, conectada a tu cuenta. El acceso se asigna solo.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-note"/></svg></span><h3>Dudas por formulario</h3><p>Respondes desde el panel, en 3 a 5 días laborables, y al cliente le llega por correo.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span><h3>Avisos y paso a premium</h3><p>Publicas avisos cuando quieras y activas la oferta premium en el módulo que elijas.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg></span><h3>Consolidación</h3><p>Un programa para tus clientes premium, con recursos y retos que se entregan mes a mes.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span><h3>Correos automáticos</h3><p>Bienvenida, recuperar contraseña, respuestas y un aviso tras los días sin entrar que tú fijes <span class="tag">Idea nuestra</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="luxora" class="s-cream" aria-labelledby="t-luxora">
+  <div class="wrap move">
+    <div class="head">
+      <p class="eyebrow">Paso desde Luxora</p>
+      <h2 id="t-luxora">Un cambio ordenado, sin dejar a nadie fuera</h2>
+      <p>Luxora sigue activa hasta que comprobemos juntas que todo funciona. Hasta entonces no cancelas nada.</p>
+    </div>
+    <ol class="steps">
+      <li>Nos entregas los originales: vídeos, audios, PDF y cuadernillos.</li>
+      <li>Cargamos todos tus programas actuales y convertimos sus ejercicios.</li>
+      <li>Pasamos a tus clientes actuales con sus fechas de caducidad. Crean una contraseña nueva; sus respuestas antiguas no se traspasan.</li>
+      <li>Javi cambia los enlaces de venta a las nuevas páginas de compra.</li>
+      <li>Lo probamos contigo y, cuando esté todo bien, das de baja Luxora.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="proceso" class="s-sage" aria-labelledby="t-proceso">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Cómo trabajaremos</p>
+      <h2 id="t-proceso">Cinco fases, contigo en cada una</h2>
+    </div>
+    <ol class="phases">
+      <li class="phase"><h3>Definición</h3><p>Hacemos inventario de tus programas y cerramos reglas de acceso y desbloqueos.</p></li>
+      <li class="phase"><h3>Diseño</h3><p>Preparamos las pantallas con tu estética para que las valides.</p></li>
+      <li class="phase"><h3>Desarrollo</h3><p>Construimos la plataforma, cargamos los programas y te enseñamos los avances.</p></li>
+      <li class="phase"><h3>Pruebas</h3><p>Compra, acceso y ejercicios de principio a fin. Corregimos lo necesario.</p></li>
+      <li class="phase"><h3>Puesta en marcha</h3><p>Abrimos la plataforma y hacemos el paso desde Luxora.</p></li>
+    </ol>
+    <div class="facts">
+      <div class="fact">
+        <b>Unos 45 días</b>
+        <p>Es un plazo aproximado, y depende de que respondas al día a lo que necesitemos para avanzar. Si algo se retrasa, el calendario se desplaza.</p>
+      </div>
+      <div class="fact">
+        <b>Lo que necesitamos de ti</b>
+        <p>Materiales, accesos, decisiones y tus comentarios en cada revisión, además de la coordinación con Javi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="condiciones" aria-labelledby="t-condiciones">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Condiciones esenciales</p>
+      <h2 id="t-condiciones">Lo importante, claro desde el principio</h2>
+    </div>
+    <div class="terms">
+      <div class="term">
+        <h3>Contenido</h3>
+        <p>Cargamos tus programas actuales y convertimos sus ejercicios con el material que nos entregues. Lo que crees después lo añades tú desde el panel.</p>
+      </div>
+      <div class="term">
+        <h3>Vídeos y archivos</h3>
+        <p>Para los vídeos hay dos opciones, y elegimos en la definición. YouTube oculto no tiene coste, pero el enlace se puede compartir. Cloudflare R2 los guarda en tu propio almacenamiento: hasta 10 GB sin coste y, por encima, se paga por GB guardado, no por reproducción.</p>
+        <p>Audios, PDF e imágenes van en Cloudflare R2.</p>
+      </div>
+      <div class="term">
+        <h3>Servidor y dominio</h3>
+        <p>Corren a tu cargo y a tu nombre, con Hostinger. Coste orientativo del servidor, para hasta 450 clientes: unos 150 € + IVA al año (12,50 € + IVA al mes).</p>
+      </div>
+      <div class="term">
+        <h3>Correos</h3>
+        <p>El envío no supone un coste aparte. Lo configuramos con tu dominio para reducir el riesgo de spam, aunque ningún correo tiene la entrega garantizada.</p>
+      </div>
+      <div class="term">
+        <h3>Cobros y descuentos</h3>
+        <p>Los pagos entran en tu cuenta de Stripe, con sus comisiones habituales. El descuento de paso a premium lo aplicas tú. La plataforma no emite facturas.</p>
+      </div>
+      <div class="term">
+        <h3>Privacidad de cada pareja</h3>
+        <p>La cuenta es compartida, así que los dos miembros ven lo mismo. Ninguna pareja ve a las demás. Por defecto no lees sus respuestas; hacerlo sería opcional y con su permiso.</p>
+      </div>
+      <div class="term">
+        <h3>Datos y textos legales</h3>
+        <p>Como habrá datos muy personales, firmaremos un contrato de encargo de tratamiento. Las condiciones de venta, el desistimiento y la privacidad los aportas tú.</p>
+      </div>
+      <div class="term">
+        <h3>Propiedad</h3>
+        <p>La plataforma es tuya una vez pagada por completo.</p>
+      </div>
+    </div>
+
+    <div class="support">
+      <h3>Después de la entrega</h3>
+      <table class="st">
+        <thead><tr><th scope="col">Qué es</th><th scope="col">Ejemplo</th><th scope="col">Condición</th></tr></thead>
+        <tbody>
+          <tr><td>Error o fallo nuestro</td><td>Algo acordado no funciona como debe.</td><td>Lo solucionamos sin coste y sin límite de tiempo, salvo que un tercero haya modificado la plataforma.</td></tr>
+          <tr><td>Soporte</td><td>Ayuda, dudas o ajustes que no son un error.</td><td>Incluido durante 1 mes tras la entrega completa. Después, 45 €/hora + IVA.</td></tr>
+          <tr><td>Ampliación</td><td>Una función o un módulo nuevo.</td><td>Se presupuesta aparte por horas, a 45 €/hora + IVA.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="inversion" class="s-dark" aria-labelledby="t-inversion">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Inversión</p>
+      <h2 id="t-inversion">Dos formas de pago para el mismo alcance</h2>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Pago único</h3>
+        <p class="price">3.497 € <small>+ IVA</small></p>
+        <p>Se abona al inicio del proyecto.</p>
+      </div>
+      <div class="plan">
+        <h3>Fraccionado en 6 plazos</h3>
+        <p class="price">3.840 € <small>+ IVA</small></p>
+        <p>6 plazos mensuales de 640 € + IVA; el primero, al iniciar el proyecto.</p>
+      </div>
+    </div>
+    <div class="next">
+      <h3>Siguiente paso</h3>
+      <p>Lo repasamos juntas en la llamada y resolvemos tus dudas. Si encaja, empezamos por la fase de definición.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">Propuesta preparada por Irene y María · Las Chicas de IsART. Esta página está en nuestra web solo para presentarte la propuesta; no es el alojamiento de la plataforma.</div>
+</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'))});
+  function show(i,focus){
+    tabs.forEach(function(t,n){
+      var on=n===i;
+      t.setAttribute('aria-selected',on?'true':'false');
+      on?t.removeAttribute('tabindex'):t.setAttribute('tabindex','-1');
+      panels[n].hidden=!on;
+    });
+    if(focus)tabs[i].focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i)});
+    t.addEventListener('keydown',function(e){
+      var n=tabs.length,k=e.key,to=k==='ArrowRight'?(i+1)%n:k==='ArrowLeft'?(i-1+n)%n:k==='Home'?0:k==='End'?n-1:-1;
+      if(to>=0){e.preventDefault();show(to,true)}
+    });
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
