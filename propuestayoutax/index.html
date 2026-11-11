@@ -159,12 +159,6 @@ html:not(.js) .panel+.panel{margin-top:48px}
 .mod p{margin-top:4px;font-size:.92rem;color:var(--muted);line-height:1.5}
 .tag{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:.7rem;font-weight:600;vertical-align:1px;white-space:nowrap}
 .origin{margin-top:26px;font-size:.87rem;color:var(--muted)}
-.out{margin-top:36px;padding:22px 24px;background:var(--cream);border-radius:var(--radius)}
-.out h3{font-size:1.02rem;font-weight:600}
-.out p{margin-top:6px;font-size:.92rem;color:var(--muted)}
-.out ul{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 28px;font-size:.93rem}
-.out li{display:flex;gap:8px;line-height:1.45}
-.out li::before{content:"–";color:var(--muted)}
 
 /* Proceso */
 .phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:f}
@@ -233,7 +227,7 @@ footer.foot .wrap{padding-top:20px;padding-bottom:20px}
   .side ul{display:flex;overflow-x:auto;gap:4px}
   .side li{white-space:nowrap}
   .tiles{grid-template-columns:minmax(0,1fr)}
-  .bubbles,.mods,.out ul,.facts,.terms,.plans,.phases{grid-template-columns:minmax(0,1fr)}
+  .bubbles,.mods,.facts,.terms,.plans,.phases{grid-template-columns:minmax(0,1fr)}
   .st,.st tbody,.st tr,.st td{display:block;width:100%}
   .st thead{display:none}
   .st tr{padding:12px 0;border-top:1px solid var(--line)}
@@ -257,6 +251,8 @@ footer.foot .wrap{padding-top:20px;padding-bottom:20px}
   <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 3h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></symbol>
   <symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.500 8.500l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol>
 </svg>
 
@@ -451,6 +447,7 @@ footer.foot .wrap{padding-top:20px;padding-bottom:20px}
         <p class="who">Cada trabajador, desde el móvil o el ordenador.</p>
         <ul class="checks">
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consulta sus vacaciones y las solicita.</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ficha su entrada y su salida.</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Consulta y descarga sus nóminas.</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tiene sus datos en Mi perfil.</li>
         </ul>
@@ -485,32 +482,22 @@ footer.foot .wrap{padding-top:20px;padding-bottom:20px}
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Qué incluye</p>
-      <h2 id="t-incluye">Los módulos de esta primera versión</h2>
+      <h2 id="t-incluye">Los módulos de la plataforma</h2>
     </div>
     <div class="mods">
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-device"/></svg></span><h3>Acceso web y móvil</h3><p>Desde el navegador del ordenador o del móvil, con la misma cuenta.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span><h3>Inicio con previsión de impuestos</h3><p>Lo que toca pagar hasta la fecha, en colores fáciles de entender. Se carga a mano o por API.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><h3>Empresas, usuarios y permisos</h3><p>Uno o varios administradores activan los módulos de cada persona. Vosotros también podéis hacerlo.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-person"/></svg></span><h3>Mi perfil</h3><p>Sus datos, sus vacaciones con solicitud y sus nóminas para consultar y descargar.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><h3>Fichajes</h3><p>Cada trabajador ficha su entrada y su salida desde el móvil o el ordenador, y consulta sus registros.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-case"/></svg></span><h3>Laboral</h3><p>Para quien tenga permiso: nóminas de los trabajadores y resumen de costes laborales cargado por YouTax.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bill"/></svg></span><h3>Facturas</h3><p>Emitidas: hacerlas con numeración correlativa o subirlas. Recibidas: subirlas en PDF o imagen.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg></span><h3>Mis documentos</h3><p>Documentación de la empresa, informes como pérdidas y ganancias o balance, y las facturas de YouTax.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span><h3>YouTax Academy</h3><p>Vídeos que publicáis mediante enlace desde vuestro panel, visibles para los administradores.</p></div>
       <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-guide"/></svg></span><h3>Tutorial guiado <span class="tag">Idea nuestra</span></h3><p>Un recorrido de bienvenida que cada persona puede repetir cuando quiera.</p></div>
+      <div class="mod"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-film"/></svg></span><h3>Vídeo explicativo <span class="tag">Idea nuestra</span></h3><p>Un vídeo con motion graphics que enseña de un vistazo cómo se usa la plataforma.</p></div>
     </div>
-    <p class="origin">Salvo el tutorial, todo sale de lo que nos contasteis en la llamada.</p>
-    <div class="out">
-      <h3>Fuera de esta primera versión</h3>
-      <p>Para que quede claro desde el principio. Se pueden valorar aparte como ampliación.</p>
-      <ul>
-        <li>Fichajes</li>
-        <li>App en App Store y Google Play</li>
-        <li>Adaptación a Verifactu</li>
-        <li>Traspaso de históricos del portal actual</li>
-        <li>Contenidos por sector, novedades o tablón</li>
-        <li>Vídeo explicativo con motion graphics</li>
-      </ul>
-    </div>
+    <p class="origin">Salvo el tutorial y el vídeo, todo sale de lo que nos contasteis en la llamada.</p>
   </div>
 </section>
 
