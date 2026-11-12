@@ -50,7 +50,7 @@ footer { padding-top:24px; padding-bottom:32px; font-size:.85rem; color:var(--mu
       <div>
         <strong>Únete al grupo de WhatsApp del taller</strong>
         <p>Ahí te damos la bienvenida, compartimos novedades y, si has entrado con acceso anticipado, anunciamos la fecha del directo de dudas.</p>
-        <a class="btn" href="https://chat.whatsapp.com/Fz6xAh7FZ4H2XSh0TSbflr" target="_blank" rel="noopener">Entrar en el grupo de WhatsApp</a>
+        <a class="btn" href="https://chat.whatsapp.com/Fz6xAh7FZ4H2XSh0TSbflr" target="_blank" rel="noopener" data-track="gracias_whatsapp">Entrar en el grupo de WhatsApp</a>
       </div>
     </li>
     <li class="step">
@@ -76,5 +76,34 @@ footer { padding-top:24px; padding-bottom:32px; font-size:.85rem; color:var(--mu
   <a href="/tallerIA/condiciones/">Condiciones de compra</a>
   <a href="/politica-privacidad/">Privacidad</a>
 </footer>
+<script>
+/* Medición de la compra: solo si la persona aceptó las cookies en la landing
+   (preferencia 'cookie-consent' de laschicasdeisart.com). Mismos IDs que /tallerIA. */
+(() => {
+  let ok = false;
+  try { ok = localStorage.getItem('cookie-consent') === 'accepted'; } catch {}
+  if (!ok || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) return;
+  /* eslint-disable */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script','ykc9vrnes0');
+  /* eslint-enable */
+  window.fbq('init', '1788439929006625');
+  window.fbq('track', 'PageView');
+  window.clarity('set', 'landing', 'tallerIA');
+  // Una sola compra por visita, aunque se recargue la página.
+  let seen = false;
+  try { seen = sessionStorage.getItem('tallerIA_compra') === '1'; sessionStorage.setItem('tallerIA_compra', '1'); } catch {}
+  if (!seen) {
+    const now = Date.now();
+    const amount = now < Date.parse('2026-11-23T00:00:00+01:00') ? 48.5 : now < Date.parse('2026-12-03T00:00:00+01:00') ? 67 : 97;
+    window.fbq('track', 'Purchase', { content_name: 'Taller IA', value: amount, currency: 'EUR' });
+    window.clarity('event', 'compra_completada');
+  }
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-track]');
+    if (el) window.clarity('event', el.dataset.track);
+  }, true);
+})();
+</script>
 </body>
 </html>

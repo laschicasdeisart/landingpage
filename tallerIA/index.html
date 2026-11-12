@@ -255,6 +255,16 @@ footer a { text-decoration: underline; text-underline-offset: 3px; }
 .sticky-buy .btn { min-height: 48px; padding: 0 18px; font-size: .92rem; white-space: nowrap; }
 @media (min-width: 900px) { .sticky-buy { display: none; } }
 
+/* Aviso de cookies (misma preferencia que el resto de laschicasdeisart.com) */
+.cookies { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 60; max-width: 620px; margin: 0 auto; background: var(--ink); color: #fff; border-radius: 18px; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; box-shadow: 0 12px 32px rgba(0,0,0,.25); }
+.cookies[hidden] { display: none; }
+.cookies p { flex: 1 1 260px; font-size: .9rem; line-height: 1.5; }
+.cookies a { color: var(--t); }
+.cookies-actions { display: flex; gap: 8px; flex: 0 0 auto; }
+.cookies .btn { min-height: 44px; padding: 0 20px; font-size: .95rem; }
+.cookies .btn.ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
+.cookies .btn.ghost:hover { background: rgba(255,255,255,.12); }
+
 /* Visibilidad por fase */
 [data-show] { display: none !important; }
 html[data-phase="preventa"] [data-show~="preventa"],
@@ -281,7 +291,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="/">Las Chicas de <span>IsART</span></a>
-    <a class="btn" href="#precio" data-cta-short>Ver precio</a>
+    <a class="btn" href="#precio" data-cta-short data-track="cabecera_ver_oferta">Ver precio</a>
   </div>
 </header>
 
@@ -291,7 +301,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
 <section class="hero">
   <div class="wrap">
     <div>
-      <a class="promo-pill" href="#oferta" data-show="preventa"><b>BONUS</b><span>Acceso anticipado: 48,50 € en vez de 97 € + directo de dudas con nosotras</span></a>
+      <a class="promo-pill" href="#oferta" data-show="preventa" data-track="hero_aviso_bonus"><b>BONUS</b><span>Acceso anticipado: 48,50 € en vez de 97 € + directo de dudas con nosotras</span></a>
       <span class="eyebrow">Taller online · 3 clases grabadas</span>
       <h1>Aprende a crear carruseles, vídeos y animaciones con IA <mark>antes de quedarte atrás.</mark></h1>
       <p class="lead">La IA avanza cada semana. Te enseñamos a usarla para crear en menos tiempo, con calidad profesional y sin perder tu autenticidad. Crees para clientes o para tu propia marca, aunque empieces de cero.</p>
@@ -312,7 +322,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4 9 8 12 8zm0 0s2-5 4.5-4S15 8 12 8z"/></svg></span>
         <div><strong>BONUS: directo de dudas con nosotras</strong><span>Solo con el acceso anticipado. Con grabación.</span></div>
       </div>
-      <a class="btn" href="#precio" data-buy rel="noopener"><span data-cta-label>Acceso anticipado · 48,50 €</span></a>
+      <a class="btn" href="#precio" data-buy data-track="comprar_hero" rel="noopener"><span data-cta-label>Acceso anticipado · 48,50 €</span></a>
       <p class="buy-meta" style="text-align:center">IVA incluido · Pago único · Pago seguro con Stripe</p>
       <p class="deadline" data-deadline></p>
     </aside>
@@ -327,7 +337,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       <h2 id="bonus-t">Entra con acceso anticipado y resuelve tus dudas en directo con nosotras.</h2>
       <p>Una sesión exclusiva para quienes compren hasta el 22 de noviembre. Anunciaremos la fecha en el grupo de WhatsApp. Si no puedes venir, tendrás la grabación.</p>
     </div>
-    <a class="btn" href="#precio" data-buy><span data-cta-label>Acceso anticipado · 48,50 €</span></a>
+    <a class="btn" href="#precio" data-buy data-track="comprar_banda_bonus"><span data-cta-label>Acceso anticipado · 48,50 €</span></a>
   </div>
 </section>
 
@@ -342,30 +352,30 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       <figure class="example reveal">
         <div class="ig" data-ig="https://www.instagram.com/p/DerJ6QEgrkX/embed/">
           <img src="img/ejemplo-carrusel-1.jpg" width="900" height="1125" alt="Portada del carrusel «Se buscan emprendedores sin tiempo»" loading="lazy" decoding="async">
-          <button class="ig-play" type="button" aria-label="Ver aquí el carrusel «Se buscan emprendedores sin tiempo»"><i aria-hidden="true">→</i>Ver carrusel</button>
+          <button class="ig-play" type="button" data-track="ejemplo_ver_carrusel_emprendedores" aria-label="Ver aquí el carrusel «Se buscan emprendedores sin tiempo»"><i aria-hidden="true">→</i>Ver carrusel</button>
         </div>
-        <figcaption><span class="kind">Carrusel · Clase 1</span><a href="https://www.instagram.com/p/DerJ6QEgrkX/" target="_blank" rel="noopener">Abrir en Instagram ↗</a></figcaption>
+        <figcaption><span class="kind">Carrusel · Clase 1</span><a href="https://www.instagram.com/p/DerJ6QEgrkX/" target="_blank" rel="noopener" data-track="ejemplo_instagram_carrusel_emprendedores">Abrir en Instagram ↗</a></figcaption>
       </figure>
       <figure class="example reveal">
         <div class="ig" data-ig="https://www.instagram.com/reel/DfmN6mCBxKm/embed/">
           <img class="tall" src="img/ejemplo-video-zenit.jpg" width="720" height="1280" alt="Portada del vídeo «¿Sabes quién es?»" loading="lazy" decoding="async">
-          <button class="ig-play" type="button" aria-label="Reproducir aquí el vídeo «¿Sabes quién es?»"><i aria-hidden="true">▶</i>Ver vídeo</button>
+          <button class="ig-play" type="button" data-track="ejemplo_ver_video_zenit" aria-label="Reproducir aquí el vídeo «¿Sabes quién es?»"><i aria-hidden="true">▶</i>Ver vídeo</button>
         </div>
-        <figcaption><span class="kind">Vídeo con IA y motion graphics · Clase 3</span><a href="https://www.instagram.com/reel/DfmN6mCBxKm/" target="_blank" rel="noopener">Abrir en Instagram ↗</a></figcaption>
+        <figcaption><span class="kind">Vídeo con IA y motion graphics · Clase 3</span><a href="https://www.instagram.com/reel/DfmN6mCBxKm/" target="_blank" rel="noopener" data-track="ejemplo_instagram_video_zenit">Abrir en Instagram ↗</a></figcaption>
       </figure>
       <figure class="example reveal">
         <div class="ig" data-ig="https://www.instagram.com/p/DeuierPm4gy/embed/">
           <img src="img/ejemplo-carrusel-2.jpg" width="900" height="1125" alt="Portada del carrusel «¿Terminas el día haciendo balance de todo lo que has comido?»" loading="lazy" decoding="async">
-          <button class="ig-play" type="button" aria-label="Ver aquí el carrusel «¿Terminas el día haciendo balance?»"><i aria-hidden="true">→</i>Ver carrusel</button>
+          <button class="ig-play" type="button" data-track="ejemplo_ver_carrusel_balance" aria-label="Ver aquí el carrusel «¿Terminas el día haciendo balance?»"><i aria-hidden="true">→</i>Ver carrusel</button>
         </div>
-        <figcaption><span class="kind">Carrusel para cliente · Clase 1</span><a href="https://www.instagram.com/p/DeuierPm4gy/" target="_blank" rel="noopener">Abrir en Instagram ↗</a></figcaption>
+        <figcaption><span class="kind">Carrusel para cliente · Clase 1</span><a href="https://www.instagram.com/p/DeuierPm4gy/" target="_blank" rel="noopener" data-track="ejemplo_instagram_carrusel_balance">Abrir en Instagram ↗</a></figcaption>
       </figure>
       <figure class="example reveal">
         <div class="ig" data-ig="https://www.instagram.com/reel/DfaeqEEInVw/embed/">
           <img class="tall" src="img/ejemplo-animacion.jpg" width="720" height="1280" alt="Portada de la animación «Pedro también lo hizo»" loading="lazy" decoding="async">
-          <button class="ig-play" type="button" aria-label="Reproducir aquí la animación «Pedro también lo hizo»"><i aria-hidden="true">▶</i>Ver animación</button>
+          <button class="ig-play" type="button" data-track="ejemplo_ver_animacion_pedro" aria-label="Reproducir aquí la animación «Pedro también lo hizo»"><i aria-hidden="true">▶</i>Ver animación</button>
         </div>
-        <figcaption><span class="kind">Animación con IA para cliente · Clase 3</span><a href="https://www.instagram.com/reel/DfaeqEEInVw/" target="_blank" rel="noopener">Abrir en Instagram ↗</a></figcaption>
+        <figcaption><span class="kind">Animación con IA para cliente · Clase 3</span><a href="https://www.instagram.com/reel/DfaeqEEInVw/" target="_blank" rel="noopener" data-track="ejemplo_instagram_animacion_pedro">Abrir en Instagram ↗</a></figcaption>
       </figure>
     </div>
     <p class="ig-note">Al pulsar «Ver», la publicación se carga aquí mismo desde Instagram (Meta), que puede usar cookies.</p>
@@ -523,7 +533,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
           <li class="bonus-line">BONUS: directo de dudas con nosotras</li>
         </ul>
         <p class="ended-note" data-ended-note hidden>Acceso anticipado finalizado. El bonus no se incluye en las compras actuales.</p>
-        <div class="card-cta"><a class="btn" href="#precio" data-buy><span data-cta-label>Acceso anticipado · 48,50 €</span></a></div>
+        <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_preventa"><span data-cta-label>Acceso anticipado · 48,50 €</span></a></div>
       </article>
       <article class="price-card" data-tier="lanzamiento">
         <span class="status" data-status>Próximamente</span>
@@ -532,7 +542,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <div class="price-row"><span class="price-now">67 €</span><s class="price-was"><span class="sr-only">Precio final: </span>97 €</s></div>
         <span class="save">Ahorras 30 €</span>
         <ul><li>Taller completo</li></ul>
-        <div class="card-cta"><a class="btn" href="#precio" data-buy><span data-cta-label>Acceso anticipado · 67 €</span></a></div>
+        <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_lanzamiento"><span data-cta-label>Acceso anticipado · 67 €</span></a></div>
       </article>
       <article class="price-card" data-tier="final">
         <span class="status" data-status>Próximamente</span>
@@ -540,7 +550,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <p class="when">Desde el 3 de diciembre</p>
         <div class="price-row"><span class="price-now">97 €</span></div>
         <ul><li>Taller completo</li></ul>
-        <div class="card-cta"><a class="btn" href="#precio" data-buy><span data-cta-label>Acceder · 97 €</span></a></div>
+        <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_final"><span data-cta-label>Acceder · 97 €</span></a></div>
       </article>
     </div>
     <p class="prices-note">Mismo taller en los tres casos. El directo de dudas es exclusivo del acceso anticipado. IVA incluido. Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular).</p>
@@ -555,13 +565,13 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       <h2 id="faq-t">Dudas rápidas.</h2>
     </div>
     <div class="faq">
-      <details><summary>¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular). Ese día recibirás por email tu usuario para entrar en la plataforma. Mientras tanto, te esperamos en el grupo de WhatsApp.</p></details>
-      <details><summary>¿Necesito saber de IA?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Empezamos desde el principio. Solo necesitas manejarte con herramientas digitales básicas y tener ganas de practicar.</p></details>
-      <details><summary>¿Las clases son en directo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No, son grabadas para que las veas a tu ritmo. El directo de dudas es el bonus del acceso anticipado y tendrá grabación.</p></details>
-      <details><summary>¿Cuánto dura el acceso?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Es de por vida, e incluye las actualizaciones que vayamos añadiendo al taller.</p></details>
-      <details><summary>¿Están incluidas las herramientas?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Usamos ChatGPT, Claude, Canva, ElevenLabs, Edits y CapCut. Si necesitas un plan de pago, se contrata aparte.</p></details>
-      <details><summary>¿Es un pago único?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Sí, con IVA incluido. No es una suscripción.</p></details>
-      <details><summary>¿Hay devoluciones?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Al tratarse de contenido digital no se devuelve el importe una vez realizada la compra, salvo cobro duplicado o que no pudiéramos impartir el taller. Lo tienes todo en las <a href="condiciones/">condiciones de compra</a>.</p></details>
+      <details><summary data-track="faq_cuando_empiezo">¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular). Ese día recibirás por email tu usuario para entrar en la plataforma. Mientras tanto, te esperamos en el grupo de WhatsApp.</p></details>
+      <details><summary data-track="faq_saber_ia">¿Necesito saber de IA?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Empezamos desde el principio. Solo necesitas manejarte con herramientas digitales básicas y tener ganas de practicar.</p></details>
+      <details><summary data-track="faq_en_directo">¿Las clases son en directo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No, son grabadas para que las veas a tu ritmo. El directo de dudas es el bonus del acceso anticipado y tendrá grabación.</p></details>
+      <details><summary data-track="faq_duracion">¿Cuánto dura el acceso?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Es de por vida, e incluye las actualizaciones que vayamos añadiendo al taller.</p></details>
+      <details><summary data-track="faq_herramientas">¿Están incluidas las herramientas?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Usamos ChatGPT, Claude, Canva, ElevenLabs, Edits y CapCut. Si necesitas un plan de pago, se contrata aparte.</p></details>
+      <details><summary data-track="faq_pago_unico">¿Es un pago único?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Sí, con IVA incluido. No es una suscripción.</p></details>
+      <details><summary data-track="faq_devoluciones">¿Hay devoluciones?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Al tratarse de contenido digital no se devuelve el importe una vez realizada la compra, salvo cobro duplicado o que no pudiéramos impartir el taller. Lo tienes todo en las <a href="condiciones/" data-track="faq_condiciones">condiciones de compra</a>.</p></details>
     </div>
   </div>
 </section>
@@ -572,7 +582,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     <h2 id="cierre-t" class="reveal">Dale a tu próxima idea más posibilidades.</h2>
     <p class="lead reveal">Carruseles, vídeos y animaciones con IA, con un proceso que puedas repetir.</p>
     <div class="cta-row reveal">
-      <a class="btn" href="#precio" data-buy><span data-cta-label>Acceso anticipado · 48,50 €</span> <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn" href="#precio" data-buy data-track="comprar_cierre"><span data-cta-label>Acceso anticipado · 48,50 €</span> <span class="arrow" aria-hidden="true">→</span></a>
       <p class="buy-meta" data-close-meta>IVA incluido · Pago único · Acceso de por vida</p>
     </div>
   </div>
@@ -584,7 +594,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   <div class="wrap">
     <p>© 2026 IS ART SHOP SOLUTIONS S.L. · <a href="mailto:laschicasdeisart@gmail.com">laschicasdeisart@gmail.com</a></p>
     <nav aria-label="Información legal">
-      <a href="condiciones/">Condiciones de compra</a>
+      <a href="condiciones/" data-track="pie_condiciones">Condiciones de compra</a>
       <a href="/aviso-legal/">Aviso legal</a>
       <a href="/politica-privacidad/">Privacidad</a>
       <a href="/politica-cookies/">Cookies</a>
@@ -592,9 +602,17 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   </div>
 </footer>
 
+<div class="cookies" id="cookies" role="dialog" aria-label="Aviso de cookies" hidden>
+  <p>Usamos cookies para saber cómo se usa esta página y medir nuestra publicidad. <a href="/politica-cookies/" target="_blank" rel="noopener">Más info</a></p>
+  <div class="cookies-actions">
+    <button class="btn" type="button" data-consent="accepted">Aceptar</button>
+    <button class="btn ghost" type="button" data-consent="rejected">Rechazar</button>
+  </div>
+</div>
+
 <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
   <div class="info"><strong data-sticky-price>48,50 €</strong><s data-sticky-was>97 €</s><span data-sticky-tier>Acceso anticipado + bonus</span></div>
-  <a class="btn" href="#precio" data-buy tabindex="-1"><span data-sticky-label>Acceso anticipado</span></a>
+  <a class="btn" href="#precio" data-buy data-track="comprar_barra_movil" tabindex="-1"><span data-sticky-label>Acceso anticipado</span></a>
 </div>
 
 <script>
@@ -628,8 +646,10 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     return { cur, phase };
   }
 
+  let current = null; // tramo vigente, para la medición
   function render(now) {
     const { cur, phase } = phaseAt(now);
+    current = cur;
     root.dataset.phase = phase;
     const link = cur ? PAYMENT_LINKS[cur.id] : null;
     const label = !cur ? 'Disponible el 11 de noviembre'
@@ -739,6 +759,58 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   } else {
     $$('.reveal').forEach((el) => el.classList.add('in'));
   }
+
+  /* ===== Medición =====
+     Microsoft Clarity (visitas, mapas de calor, grabaciones) y Píxel de Meta (anuncios),
+     los mismos que en /lavueltaalcole. Solo se cargan si la persona acepta las cookies;
+     la preferencia se guarda en 'cookie-consent' y vale para todo laschicasdeisart.com.
+     Cada botón lleva data-track="nombre": en Clarity aparece como evento personalizado. */
+  const CLARITY_ID = 'ykc9vrnes0';
+  const PIXEL_ID = '1788439929006625';
+  const CONSENT_KEY = 'cookie-consent';
+  const isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const getConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
+  const value = () => (current ? { value: current.amount / 100, currency: 'EUR' } : {});
+  let measuring = false;
+
+  function startMeasuring() {
+    if (measuring) return;
+    measuring = true;
+    if (isLocal) { window.__track = []; return; } // en local no se envía nada: solo se anota
+    /* eslint-disable */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',CLARITY_ID);
+    /* eslint-enable */
+    window.fbq('init', PIXEL_ID);
+    window.fbq('track', 'PageView');
+    window.fbq('track', 'ViewContent', { content_name: 'Taller IA', ...value() });
+    window.clarity('set', 'landing', 'tallerIA');
+    window.clarity('set', 'fase', root.dataset.phase);
+  }
+
+  function track(name, el) {
+    if (!measuring) return;
+    const buy = el.matches('[data-buy]') && el.getAttribute('aria-disabled') !== 'true';
+    if (isLocal) { window.__track.push(buy ? `${name} + InitiateCheckout` : name); return; }
+    window.clarity('event', name);
+    if (buy) window.fbq('track', 'InitiateCheckout', { content_name: 'Taller IA', ...value() });
+  }
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-track]');
+    if (el) track(el.dataset.track, el);
+  }, true);
+
+  const banner = document.getElementById('cookies');
+  const consent = getConsent();
+  if (consent === 'accepted') startMeasuring();
+  else if (consent !== 'rejected') banner.hidden = false;
+  banner.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-consent]');
+    if (!b) return;
+    try { localStorage.setItem(CONSENT_KEY, b.dataset.consent); } catch {}
+    banner.hidden = true;
+    if (b.dataset.consent === 'accepted') startMeasuring();
+  });
 })();
 </script>
 </body>
