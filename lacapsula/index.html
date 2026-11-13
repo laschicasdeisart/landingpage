@@ -3,1058 +3,563 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Cápsula Creativa · Marca personal, edición, IA y networking</title>
-<meta name="description" content="La comunidad donde emprendedores y creadores aprenden a escalar su marca personal para vender sin parecer un teleoperador del 2010.">
+<title>La Cápsula Creativa · Comunidad de creación de contenido</title>
+<meta name="description" content="Comunidad en Skool para aprender marca personal, edición de vídeo e IA con gente que está en tu misma etapa. Desde 22 $/mes.">
 <meta property="og:title" content="La Cápsula Creativa">
-<meta property="og:description" content="Marca personal, edición de vídeo, IA y networking en un solo lugar.">
-<meta property="og:image" content="https://lacapsula.laschicasdeisart.com/og.jpg">
+<meta property="og:description" content="Marca personal, edición de vídeo e IA, con comunidad y directos. Desde 22 $/mes.">
+<meta property="og:image" content="https://laschicasdeisart.com/lacapsula/hero.jpeg">
 
-<!-- Nasalization -->
 <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/nasalization">
-<!-- Poppins -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 
 <style>
-/* ── RESET ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* ── TOKENS ── */
 :root {
-  --space:     #050912;
-  --space-mid: #080f1e;
-  --space-up:  #0d1830;
-  --teal:      #5CE1D4;
-  --teal-b:    #00e5c8;
-  --teal-d:    #2BBFB0;
-  --teal-g:    rgba(92,225,212,0.10);
-  --teal-gs:   rgba(92,225,212,0.22);
-  --white:     #e8f4ff;
-  --white-d:   rgba(232,244,255,0.68);
-  --white-m:   rgba(232,244,255,0.35);
-  --font-h:    'Nasalization', 'Orbitron', sans-serif;
-  --font-b:    'Poppins', sans-serif;
-  --ease:      cubic-bezier(0.16,1,0.3,1);
-  --px:        clamp(24px, 6vw, 100px);
+  --space:   #050912;
+  --space-2: #08101f;
+  --space-3: #0d1830;
+  --teal:    #5CE1D4;
+  --teal-2:  #2BBFB0;
+  --amber:   #F2A33A;
+  --white:   #e8f4ff;
+  --white-d: rgba(232,244,255,0.72);
+  --white-m: rgba(232,244,255,0.42);
+  --line:    rgba(92,225,212,0.12);
+  --font-h:  'Nasalization Rg', 'Nasalization', 'Orbitron', sans-serif;
+  --font-b:  'Poppins', sans-serif;
+  --ease:    cubic-bezier(0.16,1,0.3,1);
+  --px:      clamp(16px, 6vw, 96px);
+  --max:     1120px;
 }
 
 body {
   background: var(--space);
   color: var(--white);
   font-family: var(--font-b);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
 
-/* ── STARS ── */
-.stars {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-.star {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  animation: twinkle var(--d,3s) ease-in-out infinite;
-  animation-delay: var(--dl,0s);
-}
-@keyframes twinkle {
-  0%,100% { opacity: var(--o,.3); transform: scale(1); }
-  50%      { opacity: 1; transform: scale(1.4); }
-}
+/* estrellas */
+.stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.star { position: absolute; border-radius: 50%; background: #fff; animation: twinkle var(--d,3s) ease-in-out infinite; animation-delay: var(--dl,0s); opacity: var(--o,.3); }
+@keyframes twinkle { 50% { opacity: 1; } }
 
-/* scanlines */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(92,225,212,0.012) 3px,
-    rgba(92,225,212,0.012) 4px
-  );
-  pointer-events: none;
-  z-index: 999;
-}
+section, header, footer { position: relative; z-index: 1; }
+.wrap { max-width: var(--max); margin: 0 auto; }
 
-/* ── HELPERS ── */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-h);
-  font-size: 9px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--teal);
-  border: 1px solid rgba(92,225,212,0.25);
-  padding: 7px 16px;
-  background: rgba(92,225,212,0.05);
-  margin-bottom: 28px;
+/* etiquetas y títulos */
+.label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-h); font-size: 10px; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 22px;
 }
-.section-label::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  animation: pulse 2s ease-in-out infinite;
-  box-shadow: 0 0 6px var(--teal);
-  flex-shrink: 0;
-}
-@keyframes pulse {
-  0%,100% { opacity:1; box-shadow: 0 0 6px var(--teal); }
-  50%      { opacity:.4; box-shadow: 0 0 2px var(--teal); }
-}
+.label::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+h1, h2, h3 { font-family: var(--font-h); font-weight: 400; text-transform: uppercase; }
+h2 { font-size: clamp(1.6rem, 3.6vw, 2.8rem); line-height: 1.1; letter-spacing: .02em; max-width: 820px; }
+h2 em, h1 em { font-style: normal; color: var(--teal); }
+.lead { color: var(--white-d); font-weight: 300; font-size: clamp(15px,1.6vw,17px); max-width: 620px; margin-top: 20px; }
 
-/* ── BUTTONS ── */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--teal);
-  color: #050912;
-  font-family: var(--font-h);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 18px 36px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, transform .25s var(--ease), box-shadow .25s;
-  white-space: nowrap;
+/* botones */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font-h); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 17px 30px; border-radius: 999px; text-decoration: none; cursor: pointer;
+  transition: transform .25s var(--ease), box-shadow .25s, background .2s;
+  white-space: nowrap; border: 1px solid transparent;
 }
-.btn-primary:hover {
-  background: var(--teal-b);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(92,225,212,0.3);
-}
+.btn-main { background: var(--teal); color: var(--space); }
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 34px rgba(92,225,212,.32); }
+.btn-ghost { border-color: rgba(92,225,212,.4); color: var(--teal); background: transparent; }
+.btn-ghost:hover { background: rgba(92,225,212,.08); transform: translateY(-2px); }
+.btn .arrow { transition: transform .25s var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: transparent;
-  color: var(--teal);
-  font-family: var(--font-h);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 17px 32px;
-  border: 1px solid var(--teal-d);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background .2s, transform .25s var(--ease), box-shadow .25s;
-  white-space: nowrap;
-}
-.btn-secondary:hover {
-  background: var(--teal-g);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(92,225,212,0.15);
-}
+/* reveal */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
 
-/* ── REVEAL — progressive enhancement ── */
-/* opacity:0 solo se aplica cuando JS añade la clase .js-reveal */
-.js-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .85s var(--ease), transform .85s var(--ease);
+/* aviso taller */
+.topbar {
+  position: relative; z-index: 3; display: block; text-align: center; text-decoration: none;
+  background: linear-gradient(90deg, rgba(242,163,58,.16), rgba(242,163,58,.08));
+  border-bottom: 1px solid rgba(242,163,58,.25);
+  color: var(--white); font-size: 13px; padding: 10px 16px;
 }
-.js-reveal.visible { opacity:1; transform:translateY(0); }
-.js-reveal[data-delay="1"] { transition-delay: .1s; }
-.js-reveal[data-delay="2"] { transition-delay: .2s; }
-.js-reveal[data-delay="3"] { transition-delay: .3s; }
-.js-reveal[data-delay="4"] { transition-delay: .45s; }
+.topbar strong { color: var(--amber); font-weight: 500; }
+.topbar:hover span { text-decoration: underline; }
 
-/* ── NAV ── */
+/* nav */
 nav {
-  position: fixed;
-  inset-block-start: 0;
-  inset-inline: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px var(--px);
-  background: rgba(5,9,18,0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(92,225,212,0.08);
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px var(--px);
+  background: rgba(5,9,18,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
 }
-.nav-logo {
-  font-family: var(--font-h);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--white-d);
-  text-decoration: none;
-  transition: color .2s;
-}
-.nav-logo span { color: var(--teal); }
-.nav-logo:hover { color: var(--white); }
+.logo { font-family: var(--font-h); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: var(--white); }
+.logo span { color: var(--teal); }
+.nav-links { display: flex; align-items: center; gap: 26px; font-size: 13px; }
+.nav-links a:not(.btn) { color: var(--white-d); text-decoration: none; }
+.nav-links a:not(.btn):hover { color: var(--teal); }
+.nav-links .btn { padding: 11px 20px; font-size: 10px; }
+@media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
 
-.nav-btn {
-  font-size: 10px;
-  padding: 12px 22px;
-}
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  z-index: 1;
-  min-height: 100dvh;
-  display: grid;
-  grid-template-columns: 55fr 45fr;
-  align-items: center;
-  padding: 130px var(--px) 80px;
-  gap: 60px;
-}
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding-top: 110px;
-    text-align: center;
-  }
-  .hero-ctas { justify-content: center; }
-  .hero-visual { order: -1; }
-}
-
-/* nebula glow */
+/* hero */
+.hero { padding: clamp(56px,9vw,110px) var(--px) clamp(48px,7vw,80px); text-align: center; overflow: hidden; }
 .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0; z-index: -1;
   background:
-    radial-gradient(ellipse at 75% 45%, rgba(92,225,212,0.13) 0%, transparent 55%),
-    radial-gradient(ellipse at 15% 80%, rgba(92,225,212,0.06) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 5%,  rgba(120,80,220,0.07) 0%, transparent 50%);
-  z-index: -1;
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(92,225,212,.16), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 85% 70%, rgba(120,80,220,.10), transparent 70%);
 }
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--line); background: rgba(13,24,48,.6);
+  border-radius: 999px; padding: 8px 16px; font-size: 12px; color: var(--white-d); margin-bottom: 30px;
+}
+.pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+.hero h1 { font-size: clamp(2rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: .02em; max-width: 980px; margin: 0 auto; }
+.hero .lead { margin: 26px auto 0; }
+.hero-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 36px; }
+.hero-note { margin-top: 16px; font-size: 12px; color: var(--white-m); }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-h);
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--teal-d);
-  margin-bottom: 28px;
+.screen {
+  margin: clamp(48px,7vw,80px) auto 0; max-width: 1040px;
+  border-radius: 22px; padding: 8px;
+  background: linear-gradient(160deg, rgba(92,225,212,.35), rgba(92,225,212,.04) 40%, rgba(120,80,220,.25));
+  box-shadow: 0 30px 90px rgba(0,0,0,.55), 0 0 80px rgba(92,225,212,.08);
 }
-.hero-eyebrow .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--teal);
-  animation: pulse 2s ease-in-out infinite;
-  box-shadow: 0 0 8px var(--teal);
-}
+.screen img { border-radius: 16px; width: 100%; height: auto; }
 
-.hero h1 {
-  font-family: var(--font-h);
-  font-size: clamp(1.9rem, 3.8vw, 3.4rem);
-  line-height: 1.08;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--white);
-  margin-bottom: 28px;
-}
-.hero h1 em {
-  color: var(--teal);
-  font-style: normal;
-}
-
-.hero-sub {
-  font-size: clamp(15px, 1.7vw, 17px);
-  color: var(--white-d);
-  max-width: 520px;
-  margin-bottom: 44px;
-  line-height: 1.75;
-  font-weight: 300;
-}
+/* testimonios */
+.proof { padding: clamp(64px,9vw,110px) var(--px); background: var(--space-2); border-block: 1px solid var(--line); }
+.proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 44px; align-items: start; }
+.proof-grid img { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 10px 34px rgba(0,0,0,.4); transition: transform .3s var(--ease); }
+.proof-grid img:hover { transform: translateY(-4px); }
+.proof-grid > :nth-child(2) { margin-top: 36px; }
 @media (max-width: 860px) {
-  .hero-sub { margin-inline: auto; }
+  .proof-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; }
+  .proof-grid > * { scroll-snap-align: start; }
+  .proof-grid > :nth-child(2) { margin-top: 0; }
 }
 
-.hero-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.hero-footnote {
-  font-size: 11px;
-  color: var(--white-m);
-  font-style: italic;
-  letter-spacing: 0.03em;
-}
-
-/* Hero visual */
-.hero-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-img-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 460px;
-}
-
-.hero-img-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -24px;
-  background: radial-gradient(circle at center, rgba(92,225,212,0.14) 0%, transparent 68%);
-  border-radius: 50%;
-  z-index: 0;
-  animation: glow-breathe 4s ease-in-out infinite;
-}
-@keyframes glow-breathe {
-  0%,100% { opacity:.8; transform: scale(1); }
-  50%      { opacity:1;  transform: scale(1.06); }
-}
-
-.hero-img-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  position: relative;
-  z-index: 1;
-  border: 1px solid rgba(92,225,212,0.2);
-  box-shadow: 0 0 60px rgba(92,225,212,0.1);
-}
-
-.img-placeholder {
-  width: 100%;
-  background: var(--space-up);
-  border: 1px dashed rgba(92,225,212,0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--white-m);
-  font-size: 11px;
-  font-family: var(--font-h);
-  letter-spacing: 0.1em;
-  text-align: center;
-  padding: 32px 20px;
-  position: relative;
-  z-index: 1;
-}
-.img-placeholder .ph-icon { font-size: 36px; opacity: .35; }
-.img-placeholder .ph-name { color: var(--teal-d); opacity: .7; }
-
-.gorilla-tag {
-  position: absolute;
-  bottom: -14px;
-  right: -14px;
-  width: 88px;
-  height: 88px;
-  background: var(--space-mid);
-  border: 2px solid var(--teal);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  z-index: 3;
-  box-shadow: 0 0 28px rgba(92,225,212,0.25);
-  animation: float 3.5s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-
-/* ── TESTIMONIOS ── */
-.testimonios {
-  position: relative;
-  z-index: 1;
-  padding: clamp(72px,10vw,120px) var(--px);
-  background: var(--space-mid);
-  border-top: 1px solid rgba(92,225,212,0.08);
-  border-bottom: 1px solid rgba(92,225,212,0.08);
-}
-
-.testimonios::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 200px;
-  background: linear-gradient(to bottom, rgba(92,225,212,0.04), transparent);
-  pointer-events: none;
-}
-
-.testimonios-header {
-  text-align: center;
-  margin-bottom: 52px;
-}
-
-.testimonios-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-@media (max-width: 900px) {
-  .testimonios-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 540px) {
-  .testimonios-grid { grid-template-columns: 1fr; }
-}
-
-.testimonio-slot img {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-  border: 1px solid rgba(92,225,212,0.12);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-  transition: transform .3s var(--ease), box-shadow .3s;
-}
-.testimonio-slot img:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(92,225,212,0.15);
-}
-
-.testimonio-slot .img-placeholder {
-  min-height: 220px;
-  border-radius: 8px;
-}
-
-/* ── PROBLEMA ── */
-.problema {
-  position: relative;
-  z-index: 1;
-  padding: clamp(80px,10vw,130px) var(--px);
-}
-.problema::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 50%;
-  background: radial-gradient(ellipse at left center, rgba(92,225,212,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.problema-inner { max-width: 1100px; margin: 0 auto; }
-
-.problema h2 {
-  font-family: var(--font-h);
-  font-size: clamp(1.6rem, 3.2vw, 2.9rem);
-  line-height: 1.12;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  max-width: 780px;
-  margin-bottom: 64px;
-}
-.problema h2 em {
-  color: var(--teal);
-  font-style: normal;
-}
-
-.problema-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 20px;
-}
-@media (max-width: 600px) {
-  .problema-grid { grid-template-columns: 1fr; }
-}
-
-.problema-card {
-  background: rgba(13,24,48,0.55);
-  border: 1px solid rgba(92,225,212,0.09);
-  border-left: 3px solid var(--teal);
-  padding: 36px 32px;
-  backdrop-filter: blur(8px);
-  transition: background .3s, border-color .3s, transform .3s var(--ease);
-}
-.problema-card:hover {
-  background: rgba(13,24,48,0.8);
-  border-color: rgba(92,225,212,0.25);
-  transform: translateY(-4px);
-}
-
-.problema-num {
-  font-family: var(--font-h);
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  color: var(--teal-d);
-  opacity: .7;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-}
-.problema-card h3 {
-  font-family: var(--font-h);
-  font-size: clamp(13px,1.4vw,15px);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--white);
-  margin-bottom: 12px;
-  line-height: 1.3;
-}
-.problema-card p {
-  font-size: 14px;
-  color: var(--white-d);
-  line-height: 1.75;
-  font-weight: 300;
-}
-
-/* ── DENTRO ── */
-.dentro {
-  position: relative;
-  z-index: 1;
-  padding: clamp(80px,10vw,130px) var(--px);
-  background: var(--space-mid);
-  border-top: 1px solid rgba(92,225,212,0.08);
-}
-.dentro::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 80% 20%, rgba(92,225,212,0.07) 0%, transparent 55%);
-  pointer-events: none;
-}
-
-.dentro-inner { max-width: 1100px; margin: 0 auto; position: relative; }
-
-.dentro h2 {
-  font-family: var(--font-h);
-  font-size: clamp(1.6rem, 3.2vw, 2.9rem);
-  line-height: 1.12;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--white);
-  max-width: 820px;
-  margin-bottom: 64px;
-}
-.dentro h2 strong {
-  color: var(--teal);
-  font-weight: inherit;
-}
-
-.modulos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
-  gap: 16px;
-  margin-bottom: 72px;
-}
-
-.modulo-card {
-  background: rgba(5,9,18,0.5);
-  border: 1px solid rgba(92,225,212,0.09);
-  padding: 28px 24px;
-  transition: border-color .3s, transform .3s var(--ease), background .3s;
-  cursor: default;
-}
-.modulo-card:hover {
-  border-color: rgba(92,225,212,0.28);
-  transform: translateY(-5px);
-  background: rgba(5,9,18,0.75);
-}
-
-.modulo-icon {
-  font-size: 26px;
-  display: block;
-  margin-bottom: 14px;
-  line-height: 1;
-}
-.modulo-card h3 {
-  font-family: var(--font-h);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--teal);
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-.modulo-card p {
-  font-size: 13px;
-  color: var(--white-d);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-/* valor total */
-.valor-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid rgba(92,225,212,0.2);
-  background: rgba(92,225,212,0.05);
-  padding: 16px 28px;
-  margin-bottom: 64px;
-  font-family: var(--font-h);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--teal-d);
-}
-.valor-tag strong {
-  color: var(--teal);
-  font-size: 16px;
-}
-
-/* Objeciones */
-.objeciones {
-  border: 1px solid rgba(92,225,212,0.14);
-  background: rgba(92,225,212,0.04);
-  backdrop-filter: blur(8px);
-  padding: 48px 40px;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 40px;
-  position: relative;
-}
-.objeciones::before {
-  content: 'FAQ';
-  position: absolute;
-  top: -1px; left: 40px;
-  font-family: var(--font-h);
-  font-size: 8px;
-  letter-spacing: 0.3em;
-  color: var(--teal);
-  background: var(--space-mid);
-  padding: 0 10px;
-  transform: translateY(-50%);
-}
-@media (max-width: 760px) {
-  .objeciones { grid-template-columns: 1fr; padding: 36px 28px; }
-}
-
-.objecion h4 {
-  font-family: var(--font-h);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--teal);
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-.objecion p {
-  font-size: 13px;
-  color: var(--white-d);
-  line-height: 1.75;
-  font-weight: 300;
-}
-
-/* ── CTA FINAL ── */
-.cta-final {
-  position: relative;
-  z-index: 1;
-  padding: clamp(100px,12vw,150px) var(--px);
-  text-align: center;
-  overflow: hidden;
-}
-.cta-final::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: min(700px, 100vw);
-  height: min(700px, 100vw);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(92,225,212,0.10) 0%, transparent 70%);
-  pointer-events: none;
-}
-/* orbit rings */
-.cta-final::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: min(900px, 130vw);
-  height: min(900px, 130vw);
-  border-radius: 50%;
-  border: 1px solid rgba(92,225,212,0.05);
-  pointer-events: none;
-}
-
-.cta-final h2 {
-  font-family: var(--font-h);
-  font-size: clamp(2.8rem, 7vw, 6rem);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 60px;
-  position: relative;
-}
-
-.cta-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 680px;
-  margin: 0 auto 56px;
-}
-@media (max-width: 560px) {
-  .cta-options { grid-template-columns: 1fr; }
-}
-
-.cta-option {
-  border: 1px solid rgba(92,225,212,0.18);
-  background: rgba(13,24,48,0.5);
-  backdrop-filter: blur(8px);
-  padding: 40px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  text-align: center;
+/* dolores */
+.pain { padding: clamp(72px,10vw,130px) var(--px); }
+.pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px; }
+@media (max-width: 900px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .pain-grid { grid-template-columns: 1fr; } }
+.card {
+  background: linear-gradient(180deg, rgba(13,24,48,.75), rgba(8,16,31,.6));
+  border: 1px solid var(--line); border-radius: 18px; padding: 28px 26px;
   transition: border-color .3s, transform .3s var(--ease);
 }
-.cta-option:hover { transform: translateY(-4px); border-color: rgba(92,225,212,0.35); }
+.card:hover { border-color: rgba(92,225,212,.32); transform: translateY(-3px); }
+.card .num { font-family: var(--font-h); font-size: 11px; color: var(--teal-2); letter-spacing: .2em; }
+.card h3 { font-size: 14px; letter-spacing: .06em; line-height: 1.35; margin: 14px 0 10px; }
+.card p { font-size: 14px; color: var(--white-d); font-weight: 300; }
 
-.cta-option.featured {
-  border-color: var(--teal);
-  background: rgba(92,225,212,0.05);
-  box-shadow: 0 0 50px rgba(92,225,212,0.08), inset 0 0 30px rgba(92,225,212,0.03);
-}
+/* qué hay dentro */
+.inside { padding: clamp(72px,10vw,130px) var(--px); background: var(--space-2); border-block: 1px solid var(--line); overflow: hidden; }
+.inside::before { content: ''; position: absolute; right: -200px; top: -120px; width: 600px; height: 600px; border-radius: 50%; border: 1px solid rgba(92,225,212,.08); box-shadow: 0 0 0 60px rgba(92,225,212,.015), 0 0 0 140px rgba(92,225,212,.01); pointer-events: none; }
+.pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px; }
+@media (max-width: 860px) { .pillars { grid-template-columns: 1fr; } }
+.pillar { border-top: 2px solid var(--teal); padding: 26px 4px 0; }
+.pillar h3 { font-size: 17px; letter-spacing: .08em; margin-bottom: 12px; }
+.pillar p { font-size: 14px; color: var(--white-d); font-weight: 300; }
+.pillar ul { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+.pillar li { font-size: 14px; padding-left: 20px; position: relative; }
+.pillar li::before { content: ''; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--teal); }
+.pillar li small { display: block; color: var(--white-m); font-size: 12px; }
 
-.opt-label {
-  font-family: var(--font-h);
-  font-size: 8px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--teal-d);
-  opacity: .8;
-}
-.opt-title {
-  font-family: var(--font-h);
-  font-size: clamp(14px,1.8vw,18px);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--white);
-}
-.opt-price {
-  font-family: var(--font-h);
-  font-size: clamp(32px,5vw,48px);
-  color: var(--teal);
-  line-height: 1;
-}
-.opt-price-note {
-  font-size: 11px;
-  color: var(--white-m);
-  margin-top: -6px;
-}
-.opt-desc {
-  font-size: 13px;
-  color: var(--white-d);
-  line-height: 1.65;
-  font-weight: 300;
-  flex: 1;
-}
+.modules { margin-top: 64px; }
+.modules h3 { font-size: 12px; letter-spacing: .24em; color: var(--white-m); margin-bottom: 18px; }
+.mod-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+@media (max-width: 900px) { .mod-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .mod-grid { grid-template-columns: 1fr; } }
+.mod { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: rgba(5,9,18,.5); }
+.mod b { display: block; font-family: var(--font-h); font-weight: 400; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+.mod span { font-size: 13px; color: var(--white-d); font-weight: 300; }
 
-.cta-closing {
-  font-size: 13px;
-  color: var(--white-m);
-  font-style: italic;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
+/* quiénes */
+.crew { padding: clamp(72px,10vw,130px) var(--px); }
+.crew-grid { display: grid; grid-template-columns: 5fr 6fr; gap: clamp(32px,6vw,80px); align-items: center; }
+@media (max-width: 860px) { .crew-grid { grid-template-columns: 1fr; } }
+.crew-photo { border-radius: 50%; overflow: hidden; aspect-ratio: 1; max-width: 440px; margin: 0 auto; box-shadow: 0 0 0 1px var(--line), 0 0 0 14px rgba(92,225,212,.04), 0 0 90px rgba(92,225,212,.18); }
+.crew-photo img { width: 100%; height: 100%; object-fit: cover; }
+.crew p { color: var(--white-d); font-weight: 300; margin-top: 18px; max-width: 560px; }
+.crew p strong { color: var(--white); font-weight: 500; }
+.small-crew { margin-top: 28px; border-left: 2px solid var(--amber); padding: 6px 0 6px 18px; color: var(--white) !important; font-weight: 400 !important; }
 
-/* ── FOOTER ── */
-footer {
-  position: relative;
-  z-index: 1;
-  border-top: 1px solid rgba(92,225,212,0.08);
-  padding: 28px var(--px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-family: var(--font-h);
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--white-m);
-}
-footer a { color: var(--teal-d); text-decoration: none; transition: color .2s; }
+/* planes */
+.plans { padding: clamp(72px,10vw,130px) var(--px); background: var(--space-2); border-block: 1px solid var(--line); text-align: center; }
+.plans h2, .plans .lead { margin-inline: auto; }
+.toggle { display: inline-flex; margin-top: 36px; padding: 5px; border-radius: 999px; border: 1px solid var(--line); background: rgba(5,9,18,.7); }
+.toggle button { font: 500 13px var(--font-b); color: var(--white-d); background: none; border: 0; padding: 10px 22px; border-radius: 999px; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--teal); color: var(--space); }
+.toggle .save { font-size: 11px; opacity: .8; margin-left: 4px; }
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 40px auto 0; text-align: left; }
+@media (max-width: 760px) { .plan-grid { grid-template-columns: 1fr; } }
+.plan { position: relative; border: 1px solid var(--line); border-radius: 22px; padding: 34px 30px; background: rgba(5,9,18,.6); display: flex; flex-direction: column; }
+.plan.featured { border-color: rgba(92,225,212,.55); background: linear-gradient(180deg, rgba(92,225,212,.09), rgba(5,9,18,.6) 55%); box-shadow: 0 0 70px rgba(92,225,212,.10); }
+.badge { position: absolute; top: -12px; right: 24px; background: var(--teal); color: var(--space); font: 500 11px var(--font-b); padding: 5px 12px; border-radius: 999px; }
+.plan h3 { font-size: 20px; letter-spacing: .08em; }
+.plan .for { font-size: 13px; color: var(--white-m); margin-top: 6px; min-height: 2.6em; }
+.price { margin: 22px 0 4px; display: flex; align-items: baseline; gap: 8px; }
+.price .amount { font-family: var(--font-h); font-size: clamp(40px,6vw,54px); line-height: 1; color: var(--white); }
+.price .per { color: var(--white-m); font-size: 14px; }
+.price-note { font-size: 12px; color: var(--teal); min-height: 1.6em; }
+.plan ul { list-style: none; margin: 24px 0 28px; display: grid; gap: 12px; flex: 1; }
+.plan li { font-size: 14px; padding-left: 26px; position: relative; color: var(--white-d); }
+.plan li::before { content: ''; position: absolute; left: 2px; top: .45em; width: 11px; height: 6px; border-left: 2px solid var(--teal); border-bottom: 2px solid var(--teal); transform: rotate(-45deg); }
+.plan li.annual-only { color: var(--white-m); }
+.plan li.annual-only em { font-style: normal; font-size: 12px; color: var(--amber); }
+.plan .btn { width: 100%; }
+.plans-foot { margin-top: 26px; font-size: 12px; color: var(--white-m); }
+
+/* extras */
+.extras { padding: clamp(64px,9vw,110px) var(--px); }
+.extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 40px; }
+@media (max-width: 760px) { .extra-grid { grid-template-columns: 1fr; } }
+.extra { border-radius: 20px; padding: 32px 28px; border: 1px solid var(--line); background: rgba(13,24,48,.55); text-decoration: none; display: block; transition: transform .3s var(--ease), border-color .3s; }
+.extra:hover { transform: translateY(-3px); border-color: rgba(92,225,212,.35); }
+.extra.taller { border-color: rgba(242,163,58,.3); background: linear-gradient(160deg, rgba(242,163,58,.10), rgba(13,24,48,.55) 60%); }
+.extra.taller:hover { border-color: rgba(242,163,58,.6); }
+.extra .tag { font-family: var(--font-h); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--teal); }
+.extra.taller .tag { color: var(--amber); }
+.extra h3 { font-size: 18px; letter-spacing: .06em; margin: 12px 0 10px; }
+.extra p { font-size: 14px; color: var(--white-d); font-weight: 300; }
+.extra .go { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--teal); }
+.extra.taller .go { color: var(--amber); }
+
+/* faq */
+.faq { padding: clamp(72px,10vw,120px) var(--px); background: var(--space-2); border-block: 1px solid var(--line); }
+.faq-list { margin-top: 40px; max-width: 820px; border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 22px 40px 22px 0; position: relative; font-size: clamp(15px,1.8vw,17px); font-weight: 500; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--font-h); color: var(--teal); font-size: 22px; transition: transform .25s var(--ease); }
+details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+details p { padding: 0 0 24px; color: var(--white-d); font-weight: 300; font-size: 15px; max-width: 700px; }
+details a { color: var(--teal); }
+
+/* cta final */
+.final { padding: clamp(90px,12vw,150px) var(--px); text-align: center; overflow: hidden; }
+.final::before { content: ''; position: absolute; left: 50%; top: 50%; width: min(760px,140vw); aspect-ratio: 1; transform: translate(-50%,-50%); border-radius: 50%; border: 1px solid rgba(92,225,212,.07); background: radial-gradient(circle, rgba(92,225,212,.10), transparent 62%); pointer-events: none; }
+.final h2 { font-size: clamp(2rem, 6vw, 4.2rem); margin: 0 auto; max-width: 900px; }
+.final .lead { margin: 22px auto 34px; }
+
+footer { border-top: 1px solid var(--line); padding: 26px var(--px); display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; font-size: 12px; color: var(--white-m); }
+footer nav { position: static; padding: 0; background: none; border: 0; backdrop-filter: none; gap: 22px; justify-content: flex-start; }
+footer a { text-decoration: none; color: var(--white-d); }
 footer a:hover { color: var(--teal); }
-.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
 <body>
+<div class="stars" id="stars" aria-hidden="true"></div>
 
-<!-- Stars -->
-<div class="stars" id="stars"></div>
+<a class="topbar" href="https://laschicasdeisart.com/tallerIA/">
+  <strong>Nuevo:</strong> <span>taller de creación de contenido con IA, en preventa →</span>
+</a>
 
-<!-- ── NAV ── -->
 <nav>
-  <a class="nav-logo" href="https://laschicasdeisart.com">Las<span>Chicas</span>deIsart</a>
-  <a class="btn-primary nav-btn" href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener">
-    Subir a bordo 🚀
-  </a>
+  <a class="logo" href="https://laschicasdeisart.com">La<span>Cápsula</span>Creativa</a>
+  <div class="nav-links">
+    <a href="#dentro">Qué hay dentro</a>
+    <a href="#planes">Planes</a>
+    <a href="#preguntas">Preguntas</a>
+    <a class="btn btn-main" href="#planes">Ver planes</a>
+  </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow" data-reveal>
-      <span class="dot"></span>
-      La Cápsula Creativa · Comunidad activa
+<!-- HERO -->
+<header class="hero">
+  <div class="pill reveal"><span class="dot"></span> Comunidad en Skool · marca personal, edición e IA</div>
+  <h1 class="reveal">Aprende a crear contenido <em>sin fingir</em> que ya sabes.</h1>
+  <p class="lead reveal">Estrategia, edición de vídeo e IA aplicada, con directos cada mes y gente que está en tu misma etapa. Para que tu contenido venda sin que suenes a teleoperador del 2010.</p>
+  <div class="hero-ctas reveal">
+    <a class="btn btn-main" href="#planes">Ver planes <span class="arrow">→</span></a>
+    <a class="btn btn-ghost" href="#dentro">Qué hay dentro</a>
+  </div>
+  <p class="hero-note reveal">Desde 22 $/mes · se paga y se gestiona en Skool</p>
+
+  <div class="screen reveal">
+    <img src="hero.jpeg" width="1460" height="752" alt="Irene y María junto a la cápsula espacial y el gorila astronauta de La Cápsula Creativa">
+  </div>
+</header>
+
+<!-- TESTIMONIOS -->
+<section class="proof">
+  <div class="wrap">
+    <span class="label reveal">Desde dentro</span>
+    <h2 class="reveal">Capturas de la tripulación. <em>Lo que se cuenta cuando nadie está vendiendo nada.</em></h2>
+    <div class="proof-grid">
+      <img class="reveal" src="test-whatsapp.jpg" width="715" height="814" loading="lazy" alt="Classroom de La Cápsula Creativa en Skool">
+      <img class="reveal" src="test-skool-1.jpg" width="612" height="835" loading="lazy" alt="Publicaciones de la comunidad en Skool">
+      <img class="reveal" src="test-skool-2.jpg" width="608" height="824" loading="lazy" alt="Más actividad de la comunidad en Skool">
     </div>
-    <h1 data-reveal data-delay="1">
-      Marca personal,<br>
-      edición de vídeo,<br>
-      <em>IA y networking</em><br>
-      en un solo lugar.
-    </h1>
-    <p class="hero-sub" data-reveal data-delay="2">
-      Únete a la comunidad donde emprendedores y creadores aprenden a escalar su marca personal para vender sin parecer un teleoperador del 2010.
-    </p>
-    <div class="hero-ctas" data-reveal data-delay="3">
-      <a class="btn-primary" href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener">
-        Quiero subir a bordo 🚀
+  </div>
+</section>
+
+<!-- DOLORES -->
+<section class="pain">
+  <div class="wrap">
+    <span class="label reveal">Diagnóstico rápido</span>
+    <h2 class="reveal">Tienes ideas de sobra. Lo que falta es <em>dirección y gente</em> que te diga si vas bien.</h2>
+    <div class="pain-grid">
+      <article class="card reveal">
+        <span class="num">01</span>
+        <h3>Sabes mucho, publicas poco</h3>
+        <p>Trescientos posts guardados, cuatro cursos a medias y una carpeta llamada «ideas reels». Publicado esta semana: nada.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">02</span>
+        <h3>Publicas y no pasa nada</h3>
+        <p>Subes, miras las métricas cada diez minutos, cierras la app. Sin estrategia, el contenido no se traduce en clientes por mucho que publiques.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">03</span>
+        <h3>Te da cosa ponerte delante de la cámara</h3>
+        <p>Sientes que aún no eres lo bastante experto para hablar de lo tuyo. Te contamos un secreto: casi nadie de los que hablan lo era al empezar.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">04</span>
+        <h3>Editar te roba una tarde entera</h3>
+        <p>Quieres que se vea profesional, pero cada vídeo es una pelea con CapCut y el resultado no se parece a lo que tenías en la cabeza.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">05</span>
+        <h3>La IA cambia cada lunes</h3>
+        <p>Cada semana sale la herramienta que lo cambia todo. Y tú sin saber cuál te sirve a ti, ni cómo usarla sin que todo suene a lo mismo.</p>
+      </article>
+      <article class="card reveal">
+        <span class="num">06</span>
+        <h3>Te comparas con quien parece tenerlo resuelto</h3>
+        <p>Su feed perfecto, su constancia, sus números. Lo que no ves son sus borradores. Aquí sí se ven, los nuestros incluidos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DENTRO -->
+<section class="inside" id="dentro">
+  <div class="wrap">
+    <span class="label reveal">Qué hay dentro</span>
+    <h2 class="reveal">Aprender, hacer y tener a quién preguntar. <em>Las tres cosas en el mismo sitio.</em></h2>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <h3>Aprender</h3>
+        <p>Formación práctica de marca personal, edición e IA. Lo que usamos nosotras con nuestras cuentas y con clientes.</p>
+        <ul>
+          <li>Chispazos Creativos<small>Píldoras de unos 10 minutos para los días sin tiempo</small></li>
+          <li>Classroom por módulos<small>El recorrido completo, en Premium</small></li>
+        </ul>
+      </div>
+      <div class="pillar reveal">
+        <h3>Hacer</h3>
+        <p>Saber no publica por ti. Esta parte existe para que el contenido salga de la carpeta de borradores.</p>
+        <ul>
+          <li>Dinámicas para mantenerte activo<small>Y para conocer al resto de la tripulación</small></li>
+          <li>Retos de Propulsión<small>Retos con fecha para publicar de verdad, en Premium</small></li>
+          <li>El Propulsor<small>Nuestra herramienta con IA, incluida en los dos planes</small></li>
+        </ul>
+      </div>
+      <div class="pillar reveal">
+        <h3>Preguntar</h3>
+        <p>Una comunidad pequeña donde la gente se conoce por el nombre y el feedback llega antes que el algoritmo.</p>
+        <ul>
+          <li>Directo de control mensual<small>Revisamos en qué punto está cada uno</small></li>
+          <li>Directo de Impacto mensual<small>Una sesión a fondo sobre un tema, en Premium</small></li>
+          <li>Network y feedback<small>De gente que está en tu misma etapa</small></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modules reveal">
+      <h3>Los módulos del Classroom</h3>
+      <div class="mod-grid">
+        <div class="mod"><b>Estación de Control</b><span>Tu voz, tu mensaje y a quién le hablas.</span></div>
+        <div class="mod"><b>Centro de Navegación</b><span>Qué publicar, cómo y cuándo, sin improvisar cada lunes.</span></div>
+        <div class="mod"><b>Misión Galax-IA</b><span>Las herramientas de IA que usamos y para qué sirve cada una.</span></div>
+        <div class="mod"><b>LAB Creativo</b><span>Canva y CapCut paso a paso, aunque no los hayas abierto nunca.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIÉNES -->
+<section class="crew">
+  <div class="wrap crew-grid">
+    <div class="crew-photo reveal">
+      <img src="../irene-maria.jpg" width="2000" height="2000" loading="lazy" alt="Irene y María, Las Chicas de Isart">
+    </div>
+    <div>
+      <span class="label reveal">Quién lleva la nave</span>
+      <h2 class="reveal">Irene y María. <em>Aprendimos a crear contenido por pura necesidad.</em></h2>
+      <p class="reveal">Empezamos con ISART, una tienda de productos personalizados. Para vender tuvimos que aprender a hacer contenido; se nos dio bien, acabamos haciéndolo para clientes y, cuando el caos de WhatsApp y Drive nos superó, creamos <strong>Flowly</strong>.</p>
+      <p class="reveal">Lo que enseñamos en la Cápsula lo hemos probado antes en nuestras cuentas, y lo seguimos haciendo en público, con los errores a la vista. Las fórmulas virales y los métodos únicos se los dejamos a otros; aquí hay criterio, práctica y alguien que te contesta.</p>
+      <p class="reveal small-crew">Somos una tripulación pequeña, y nos gusta así. Aquí nadie es un número en un foro de cuarenta mil personas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="plans" id="planes">
+  <div class="wrap">
+    <span class="label reveal">Planes</span>
+    <h2 class="reveal">Elige cómo subir.</h2>
+    <p class="lead reveal">Los dos incluyen la comunidad y El Propulsor. Premium suma el Classroom completo, los retos y un directo más al mes.</p>
+
+    <div class="toggle reveal" role="group" aria-label="Periodo de pago">
+      <button type="button" data-period="month" aria-pressed="true">Mensual</button>
+      <button type="button" data-period="year" aria-pressed="false">Anual <span class="save">ahorras hasta 164 $</span></button>
+    </div>
+
+    <div class="plan-grid">
+      <article class="plan reveal">
+        <h3>Estándar</h3>
+        <p class="for">Para crear con constancia y tener a quién preguntar.</p>
+        <div class="price"><span class="amount" data-month="22 $" data-year="220 $">22 $</span><span class="per" data-month="/ mes" data-year="/ año">/ mes</span></div>
+        <p class="price-note" data-month="o 220 $ al año" data-year="Equivale a 18,33 $/mes · ahorras 44 $">o 220 $ al año</p>
+        <ul>
+          <li>Chispazos Creativos</li>
+          <li>Dinámicas para mantenerte activo y conectar</li>
+          <li>1 directo de control al mes</li>
+          <li>Acceso al Propulsor</li>
+          <li>Network y feedback de la comunidad</li>
+        </ul>
+        <a class="btn btn-ghost" href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener">Entrar con Estándar</a>
+      </article>
+
+      <article class="plan featured reveal">
+        <span class="badge">El completo</span>
+        <h3>Premium</h3>
+        <p class="for">Para seguir el recorrido entero y que te dirijamos de cerca.</p>
+        <div class="price"><span class="amount" data-month="47 $" data-year="400 $">47 $</span><span class="per" data-month="/ mes" data-year="/ año">/ mes</span></div>
+        <p class="price-note" data-month="o 400 $ al año" data-year="Equivale a 33,33 $/mes · ahorras 164 $">o 400 $ al año</p>
+        <ul>
+          <li>Todo lo del Estándar</li>
+          <li>Directo de Impacto mensual</li>
+          <li>Classroom completo por módulos</li>
+          <li>Retos de Propulsión + El Propulsor</li>
+          <li class="annual-only">1 sesión 1:1 de dirección con nosotras <em>· solo con pago anual</em></li>
+        </ul>
+        <a class="btn btn-main" href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener">Entrar con Premium <span class="arrow">→</span></a>
+      </article>
+    </div>
+    <p class="plans-foot reveal">Precios en dólares. El pago se hace en Skool y tu banco lo convierte a tu moneda.</p>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section class="extras">
+  <div class="wrap">
+    <span class="label reveal">Por si te lo preguntabas</span>
+    <h2 class="reveal">Dos cosas que van de la mano con la Cápsula.</h2>
+    <div class="extra-grid">
+      <a class="extra reveal" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener">
+        <span class="tag">Incluido en los dos planes</span>
+        <h3>El Propulsor</h3>
+        <p>Nuestra herramienta con IA para creadores: te ayuda con guiones, con tu oferta y con secuencias de historias. Para los días en que la página en blanco gana.</p>
+        <span class="go">Ver El Propulsor →</span>
+      </a>
+      <a class="extra taller reveal" href="https://laschicasdeisart.com/tallerIA/">
+        <span class="tag">Taller · preventa abierta</span>
+        <h3>Taller de creación con IA</h3>
+        <p>Tres clases grabadas para crear carruseles, vídeos y animaciones con IA sin perder tu forma de hablar. Si la IA te va más rápido que tú, empieza por aquí.</p>
+        <span class="go">Ver el taller →</span>
       </a>
     </div>
-    <p class="hero-footnote" data-reveal data-delay="4">Empieza gratis · Sin tarjeta necesaria</p>
   </div>
+</section>
 
-  <div class="hero-visual" data-reveal data-delay="2">
-    <div class="hero-img-wrap">
-      <!-- Sube esta foto a /lacapsula/hero.jpg -->
-      <img src="hero.jpeg" alt="Irene y María — Las Chicas de Isart"
-        onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
-      <div class="img-placeholder" id="hero-ph" style="display:none;aspect-ratio:3/4;min-height:420px">
-        <span class="ph-icon">📸</span>
-        <span class="ph-name">hero.jpg</span>
-        <span>Sube la foto de Irene y María aquí</span>
-      </div>
-      <div class="gorilla-tag">🦍</div>
+<!-- FAQ -->
+<section class="faq" id="preguntas">
+  <div class="wrap">
+    <span class="label reveal">Preguntas</span>
+    <h2 class="reveal">Las dudas de siempre, <em>contestadas sin rodeos.</em></h2>
+    <div class="faq-list reveal">
+      <details>
+        <summary>«No tengo tiempo.»</summary>
+        <p>Nadie lo tiene. Los Chispazos duran unos diez minutos y los directos quedan grabados, así que entras cuando puedes. Lo que sí te pedimos es que publiques: para eso están las dinámicas y los retos.</p>
+      </details>
+      <details>
+        <summary>«Ahora mismo no puedo invertir.»</summary>
+        <p>Es una inversión y no te vamos a prometer que la recuperas con el primer post. Lo que sí podemos decirte: el Estándar cuesta 22 $ al mes, probablemente menos que esas apps que pagas y no abres. Si vas justo, empieza por ahí y pasa a Premium cuando lo estés aprovechando. Y si quieres un primer paso más pequeño, el <a href="https://laschicasdeisart.com/tallerIA/">taller de IA</a> es un pago único.</p>
+      </details>
+      <details>
+        <summary>«No entiendo nada de esto.»</summary>
+        <p>Perfecto, por ahí empezamos todos. Aquí se llega con ganas; lo técnico se aprende dentro, a tu ritmo y preguntando todo lo que haga falta.</p>
+      </details>
+      <details>
+        <summary>¿Qué tiene que no tenga un curso grabado?</summary>
+        <p>Gente. Un curso te explica y se despide. En la Cápsula hay directos cada mes, feedback sobre lo que publicas y una comunidad que te pregunta si ya subiste el reel del que hablabas.</p>
+      </details>
+      <details>
+        <summary>¿Estándar o Premium?</summary>
+        <p>Estándar si lo que necesitas es constancia, comunidad y un directo para revisar cómo vas. Premium si quieres el Classroom completo, los Retos de Propulsión y dos directos al mes. Con Premium anual, además, tienes una sesión 1:1 de dirección con nosotras.</p>
+      </details>
+      <details>
+        <summary>¿Por qué en dólares?</summary>
+        <p>Porque la comunidad vive en Skool y Skool cobra en dólares. Tu banco hace la conversión a tu moneda al pagar.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ── TESTIMONIOS ── -->
-<section class="testimonios">
-  <div class="testimonios-header" data-reveal>
-    <span class="section-label">Lo que dicen los tripulantes</span>
-  </div>
-  <div class="testimonios-grid">
-    <!-- Sube los pantallazos a /lacapsula/ con estos nombres -->
-    <div class="testimonio-slot" data-reveal data-delay="1">
-      <img src="test-whatsapp.jpg" alt="Testimonios WhatsApp"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;min-height:280px">
-        <span class="ph-icon">💬</span>
-        <span class="ph-name">test-whatsapp.jpg</span>
-        <span>Pantallazo mensajes WhatsApp</span>
-      </div>
-    </div>
-    <div class="testimonio-slot" data-reveal data-delay="2">
-      <img src="test-skool-1.jpg" alt="Comunidad Skool"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;min-height:280px">
-        <span class="ph-icon">🚀</span>
-        <span class="ph-name">test-skool-1.jpg</span>
-        <span>Pantallazo Skool — posts comunidad</span>
-      </div>
-    </div>
-    <div class="testimonio-slot" data-reveal data-delay="3">
-      <img src="test-skool-2.jpg" alt="Comunidad Skool 2"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="img-placeholder" style="display:none;min-height:280px">
-        <span class="ph-icon">🌌</span>
-        <span class="ph-name">test-skool-2.jpg</span>
-        <span>Pantallazo Skool — más actividad</span>
-      </div>
-    </div>
-  </div>
+<!-- CTA FINAL -->
+<section class="final">
+  <span class="label reveal">Última llamada (hasta la próxima)</span>
+  <h2 class="reveal">Tus borradores no se van a <em>publicar solos.</em></h2>
+  <p class="lead reveal">Sube a la Cápsula, elige plan y preséntate en la comunidad. Lo demás lo vamos viendo juntos.</p>
+  <a class="btn btn-main reveal" href="#planes">Ver planes <span class="arrow">→</span></a>
 </section>
 
-<!-- ── EL PROBLEMA ── -->
-<section class="problema">
-  <div class="problema-inner">
-    <span class="section-label" data-reveal>El problema real</span>
-    <h2 data-reveal data-delay="1">
-      Tienes ganas, ideas,<br>
-      solo necesitas <em>propulsión,<br>dirección</em> y una tripulación<br>que te apoye.
-    </h2>
-    <div class="problema-grid">
-      <div class="problema-card" data-reveal data-delay="1">
-        <div class="problema-num">01 · Señal perdida</div>
-        <h3>Demasiada información, cero acción</h3>
-        <p>Llevas semanas viendo vídeos, guardando posts, apuntando ideas. Sabes mucho de todo y no estás haciendo nada con ello.</p>
-      </div>
-      <div class="problema-card" data-reveal data-delay="2">
-        <div class="problema-num">02 · Combustible gastado</div>
-        <h3>Cursos que no encajan con tu realidad</h3>
-        <p>Has comprado formación. La has visto. Pero no estaba pensada para ti, para tu momento, para lo que necesitas publicar esta semana.</p>
-      </div>
-      <div class="problema-card" data-reveal data-delay="3">
-        <div class="problema-num">03 · Vacío orbital</div>
-        <h3>Solo ante el algoritmo</h3>
-        <p>No tienes a nadie que te diga si vas bien o mal. Publicas al vacío y esperas. A veces funciona. La mayoría no.</p>
-      </div>
-      <div class="problema-card" data-reveal data-delay="4">
-        <div class="problema-num">04 · Bucle sin salida</div>
-        <h3>La pescadilla que se muerde la cola</h3>
-        <p>Necesitas visibilidad para vender, pero no tienes tiempo de hacer contenido porque estás trabajando para poder vender. Ya sabes cómo acaba esto.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── DENTRO ── -->
-<section class="dentro">
-  <div class="dentro-inner">
-    <span class="section-label" data-reveal>Dentro de la Cápsula</span>
-    <h2 data-reveal data-delay="1">
-      Todo lo que necesitas para <strong>ACCIONAR</strong><br>
-      y entrar en órbita con tu emprendimiento.
-    </h2>
-
-    <div class="valor-tag" data-reveal data-delay="2">
-      🛡️ Contenido y recursos valorados en <strong>+1.800€</strong> · Incluidos en tu membresía
-    </div>
-
-    <div class="modulos-grid">
-      <div class="modulo-card" data-reveal data-delay="1">
-        <span class="modulo-icon">🛸</span>
-        <h3>Estación de Control</h3>
-        <p>Identifica tu voz, tu mensaje y a quién le hablas. El punto de partida que nadie te había explicado bien.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="2">
-        <span class="modulo-icon">🧭</span>
-        <h3>Centro de Navegación</h3>
-        <p>Qué publicar, cómo estructurarlo y cuándo. Sin improvisar cada lunes por la mañana.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="3">
-        <span class="modulo-icon">🤖</span>
-        <h3>Misión Galax-IA</h3>
-        <p>Las herramientas de IA que usamos nosotras. Las que funcionan de verdad, no las que salen en los titulares.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="1">
-        <span class="modulo-icon">🎬</span>
-        <h3>LAB Creativo: Canva + CapCut</h3>
-        <p>Edita como una profesional aunque nunca hayas abierto CapCut. Paso a paso, sin rodeos.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="2">
-        <span class="modulo-icon">⚡</span>
-        <h3>Chispazos Creativos</h3>
-        <p>Conocimiento práctico en píldoras. Para los días que tienes 10 minutos y quieres aprender algo útil.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="3">
-        <span class="modulo-icon">🚀</span>
-        <h3>Retos de Propulsión</h3>
-        <p>Porque saber no sirve de nada si no haces. Los retos existen para que publiques, no para que guardes en favoritos.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="1">
-        <span class="modulo-icon">🎙️</span>
-        <h3>Sesiones en Directo</h3>
-        <p>Espacio abierto con nosotras. Preguntas reales, respuestas reales. Sin filtro. Todo grabado para que no te pierdas nada.</p>
-      </div>
-      <div class="modulo-card" data-reveal data-delay="2">
-        <span class="modulo-icon">🌍</span>
-        <h3>Comunidad Activa</h3>
-        <p>Tripulantes que comparten su contenido, se dan feedback y se empujan mutuamente. No estás sola aquí dentro.</p>
-      </div>
-    </div>
-
-    <!-- Objeciones -->
-    <div class="objeciones" data-reveal>
-      <div class="objecion">
-        <h4>"No tengo tiempo."</h4>
-        <p>Los chispazos están pensados para 10 minutos. Las sesiones se graban. Entras cuando puedes, avanzas a tu ritmo.</p>
-      </div>
-      <div class="objecion">
-        <h4>"No puedo invertir."</h4>
-        <p>Empieza gratis y tómate el tiempo que necesites. El Premium son 39€/mes — menos que una cena para dos.</p>
-      </div>
-      <div class="objecion">
-        <h4>"No entiendo nada de esto."</h4>
-        <p>Mejor. Aquí no tienes que llegar sabiendo. Tienes que llegar con ganas. Del resto nos encargamos nosotras.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA FINAL ── -->
-<section class="cta-final">
-  <span class="section-label" data-reveal>Misión disponible</span>
-  <h2 data-reveal data-delay="1">La Cápsula<br>te espera.</h2>
-
-  <div class="cta-options" data-reveal data-delay="2" style="grid-template-columns:1fr;max-width:360px">
-    <div class="cta-option featured">
-      <span class="opt-label">Acceso libre</span>
-      <span class="opt-title">Empieza gratis</span>
-      <div class="opt-price">0€</div>
-      <p class="opt-desc">Accede a la comunidad y explora sin compromiso. Comprueba si encaja antes de decidir.</p>
-      <a class="btn-primary" href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener" style="width:100%">
-        Quiero subir a bordo 🚀
-      </a>
-    </div>
-  </div>
-
-  <p class="cta-closing" data-reveal data-delay="3">
-    El contenido y recursos dentro de La Cápsula están valorados en más de 1.800€.<br>Tú decides cuándo subes a bordo.
-  </p>
-</section>
-
-<!-- ── FOOTER ── */
 <footer>
   <span>© 2026 Las Chicas de Isart · La Cápsula Creativa</span>
-  <div class="footer-links">
+  <nav>
     <a href="https://laschicasdeisart.com">Web</a>
     <a href="https://www.instagram.com/laschicasdeisart" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.skool.com/la-capsula-creativa-4067/about" target="_blank" rel="noopener">Skool</a>
-  </div>
+  </nav>
 </footer>
 
 <script>
-// ── Stars ──
+document.documentElement.classList.add('js');
+
+// estrellas
 const starsEl = document.getElementById('stars');
-for (let i = 0; i < 140; i++) {
+for (let i = 0; i < 120; i++) {
   const s = document.createElement('div');
+  const size = Math.random() * 2.2 + 0.4;
   s.className = 'star';
-  const size = Math.random() * 2.5 + 0.4;
-  s.style.cssText = `
-    left:${Math.random()*100}%;
-    top:${Math.random()*100}%;
-    width:${size}px;
-    height:${size}px;
-    --d:${2.5 + Math.random()*4}s;
-    --dl:${Math.random()*6}s;
-    --o:${0.15 + Math.random()*0.55};
-  `;
+  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;--d:${2.5+Math.random()*4}s;--dl:${Math.random()*6}s;--o:${0.12+Math.random()*0.5}`;
   starsEl.appendChild(s);
 }
 
-// ── Scroll reveal — progressive enhancement ──
-// Primero añadimos la clase que pone opacity:0, luego observamos
-const revealEls = document.querySelectorAll('[data-reveal]');
-revealEls.forEach(el => el.classList.add('js-reveal'));
+// aparición al hacer scroll
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.06 });
-
-revealEls.forEach(el => io.observe(el));
+// mensual / anual
+document.querySelectorAll('.toggle button').forEach(btn => btn.addEventListener('click', () => {
+  const p = btn.dataset.period;
+  document.querySelectorAll('.toggle button').forEach(b => b.setAttribute('aria-pressed', b === btn));
+  document.querySelectorAll('[data-month]').forEach(el => { el.textContent = el.dataset[p]; });
+}));
 </script>
 </body>
 </html>
