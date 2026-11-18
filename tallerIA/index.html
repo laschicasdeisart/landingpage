@@ -271,6 +271,27 @@ footer a { text-decoration: underline; text-underline-offset: 3px; }
 .cookies .btn.ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
 .cookies .btn.ghost:hover { background: rgba(255,255,255,.12); }
 
+/* Pop-up del bonus: El Propulsor (estética espacial de elpropulsor.laschicasdeisart.com) */
+.propulsor { width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 24px; color: #fff; overflow: auto; overscroll-behavior: contain;
+  background: radial-gradient(1px 1px at 12% 18%, #fff8, transparent 60%), radial-gradient(1px 1px at 78% 12%, #fff9, transparent 60%), radial-gradient(1.5px 1.5px at 88% 46%, #fff7, transparent 60%), radial-gradient(1px 1px at 30% 64%, #fff6, transparent 60%), radial-gradient(1.5px 1.5px at 60% 30%, #fff8, transparent 60%), radial-gradient(1px 1px at 8% 88%, #fff7, transparent 60%), radial-gradient(120% 80% at 50% 0%, #1d2a5c 0%, #0b1030 55%, #070a1f 100%);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.08); }
+.propulsor::backdrop { background: rgba(7,10,31,.62); backdrop-filter: blur(3px); }
+.propulsor[open] { animation: prop-in .5s var(--ease); }
+@keyframes prop-in { from { opacity: 0; transform: translateY(24px) scale(.97); } }
+.propulsor .inner { padding: 30px 26px 24px; text-align: center; }
+.propulsor .x { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.propulsor .x:hover { background: rgba(255,255,255,.16); }
+.propulsor .rocket { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(135deg, var(--t), #7c5cff); box-shadow: 0 10px 30px -8px #7c5cffaa; }
+.propulsor .tag { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--t); margin-bottom: 10px; }
+.propulsor h2 { font-size: clamp(1.6rem, 6vw, 2rem); max-width: none; line-height: 1.1; }
+.propulsor .grad { background: linear-gradient(90deg, var(--t), #8b7bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.propulsor p { margin-top: 14px; font-size: .98rem; line-height: 1.55; color: rgba(255,255,255,.82); }
+.propulsor p strong { color: #fff; }
+.propulsor .ask { margin-top: 20px; font-weight: 700; color: #fff; }
+.propulsor .btn { margin-top: 12px; width: 100%; white-space: normal; text-align: center; line-height: 1.25; }
+.propulsor .later { margin-top: 10px; min-height: 44px; width: 100%; background: none; border: 0; color: rgba(255,255,255,.7); font: 500 .92rem 'Poppins', sans-serif; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .propulsor[open] { animation: none; } }
+
 /* Visibilidad por fase */
 [data-show] { display: none !important; }
 html[data-phase="preventa"] [data-show~="preventa"],
@@ -632,6 +653,21 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   </div>
 </div>
 
+<dialog class="propulsor" id="propulsor" aria-labelledby="propulsor-t">
+  <button class="x" type="button" data-close-propulsor data-track="popup_propulsor_cerrar" aria-label="Cerrar">×</button>
+  <div class="inner">
+    <div class="rocket" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+    </div>
+    <span class="tag">Bonus incluido</span>
+    <h2 id="propulsor-t">Acceso <span class="grad">GRATIS</span> a El Propulsor</h2>
+    <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: <strong>consumiendo el contenido y aplicándolo conseguirás créditos</strong> para usar en El Propulsor.</p>
+    <p class="ask">¿Quieres descubrir qué es El Propulsor?</p>
+    <a class="btn" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener" data-track="popup_propulsor_descubrir">Descúbrelo <span class="arrow" aria-hidden="true">→</span></a>
+    <button class="later" type="button" data-close-propulsor data-track="popup_propulsor_seguir">Seguir viendo el taller</button>
+  </div>
+</dialog>
+
 <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
   <div class="info"><strong data-sticky-price>48,50 €</strong><s data-sticky-was>97 €</s><span data-sticky-tier>Acceso anticipado + bonus</span></div>
   <a class="btn" href="#precio" data-buy data-track="comprar_barra_movil" tabindex="-1"><span data-sticky-label>Acceso anticipado</span></a>
@@ -781,6 +817,22 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   } else {
     $$('.reveal').forEach((el) => el.classList.add('in'));
   }
+
+  /* ===== Pop-up del bonus El Propulsor =====
+     Sale una vez por visita, a los 8 segundos (o al instante con ?propulsor en la URL). */
+  const prop = document.getElementById('propulsor');
+  const PROP_KEY = 'tallerIA_propulsor';
+  const openProp = () => {
+    if (prop.open || typeof prop.showModal !== 'function') return;
+    try { sessionStorage.setItem(PROP_KEY, '1'); } catch {}
+    prop.showModal();
+    track('popup_propulsor_visto', prop);
+  };
+  prop.addEventListener('click', (e) => { if (e.target === prop || e.target.closest('[data-close-propulsor]')) prop.close(); });
+  let propSeen = false;
+  try { propSeen = sessionStorage.getItem(PROP_KEY) === '1'; } catch {}
+  if (/[?&]propulsor\b/.test(location.search)) setTimeout(openProp, 0);
+  else if (!propSeen && root.dataset.phase !== 'cerrado') setTimeout(openProp, 8000);
 
   /* ===== Medición =====
      Microsoft Clarity (visitas, mapas de calor, grabaciones) y Píxel de Meta (anuncios),

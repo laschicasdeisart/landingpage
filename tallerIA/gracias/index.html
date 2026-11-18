@@ -33,6 +33,11 @@ h1 { font-size:clamp(2rem,6vw,3rem); line-height:1.08; letter-spacing:-.025em; m
 .step p { font-size:.95rem; color:var(--muted); }
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:12px 22px; text-align:center; line-height:1.25; border-radius:999px; background:#25d366; color:#0d0d0d; font-weight:700; text-decoration:none; margin-top:14px; }
 .btn[aria-disabled="true"] { background:#d9d9d9; pointer-events:none; }
+.step.bonus { color:#fff; border:0; background:radial-gradient(1px 1px at 14% 20%, #fff8, transparent 60%), radial-gradient(1.5px 1.5px at 82% 30%, #fff7, transparent 60%), radial-gradient(1px 1px at 62% 82%, #fff6, transparent 60%), radial-gradient(120% 90% at 50% 0%, #1d2a5c 0%, #0b1030 60%, #070a1f 100%); }
+.step.bonus .n { background:linear-gradient(135deg, var(--t), #7c5cff); color:#0d0d0d; }
+.step.bonus .tag { display:block; font-size:.7rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--t); margin-bottom:4px; }
+.step.bonus p { color:rgba(255,255,255,.82); }
+.btn.btn-prop { background:var(--t); }
 .small { font-size:.9rem; color:var(--muted); margin-top:28px; }
 footer { padding-top:24px; padding-bottom:32px; font-size:.85rem; color:var(--muted); border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:8px 18px; }
 </style>
@@ -58,6 +63,15 @@ footer { padding-top:24px; padding-bottom:32px; font-size:.85rem; color:var(--mu
       <div>
         <strong>3 de diciembre, 10:00: se abren las clases</strong>
         <p>Ese día te enviaremos por email tu usuario para entrar en la plataforma. Revisa también la carpeta de spam o promociones.</p>
+      </div>
+    </li>
+    <li class="step bonus">
+      <span class="n" aria-hidden="true">★</span>
+      <div>
+        <span class="tag">Bonus incluido</span>
+        <strong>Tienes acceso GRATIS a El Propulsor</strong>
+        <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: consumiendo el contenido y aplicándolo conseguirás créditos para usar en El Propulsor.</p>
+        <a class="btn btn-prop" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener" data-track="gracias_propulsor">Descubrir El Propulsor</a>
       </div>
     </li>
     <li class="step">
