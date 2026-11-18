@@ -819,20 +819,13 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   }
 
   /* ===== Pop-up del bonus El Propulsor =====
-     Sale una vez por visita, a los 8 segundos (o al instante con ?propulsor en la URL). */
+     Sale nada más entrar, en todas las visitas (también al recargar). */
   const prop = document.getElementById('propulsor');
-  const PROP_KEY = 'tallerIA_propulsor';
-  const openProp = () => {
-    if (prop.open || typeof prop.showModal !== 'function') return;
-    try { sessionStorage.setItem(PROP_KEY, '1'); } catch {}
-    prop.showModal();
-    track('popup_propulsor_visto', prop);
-  };
   prop.addEventListener('click', (e) => { if (e.target === prop || e.target.closest('[data-close-propulsor]')) prop.close(); });
-  let propSeen = false;
-  try { propSeen = sessionStorage.getItem(PROP_KEY) === '1'; } catch {}
-  if (/[?&]propulsor\b/.test(location.search)) setTimeout(openProp, 0);
-  else if (!propSeen && root.dataset.phase !== 'cerrado') setTimeout(openProp, 8000);
+  if (typeof prop.showModal === 'function') {
+    prop.showModal();
+    setTimeout(() => track('popup_propulsor_visto', prop), 0); // cuando la medición ya está lista
+  }
 
   /* ===== Medición =====
      Microsoft Clarity (visitas, mapas de calor, grabaciones) y Píxel de Meta (anuncios),
