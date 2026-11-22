@@ -271,26 +271,17 @@ footer a { text-decoration: underline; text-underline-offset: 3px; }
 .cookies .btn.ghost { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.7); }
 .cookies .btn.ghost:hover { background: rgba(255,255,255,.12); }
 
-/* Pop-up del bonus: El Propulsor (estética espacial de elpropulsor.laschicasdeisart.com) */
-.propulsor { width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 0; border-radius: 24px; color: #fff; overflow: auto; overscroll-behavior: contain;
-  background: radial-gradient(1px 1px at 12% 18%, #fff8, transparent 60%), radial-gradient(1px 1px at 78% 12%, #fff9, transparent 60%), radial-gradient(1.5px 1.5px at 88% 46%, #fff7, transparent 60%), radial-gradient(1px 1px at 30% 64%, #fff6, transparent 60%), radial-gradient(1.5px 1.5px at 60% 30%, #fff8, transparent 60%), radial-gradient(1px 1px at 8% 88%, #fff7, transparent 60%), radial-gradient(120% 80% at 50% 0%, #1d2a5c 0%, #0b1030 55%, #070a1f 100%);
-  box-shadow: 0 30px 80px -20px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.08); }
-.propulsor::backdrop { background: rgba(7,10,31,.62); backdrop-filter: blur(3px); }
-.propulsor[open] { animation: prop-in .5s var(--ease); }
-@keyframes prop-in { from { opacity: 0; transform: translateY(24px) scale(.97); } }
-.propulsor .inner { padding: 30px 26px 24px; text-align: center; }
-.propulsor .x { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
-.propulsor .x:hover { background: rgba(255,255,255,.16); }
-.propulsor .rocket { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(135deg, var(--t), #7c5cff); box-shadow: 0 10px 30px -8px #7c5cffaa; }
-.propulsor .tag { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--t); margin-bottom: 10px; }
-.propulsor h2 { font-size: clamp(1.6rem, 6vw, 2rem); max-width: none; line-height: 1.1; }
+/* Tarjeta del bonus: El Propulsor (estética espacial de elpropulsor.laschicasdeisart.com) */
+.propulsor { margin-top: 14px; border-radius: var(--radius); color: #fff; padding: clamp(24px, 4vw, 36px); display: grid; gap: 18px; align-items: center;
+  background: radial-gradient(1px 1px at 12% 18%, #fff8, transparent 60%), radial-gradient(1px 1px at 78% 12%, #fff9, transparent 60%), radial-gradient(1.5px 1.5px at 88% 66%, #fff7, transparent 60%), radial-gradient(1px 1px at 34% 80%, #fff6, transparent 60%), radial-gradient(1.5px 1.5px at 60% 30%, #fff8, transparent 60%), radial-gradient(1px 1px at 6% 72%, #fff7, transparent 60%), radial-gradient(120% 120% at 20% 0%, #1d2a5c 0%, #0b1030 55%, #070a1f 100%); }
+@media (min-width: 760px) { .propulsor { grid-template-columns: auto 1fr; gap: 28px; } }
+.propulsor .rocket { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; background: linear-gradient(135deg, var(--t), #7c5cff); box-shadow: 0 10px 30px -8px #7c5cffaa; }
+.propulsor .tag { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--t); margin-bottom: 8px; }
+.propulsor h3 { font-size: clamp(1.4rem, 3.4vw, 1.9rem); line-height: 1.1; }
 .propulsor .grad { background: linear-gradient(90deg, var(--t), #8b7bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.propulsor p { margin-top: 14px; font-size: .98rem; line-height: 1.55; color: rgba(255,255,255,.82); }
+.propulsor p { margin-top: 10px; font-size: .98rem; line-height: 1.55; color: rgba(255,255,255,.82); max-width: 62ch; }
 .propulsor p strong { color: #fff; }
-.propulsor .ask { margin-top: 20px; font-weight: 700; color: #fff; }
-.propulsor .btn { margin-top: 12px; width: 100%; white-space: normal; text-align: center; line-height: 1.25; }
-.propulsor .later { margin-top: 10px; min-height: 44px; width: 100%; background: none; border: 0; color: rgba(255,255,255,.7); font: 500 .92rem 'Poppins', sans-serif; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-@media (prefers-reduced-motion: reduce) { .propulsor[open] { animation: none; } }
+.propulsor .more { display: inline-block; margin-top: 12px; font-size: .92rem; font-weight: 600; color: var(--t); text-underline-offset: 3px; }
 
 /* Visibilidad por fase */
 [data-show] { display: none !important; }
@@ -530,6 +521,17 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <p>Solo con el acceso anticipado. Con grabación.</p>
       </div>
     </div>
+    <div class="propulsor reveal" aria-labelledby="propulsor-t">
+      <div class="rocket" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+      </div>
+      <div>
+        <span class="tag">Bonus incluido</span>
+        <h3 id="propulsor-t">Acceso <span class="grad">GRATIS</span> a El Propulsor</h3>
+        <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: <strong>consumiendo el contenido y aplicándolo conseguirás créditos</strong> para usar en El Propulsor.</p>
+        <a class="more" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener" data-track="bonus_propulsor">¿Quieres descubrir qué es El Propulsor? →</a>
+      </div>
+    </div>
     <p class="tools-note">Las herramientas (ChatGPT, Claude, Canva, ElevenLabs, Edits y CapCut) no están incluidas: si necesitas un plan de pago, se contrata aparte.</p>
   </div>
 </section>
@@ -652,21 +654,6 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     <button class="btn ghost" type="button" data-consent="rejected">Rechazar</button>
   </div>
 </div>
-
-<dialog class="propulsor" id="propulsor" aria-labelledby="propulsor-t">
-  <button class="x" type="button" data-close-propulsor data-track="popup_propulsor_cerrar" aria-label="Cerrar">×</button>
-  <div class="inner">
-    <div class="rocket" aria-hidden="true">
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
-    </div>
-    <span class="tag">Bonus incluido</span>
-    <h2 id="propulsor-t">Acceso <span class="grad">GRATIS</span> a El Propulsor</h2>
-    <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: <strong>consumiendo el contenido y aplicándolo conseguirás créditos</strong> para usar en El Propulsor.</p>
-    <p class="ask">¿Quieres descubrir qué es El Propulsor?</p>
-    <a class="btn" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener" data-track="popup_propulsor_descubrir">Descúbrelo <span class="arrow" aria-hidden="true">→</span></a>
-    <button class="later" type="button" data-close-propulsor data-track="popup_propulsor_seguir">Seguir viendo el taller</button>
-  </div>
-</dialog>
 
 <div class="sticky-buy" id="sticky-buy" aria-hidden="true">
   <div class="info"><strong data-sticky-price>48,50 €</strong><s data-sticky-was>97 €</s><span data-sticky-tier>Acceso anticipado + bonus</span></div>
@@ -816,15 +803,6 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     $$('.reveal').forEach((el) => io.observe(el));
   } else {
     $$('.reveal').forEach((el) => el.classList.add('in'));
-  }
-
-  /* ===== Pop-up del bonus El Propulsor =====
-     Sale nada más entrar, en todas las visitas (también al recargar). */
-  const prop = document.getElementById('propulsor');
-  prop.addEventListener('click', (e) => { if (e.target === prop || e.target.closest('[data-close-propulsor]')) prop.close(); });
-  if (typeof prop.showModal === 'function') {
-    prop.showModal();
-    setTimeout(() => track('popup_propulsor_visto', prop), 0); // cuando la medición ya está lista
   }
 
   /* ===== Medición =====
