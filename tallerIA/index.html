@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Las Chicas de IsART">
 <meta property="og:url" content="https://laschicasdeisart.com/tallerIA/">
 <meta property="og:title" content="Crea carruseles, vídeos y animaciones con IA antes de quedarte atrás">
-<meta property="og:description" content="Taller de Las Chicas de IsART: menos tiempo, calidad profesional y tu propio estilo. Acceso anticipado con directo de dudas incluido.">
+<meta property="og:description" content="Taller de Las Chicas de IsART: menos tiempo, calidad profesional y tu propio estilo. Precio de lanzamiento: 67 € en vez de 97 €, con acceso gratis a El Propulsor 2.0.">
 <meta property="og:image" content="https://laschicasdeisart.com/tallerIA/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -183,7 +183,7 @@ mark { background: linear-gradient(transparent 60%, var(--t) 60%, var(--t) 92%, 
 /* ---------- Qué te llevas ---------- */
 .includes { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
 @media (min-width: 700px) { .includes { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .includes { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1000px) { html[data-phase="preventa"] .includes { grid-template-columns: repeat(3, 1fr); } }
 .inc { background: #fff; padding: 26px; }
 .inc h3 { font-size: 1.08rem; margin: 14px 0 6px; }
 .inc p { font-size: .93rem; color: var(--muted); }
@@ -510,7 +510,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <h3>Acceso de por vida</h3>
         <p>Y con las actualizaciones que vayamos añadiendo.</p>
       </div>
-      <div class="inc">
+      <div class="inc" data-show="preventa">
         <span class="ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0d0d0d" stroke-width="2"><path d="M20 12a8 8 0 0 1-11.8 7L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg></span>
         <h3>Grupo de WhatsApp</h3>
         <p>Para estar cerca de nosotras desde el primer día.</p>
@@ -527,8 +527,8 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       </div>
       <div>
         <span class="tag">Bonus incluido</span>
-        <h3 id="propulsor-t">Acceso <span class="grad">GRATIS</span> a El Propulsor</h3>
-        <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: <strong>consumiendo el contenido y aplicándolo conseguirás créditos</strong> para usar en El Propulsor.</p>
+        <h3 id="propulsor-t">Acceso <span class="grad">GRATIS</span> a El Propulsor 2.0</h3>
+        <p>Este taller es algo más que consumir vídeos y acumular prompts. Aquí venimos a accionar: <strong>consumiendo el contenido y aplicándolo conseguirás créditos</strong> para usar en El Propulsor 2.0.</p>
         <a class="more" href="https://elpropulsor.laschicasdeisart.com" target="_blank" rel="noopener" data-track="bonus_propulsor">¿Quieres descubrir qué es El Propulsor? →</a>
       </div>
     </div>
@@ -586,15 +586,21 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <p class="when">Del 23 de noviembre al 2 de diciembre</p>
         <div class="price-row"><span class="price-now">67 €</span><s class="price-was"><span class="sr-only">Precio final: </span>97 €</s></div>
         <span class="save">Ahorras 30 €</span>
-        <ul><li>Taller completo</li></ul>
-        <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_lanzamiento"><span data-cta-label>Acceso anticipado · 67 €</span></a></div>
+        <ul>
+          <li>Taller completo</li>
+          <li class="bonus-line">BONUS: acceso gratis a El Propulsor 2.0</li>
+        </ul>
+        <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_lanzamiento"><span data-cta-label>Precio de lanzamiento · 67 €</span></a></div>
       </article>
       <article class="price-card" data-tier="final">
         <span class="status" data-status>Próximamente</span>
         <h3>Precio final</h3>
         <p class="when">Desde el 3 de diciembre</p>
         <div class="price-row"><span class="price-now">97 €</span></div>
-        <ul><li>Taller completo</li></ul>
+        <ul>
+          <li>Taller completo</li>
+          <li>Acceso gratis a El Propulsor 2.0</li>
+        </ul>
         <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_final"><span data-cta-label>Acceder · 97 €</span></a></div>
       </article>
     </div>
@@ -610,7 +616,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       <h2 id="faq-t">Dudas rápidas.</h2>
     </div>
     <div class="faq">
-      <details><summary data-track="faq_cuando_empiezo">¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular). Ese día recibirás por email tu usuario para entrar en la plataforma. Mientras tanto, te esperamos en el grupo de WhatsApp.</p></details>
+      <details><summary data-track="faq_cuando_empiezo">¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular). Ese día recibirás un email para crear tu usuario y contraseña y entrar en la plataforma.</p></details>
       <details><summary data-track="faq_saber_ia">¿Necesito saber de IA?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Empezamos desde el principio. Solo necesitas manejarte con herramientas digitales básicas y tener ganas de practicar.</p></details>
       <details><summary data-track="faq_en_directo">¿Las clases son en directo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No, son grabadas para que las veas a tu ritmo. El directo de dudas es el bonus del acceso anticipado y tendrá grabación.</p></details>
       <details><summary data-track="faq_duracion">¿Cuánto dura el acceso?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Es de por vida, e incluye las actualizaciones que vayamos añadiendo al taller.</p></details>
@@ -668,7 +674,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
      desactivad también su enlace en Stripe (Payment Links → Desactivar). */
   const PAYMENT_LINKS = {
     preventa: 'https://buy.stripe.com/3cIaEW1H1aNWajOfbp2ZO00',
-    lanzamiento: null, // PENDIENTE: enlace de 67 € (necesario desde el 23 de noviembre)
+    lanzamiento: 'https://buy.stripe.com/00weVcbhB1dm2Rmgft2ZO01',
     final: null,       // PENDIENTE: enlace de 97 € (necesario desde el 3 de diciembre)
   };
   // Fechas en hora peninsular (UTC+1 en noviembre y diciembre).
@@ -698,7 +704,8 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     root.dataset.phase = phase;
     const link = cur ? PAYMENT_LINKS[cur.id] : null;
     const label = !cur ? 'Disponible el 11 de noviembre'
-      : phase === 'preventa' || phase === 'lanzamiento' ? `Acceso anticipado · ${euro(cur.amount)}`
+      : phase === 'preventa' ? `Acceso anticipado · ${euro(cur.amount)}`
+      : phase === 'lanzamiento' ? `Precio de lanzamiento · ${euro(cur.amount)}`
       : phase === 'final_antes_apertura' ? `Comprar · ${euro(cur.amount)}`
       : `Acceder · ${euro(cur.amount)}`;
 
@@ -726,15 +733,15 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       q('[data-save]').textContent = `Ahorras ${euro(saving)} (−${Math.round((saving / FINAL) * 100)} %)`;
       q('[data-offer-tag]').lastChild.textContent = { preventa: 'Acceso anticipado', lanzamiento: 'Precio de lanzamiento', final: 'Precio final' }[cur.id];
       q('[data-price-why]').textContent = saving > 0
-        ? 'Descuento por acceso anticipado. Desde el 3 de diciembre el precio será de 97 €.'
+        ? `Descuento por ${cur.id === 'preventa' ? 'acceso anticipado' : 'lanzamiento'}. Desde el 3 de diciembre el precio será de 97 €.`
         : (phase === 'final_antes_apertura' ? 'Las clases se abren hoy a las 10:00 (hora peninsular).' : 'Las clases ya están disponibles.');
       const days = cur.until ? Math.ceil((Date.parse(cur.until) - now) / 86400000) : 0;
       const end = { preventa: '22 de noviembre', lanzamiento: '2 de diciembre' }[cur.id];
       q('[data-deadline]').innerHTML = end ? `Hasta el <b>${end}</b> a las 23:59 · ${days <= 1 ? '<b>último día</b>' : `quedan <b>${days} días</b>`}` : '';
       q('[data-sticky-price]').textContent = euro(cur.amount);
       q('[data-sticky-was]').hidden = saving <= 0;
-      q('[data-sticky-tier]').textContent = { preventa: 'Acceso anticipado + bonus', lanzamiento: 'Precio de lanzamiento', final: 'Acceso de por vida' }[cur.id];
-      q('[data-sticky-label]').textContent = link ? (saving > 0 ? 'Acceso anticipado' : 'Comprar') : 'En breve';
+      q('[data-sticky-tier]').textContent = { preventa: 'Acceso anticipado + bonus', lanzamiento: 'Precio de lanzamiento + El Propulsor 2.0', final: 'Acceso de por vida' }[cur.id];
+      q('[data-sticky-label]').textContent = link ? (cur.id === 'preventa' ? 'Acceso anticipado' : 'Comprar') : 'En breve';
     }
 
     const statusText = { vigente: 'Precio actual', finalizado: 'Finalizado', proximo: 'Próximamente' };
