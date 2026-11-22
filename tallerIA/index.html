@@ -229,7 +229,7 @@ mark { background: linear-gradient(transparent 60%, var(--t) 60%, var(--t) 92%, 
 .price-card.past { background: var(--soft); }
 .price-card.past .price-now, .price-card.past h3 { color: #6b6b6b; }
 .price-card.past .save { display: none; }
-.price-card.past li.bonus-line { text-decoration: line-through; color: #6b6b6b; }
+.price-card[data-tier="preventa"].past li.bonus-line { text-decoration: line-through; color: #6b6b6b; }
 .prices-note { margin-top: 24px; font-size: .95rem; color: var(--muted); max-width: 70ch; }
 
 /* ---------- FAQ ---------- */
@@ -675,7 +675,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
   const PAYMENT_LINKS = {
     preventa: 'https://buy.stripe.com/3cIaEW1H1aNWajOfbp2ZO00',
     lanzamiento: 'https://buy.stripe.com/00weVcbhB1dm2Rmgft2ZO01',
-    final: null,       // PENDIENTE: enlace de 97 € (necesario desde el 3 de diciembre)
+    final: 'https://buy.stripe.com/7sY6oGfxR2hqbnSd3h2ZO02',
   };
   // Fechas en hora peninsular (UTC+1 en noviembre y diciembre).
   const TIERS = [
