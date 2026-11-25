@@ -604,7 +604,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
         <div class="card-cta"><a class="btn" href="#precio" data-buy data-track="comprar_tarjeta_final"><span data-cta-label>Acceder · 97 €</span></a></div>
       </article>
     </div>
-    <p class="prices-note">Mismo taller en los tres casos. El directo de dudas es exclusivo del acceso anticipado. IVA incluido. Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular).</p>
+    <p class="prices-note">Mismo taller en los tres casos. El directo de dudas es exclusivo del acceso anticipado. IVA incluido. Las clases se abren el 3 de diciembre de 2026 a las 11:00 (hora peninsular).</p>
   </div>
 </section>
 
@@ -616,7 +616,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       <h2 id="faq-t">Dudas rápidas.</h2>
     </div>
     <div class="faq">
-      <details><summary data-track="faq_cuando_empiezo">¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 10:00 (hora peninsular). Ese día recibirás un email para crear tu usuario y contraseña y entrar en la plataforma.</p></details>
+      <details><summary data-track="faq_cuando_empiezo">¿Cuándo empiezo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Las clases se abren el 3 de diciembre de 2026 a las 11:00 (hora peninsular). Ese día recibirás un email para crear tu usuario y contraseña y entrar en la plataforma.</p></details>
       <details><summary data-track="faq_saber_ia">¿Necesito saber de IA?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No. Empezamos desde el principio. Solo necesitas manejarte con herramientas digitales básicas y tener ganas de practicar.</p></details>
       <details><summary data-track="faq_en_directo">¿Las clases son en directo?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">No, son grabadas para que las veas a tu ritmo. El directo de dudas es el bonus del acceso anticipado y tendrá grabación.</p></details>
       <details><summary data-track="faq_duracion">¿Cuánto dura el acceso?<span class="pm" aria-hidden="true">+</span></summary><p class="answer">Es de por vida, e incluye las actualizaciones que vayamos añadiendo al taller.</p></details>
@@ -684,7 +684,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
     { id: 'final', amount: 9700, from: '2026-12-03T00:00:00+01:00', until: null },
   ];
   const FINAL = 9700;
-  const OPENS = Date.parse('2026-12-03T10:00:00+01:00');
+  const OPENS = Date.parse('2026-12-03T11:00:00+01:00');
 
   const euro = (c) => (c % 100 === 0 ? String(c / 100) : (c / 100).toFixed(2).replace('.', ',')) + ' €';
   const root = document.documentElement;
@@ -734,7 +734,7 @@ html[data-phase="preventa"] .promo-pill[data-show~="preventa"] { display: flex !
       q('[data-offer-tag]').lastChild.textContent = { preventa: 'Acceso anticipado', lanzamiento: 'Precio de lanzamiento', final: 'Precio final' }[cur.id];
       q('[data-price-why]').textContent = saving > 0
         ? `Descuento por ${cur.id === 'preventa' ? 'acceso anticipado' : 'lanzamiento'}. Desde el 3 de diciembre el precio será de 97 €.`
-        : (phase === 'final_antes_apertura' ? 'Las clases se abren hoy a las 10:00 (hora peninsular).' : 'Las clases ya están disponibles.');
+        : (phase === 'final_antes_apertura' ? 'Las clases se abren hoy a las 11:00 (hora peninsular).' : 'Las clases ya están disponibles.');
       const days = cur.until ? Math.ceil((Date.parse(cur.until) - now) / 86400000) : 0;
       const end = { preventa: '22 de noviembre', lanzamiento: '2 de diciembre' }[cur.id];
       q('[data-deadline]').innerHTML = end ? `Hasta el <b>${end}</b> a las 23:59 · ${days <= 1 ? '<b>último día</b>' : `quedan <b>${days} días</b>`}` : '';
