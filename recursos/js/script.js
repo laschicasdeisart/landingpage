@@ -12,7 +12,7 @@
   // archivos pesados aquí — para cambiarlo, comparte el nuevo archivo con
   // acceso "cualquiera con el enlace puede ver" y sustituye el ID de abajo
   // por el suyo (es la parte de la URL de Drive entre "/d/" y "/view").
-  var RESOURCE_FILE_ID = "1eEpzfNBJ5v0mEQE__wu2XcCaKogSV8r6";
+  var RESOURCE_FILE_ID = "1jQqeV5gkNpjPPMKFFIdHCAcAJ63NzMXd";
   var RESOURCE_URL = "https://drive.google.com/uc?export=download&id=" + RESOURCE_FILE_ID;
 
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
